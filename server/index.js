@@ -10,10 +10,18 @@ const FormModel = require('./models/Form');
 const app = express()
 app.use(express.json())
 app.use(cors())
+//mongoose.connect("mongodb+srv://admin:Miyuru4302@miyuruapi.imhpf7h.mongodb.net/VMS?retryWrites=true&w=majority");
+mongoose.set("strictQuery",false) 
 
-mongoose.connect("mongodb+srv://admin:Miyuru4302@miyuruapi.imhpf7h.mongodb.net/VMS?retryWrites=true&w=majority");
-
-
+mongoose.connect('mongodb+srv://admin:Miyuru4302@miyuruapi.imhpf7h.mongodb.net/VMS?retryWrites=true&w=majority')
+  .then(() => {
+    console.log('Connected to MongoDB');
+    // Start your server or perform other operations after successful connection
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error.message);
+    // Handle the error gracefully (e.g., show a meaningful error message to users)
+  });
 require('./models/Form');
 
 
