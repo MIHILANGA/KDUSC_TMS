@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style.css';
+import Notification from './Notification';
 
 function FormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
+  const [notifications, setNotifications] = useState([]); // Initialize notifications state
 
   useEffect(() => {
     // Fetch form data from the server
@@ -20,7 +22,12 @@ function FormD({ showNotification }) {
       .catch(error => {
         console.error('Error fetching form data:', error);
       });
-  }, [showNotification]);
+  }, []); // Only run this effect once on component mount
+
+  // Update the notifications state when needed
+  const updateNotifications = (newNotifications) => {
+    setNotifications(newNotifications);
+  };
 
   const handleRejectConfirmChange = (index, value) => {
     const updatedFormData = [...formData];
@@ -39,17 +46,23 @@ function FormD({ showNotification }) {
     })
     .then(response => {
       console.log('Form data updated in MongoDB:', response.data);
-      alert('Conformation Data Update successfully!');
+      updateNotifications([
+        ...notifications,
+        { message: 'Confirmation Data Updated Successfully!', type: 'success' }
+      ]);
     })
     .catch(error => {
       console.error('Error updating form data in MongoDB:', error);
-      alert('Conformation Data Update error!');
+      updateNotifications([
+        ...notifications,
+        { message: 'Confirmation Data Update Error!', type: 'error' }
+      ]);
     });
   };
 
-  return (
+return (
     <div className="form-container">
-      <h1> Requests Form Data</h1>
+      <h1>Requests Form Data</h1>
       <table className="data-table full-width">
         <thead>
           <tr>
@@ -121,7 +134,7 @@ function FormD({ showNotification }) {
                 <td>{form.totalofPassengers}</td>
                 <td>{form.routetoFollow}</td>
                 <td>{form.dateofApply}</td>
-                <td bgcolor="#ffcc00">{form.rejectOrConfirm}</td>
+              <td bgcolor="#ffcc00">{form.rejectOrConfirm}</td>
               <td>
                 <input
                   type="text"
@@ -135,6 +148,13 @@ function FormD({ showNotification }) {
           ))}
         </tbody>
       </table>
+
+      {/* Render Notifications */}
+      <div>
+        {notifications.map((notification, index) => (
+          <Notification key={index} message={notification.message} type={notification.type} />
+        ))}
+      </div>
     </div>
   );
 }
