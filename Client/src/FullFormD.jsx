@@ -3,7 +3,7 @@ import axios from 'axios';
 import './style.css';
 import Notification from './Notification';
 
-function FormD({ showNotification }) {
+function FullFormFormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [expandedRecordIndex, setExpandedRecordIndex] = useState(null); // Track expanded record index
@@ -83,17 +83,17 @@ function FormD({ showNotification }) {
   const reversedFormData = [...formData].reverse();
 
   return (
-    <div className="form-container">
-      <h1 className="request-head">Vehicle Request Forms</h1>
+    <div className="form-container1">
+        <h1 className="notific"> Request Notification</h1>
       {/* Render each record in a separate box in LIFO order */}
       {reversedFormData.map((form, index) => (
-        <div className="record-box" key={index}>
+        <div className="record-box1" key={index}>
           <p className="applicant-name">Applicant Name:{form.applicantname}</p>
-          <p className="requested-date">Requested date: {form.dateofApply}</p>
+          <p className="requested-date1">Requested date: {form.dateofApply}</p>
           <p className="description">Description: {form.appiicantAppoinment}</p>
         
           {/* Add more data fields as needed */}
-          <div className="reject-confirm-box">
+          {/* <div className="reject-confirm-box">
             <input
               type="text"
               onChange={e => handleRejectConfirmChange(index, e.target.value)}
@@ -111,15 +111,8 @@ function FormD({ showNotification }) {
             >
               Reject
             </button>
-          </div>
-          <div>
-            <button
-              className="action-button-showmore"
-              onClick={() => toggleExpanded(index)}
-            >
-              {expandedRecordIndex === index ? "Hide Details" : "Show More"}
-            </button>
-          </div>   
+      </div>*/}
+             
         </div>
       ))}
 
@@ -133,4 +126,4 @@ function FormD({ showNotification }) {
   );
 }
 
-export default FormD;
+export default FullFormFormD;

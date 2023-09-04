@@ -574,12 +574,12 @@ body, h1, h2, p {
 
 .dashboard-container {
   display: flexbox;
-  background-color: silver;
+  background-color: rgb(250, 253, 255);
   border-radius: 15px;
   overflow: hidden;
   height: 100%;
   margin: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 .dashboard-content {
@@ -589,8 +589,10 @@ body, h1, h2, p {
 
 h1 {
   font-size: 40px;
-  margin-bottom: 20px;
-  font-weight: 600;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: #4568DC;
+  ;
 }
 
 .nav-buttons {
@@ -615,15 +617,6 @@ h1 {
   background-color: #0056b3;
 }
 
-.notification-panel {
-  flex: 1;
-  padding: 40px;
-  background-color: rgb(106, 106, 106);
-  color: black;
-  width: 50%;
-
-  height: 50%;
-}
 
 h2 {
   font-size: 24px;
@@ -641,7 +634,7 @@ h2 {
 
 /* Curly button style */
 .btn-curly {
-  background: linear-gradient(45deg, #ff9933, #ffcc00);
+  
   color: white;
   border-radius: 30px;
   border: none;
@@ -658,7 +651,8 @@ h2 {
 
 /*homr button*/
 .btn1-curly {
-  background: linear-gradient(45deg, #192daf, #cd7313);
+  background: linear-gradient(45deg, #4568DC, #B06AB3);
+  /*background: linear-gradient(45deg, #0f3443, #34e89e);*/
   color: white;
   border-radius: 30px;
   border: none;
@@ -666,6 +660,7 @@ h2 {
   font-size: 21px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
+  font-weight: bold;
 }
 
 .btn1-curly:hover {
@@ -811,12 +806,13 @@ h2 {
   letter-spacing: 2px;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  
 }
 
 .record-box {
   margin-top: 50px;
   background-color: #d9e4e8;
-  border: 2px solid #190356;
+  border: 2px solid #247bc2;
   padding: 20px;
   margin: 20px;
   border-radius: 20px;
@@ -849,24 +845,7 @@ h2 {
   font-weight: bold;
   color: #002147;
 }
-/* Style the arrow icon and additional information */
-.expand-arrow {
-  display: flex;
-  margin-top: 15px;
-  left: 10px;
-  cursor: pointer;
-}
 
-.additional-info {
-  display: none;
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f0f0f0;
-}
-
-.additional-info.expanded {
-  display: block;
-}
 
 
 .reject-confirm-box {
@@ -892,8 +871,28 @@ h2 {
   border-radius: 25px;
   cursor: pointer;
   width: 100px;
-  
 }
+
+/* Style for the button */
+.action-button-showmore {
+  position: relative; /* Apply absolute positioning */
+  left: 84%; /* Move 500px from the left edge of its positioned parent */
+  bottom: -10px; /* Move to 80% from the top edge of its positioned parent */
+  background-color: transparent;
+  color: #247bc2;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 150px;
+  border: 2px solid #247bc2;
+}
+.action-button-showmore:hover {
+  background-color: #247bc2;
+  color: #fff;
+}
+
+
 .action-button2 {
   background-color: #ff6842;
   color: #fff;

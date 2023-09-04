@@ -68,6 +68,8 @@ function Home() {
       alert('An error occurred. Please try again.');
     });
   };
+
+  
   return (
 <div
       style={{
