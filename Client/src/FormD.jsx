@@ -80,6 +80,40 @@ function FormD({ showNotification }) {
     }
   };
 
+  
+
+  const handlePrint = (index) => {
+    // Create a new window for printing
+    const printWindow = window.open('', '', 'width=600,height=600');
+  
+    // Create the content to be printed
+    const printContent = `
+      <html>
+        <head>
+          <title>Form Details</title>
+        </head>
+        <body>
+          <h1>Form Details</h1>
+          <p>Applicant Name: ${formData[index].applicantname}</p>
+          <p>Requested date: ${formData[index].dateofApply}</p>
+          <!-- Include other form details here -->
+        </body>
+      </html>
+    `;
+  
+    // Write the content to the print window
+    printWindow.document.open();
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+  
+    // Trigger the print dialog
+    printWindow.print();
+  
+    // Close the print window after printing (optional)
+    printWindow.close();
+  };
+  
+
 
   return (
     <div className="form-container">
@@ -98,27 +132,39 @@ function FormD({ showNotification }) {
             {/* Render additional details only for the expanded record */}
             {expandedRecordIndex === index && (
               <div className="description">
-              <p className="expanded-detail">vehicleIncharge : {form.vehicleIncharge}</p>
-              <p className="expanded-detail">dateofRequired : {form.dateofRequired}</p>
-              <p className="expanded-detail">timeofRequired : {form.timeofRequired}</p>
-              <p className="expanded-detail">natureofDuty : {form.natureofDuty}</p> <br/>
+              <p className="expanded-detail">VehicleIncharge : {form.vehicleIncharge}</p>
+              <p className="expanded-detail">DateofRequired  : {form.dateofRequired}</p>
+              <p className="expanded-detail">TimeofRequired  : {form.timeofRequired}</p>
+              <p className="expanded-detail">NatureofDuty    : {form.natureofDuty}</p> <br/>
 
-              <p className="expanded-detail"> addresstoGo : {form.addresstoGo}</p>
-              <p className="expanded-detail">requirement : {form.requirement}</p>
-              <p className="expanded-detail">timetobeSpent : {form.timetobeSpent}</p>
-              <p className="expanded-detail">distance : {form.distance}</p> <br/>
+              <p className="expanded-detail">AddresstoGo  : {form.addresstoGo}</p>
+              <p className="expanded-detail">Requirement   : {form.requirement}</p>
+              <p className="expanded-detail">TimetobeSpent : {form.timetobeSpent}</p>
+              <p className="expanded-detail">Distance      : {form.distance}</p> <br/>
 
-              <p className="expanded-detail">dateofArriva: {form.dateofArriva}</p>
-              <p className="expanded-detail"> timeofArrival: {form.timeofArrival}</p>
+              <p className="expanded-detail">DateofArriva  : {form.dateofArriva}</p>
+              <p className="expanded-detail">TimeofArrival : {form.timeofArrival}</p><br/>
 
-              <p className="expanded-detail"> numofOfficers : {form.numofOfficers}</p>
-              <p className="expanded-detail"> numofLectures : {form.numofLectures}</p>
-              <p className="expanded-detail"> numofInstructors : {form.numofInstructors}</p>
-              <p className="expanded-detail">numofcadetOfficers : {form.numofcadetOfficers}</p>
-              <p className="expanded-detail">numofdayScholers: {form.numofdayScholers}</p>
-              <p className="expanded-detail"> numofcivilStaff : {form.numofcivilStaff}</p>
-              <p className="expanded-detail"> totalofPassengers : {total}</p>
+              <p className="expanded-detail">Num of Officers: {form.numofOfficers}</p>
+              <p className="expanded-detail">Num of Lectures: {form.numofLectures}</p>
+              <p className="expanded-detail">Num of Instructors: {form.numofInstructors}</p>
+              <p className="expanded-detail">Num of CadetOfficers: {form.numofcadetOfficers}</p>
+              <p className="expanded-detail">Num of DayScholers: {form.numofdayScholers}</p>
+              <p className="expanded-detail">Num of civil Staff: {form.numofcivilStaff}</p>
+              <p className="expanded-detail">Total Passengers: {total}</p>
+
+              {/* .......................... print the form.......................... ... */}
+              <div className="" key={index}>
+                    {/* ... other details ... */}
+                      <button
+                        className="print-button"
+                        onClick={() => handlePrint(index)}
+                      >
+                        Print
+                      </button>
+                    </div>
               </div>
+              
             )}
 
             <div className="reject-confirm-box">

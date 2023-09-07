@@ -863,7 +863,17 @@ h2 {
   color: #002147;
 }
 
-
+.print-button {
+  background-color: #1c23ff;
+  color: #fff;
+  border: none;
+  margin-left: 50px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100px;
+  align-items: center;
+}
 
 .reject-confirm-box {
   display: flex;
