@@ -828,9 +828,15 @@ h2 {
   border-radius: 20px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   width: 70%;
+  
 
 }
-
+.expanded-record {
+  /* Add styles for the expanded record here */
+  /* For example, you can increase the height, change background color, etc. */
+  height: auto; /* Adjust this value as needed */
+  background-color: lightgray; /* Adjust this value as needed */
+}
 .record-header {
   display: flex;
   justify-content: space-between;
