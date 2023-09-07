@@ -28,9 +28,19 @@ function Login() {
   <br />
   <div className="my-2"></div> {/* Add a small space */}
   <Link to="/login" className="btn btn-curly w-100">
-    Login MA Only
+    Login FOC 
+  </Link>
+
+<div className="my-2"></div> {/* Add a small space */}
+  <Link to="/login1" className="btn btn-curly w-100">
+    Login FDSS 
+  </Link>
+  <div className="my-2"></div> {/* Add a small space */}
+  <Link to="/login2" className="btn btn-curly w-100">
+    Login FOT 
   </Link>
 </div>
+
 
           </div>
         </div>
@@ -40,3 +50,4 @@ function Login() {
 }
 
 export default Login;
+

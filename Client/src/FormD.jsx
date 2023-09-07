@@ -1,26 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './style.css';
+import './FormD.css'; // Import a separate CSS file for styling
 
 function FormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
+  const [expandedIndex, setExpandedIndex] = useState(-1);
 
   useEffect(() => {
-    // Fetch form data from the server
-    axios.get('http://localhost:3001/getAllForm')
-      .then(response => {
+    // Fetch form data from the server initially
+    fetchFormData('http://localhost:3001/getAllForm');
+    fetchFormData('http://localhost:3001/getAllForm1');
+    fetchFormData('http://localhost:3001/getAllForm2');
+  }, []);
+
+  const fetchFormData = (url) => {
+    axios
+      .get(url)
+      .then((response) => {
         setFormData(response.data.data);
-        // Filter and prepare the data for the notification
-        const filteredData = response.data.data.map(form => ({
-          ...form, // Keep all existing data
+        const filteredData = response.data.data.map((form) => ({
+          ...form,
           rejectOrConfirm: '', // Add a new property for reject/confirm input
         }));
         showNotification(filteredData);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching form data:', error);
       });
-  }, [showNotification]);
+  };
 
   const handleRejectConfirmChange = (index, value) => {
     const updatedFormData = [...formData];
@@ -33,26 +40,42 @@ function FormD({ showNotification }) {
     const { _id, rejectOrConfirm } = updatedFormData[index];
 
     // Update the data in the MongoDB database
-    axios.post('http://localhost:3001/updateFormData', {
-      id: _id,
-      rejectOrConfirm: rejectOrConfirm,
-    })
-    .then(response => {
-      console.log('Form data updated in MongoDB:', response.data);
-      alert('Conformation Data Update successfully!');
-    })
-    .catch(error => {
-      console.error('Error updating form data in MongoDB:', error);
-      alert('Conformation Data Update error!');
-    });
+    axios
+      .post('http://localhost:3001/updateFormData', {
+        id: _id,
+        rejectOrConfirm: rejectOrConfirm,
+      })
+      .then((response) => {
+        console.log('Form data updated in MongoDB:', response.data);
+        alert('Confirmation Data Updated successfully!');
+      })
+      .catch((error) => {
+        console.error('Error updating form data in MongoDB:', error);
+        alert('Confirmation Data Update error!');
+      });
+  };
+
+  const toggleDetails = (index) => {
+    setExpandedIndex(expandedIndex === index ? -1 : index);
   };
 
   return (
     <div className="form-container">
-      <h1> Requests Form Data</h1>
+      <h1>Requests Form Data</h1>
+      <div className="buttons-container">
+        <button onClick={() => fetchFormData('http://localhost:3001/getAllForm')}>
+          FOC Request Forms
+        </button>
+        <button onClick={() => fetchFormData('http://localhost:3001/getAllForm1')}>
+          FDSS Request Forms
+        </button>
+        <button onClick={() => fetchFormData('http://localhost:3001/getAllForm2')}>
+          FOT Request Forms
+        </button>
+      </div>
       <table className="data-table full-width">
         <thead>
-          <tr>
+        <tr>
           <th>applicant
                   name</th>
                 <th>appiicant
@@ -75,17 +98,17 @@ function FormD({ showNotification }) {
                   Arrival</th>
                 <th>timeof
                   Arrival</th>
-                <th>numof
+                <th>
                   Officers</th>
-                <th>numof
+                <th>
                   Lectures</th>
-                <th>numof
+                <th>
                   Instructors</th>
-                <th>numofcadet
+                <th>cadet
                   Officers</th>
-                <th>numofday
+                <th>day
                   Scholers</th>
-                <th>numof
+                <th>
                   civilStaff</th>
                 <th>totalof
                   Passengers</th>
@@ -99,7 +122,8 @@ function FormD({ showNotification }) {
         </thead>
         <tbody>
           {formData.map((form, index) => (
-            <tr key={index}>
+            <React.Fragment key={index}>
+              <tr onClick={() => toggleDetails(index)} className="clickable-row">
               <td>{form.applicantname}</td>
                 <td>{form.appiicantAppoinment}</td>
                 <td>{form.vehicleIncharge}</td>
@@ -122,16 +146,28 @@ function FormD({ showNotification }) {
                 <td>{form.routetoFollow}</td>
                 <td>{form.dateofApply}</td>
                 <td bgcolor="#ffcc00">{form.rejectOrConfirm}</td>
-              <td>
-                <input
-                  type="text"
-                  onChange={e => handleRejectConfirmChange(index, e.target.value)}
-                />
-              </td>
-              <td>
-                <button className="action-button save-button" onClick={() => handleFormSubmit(index)}>Submit</button>
-              </td>
-            </tr>
+                <td>
+                  <button
+                    className="action-button save-button"
+                    onClick={() => handleFormSubmit(index)}
+                  >
+                    Submit
+                  </button>
+                </td>
+              </tr>
+              {expandedIndex === index && (
+                <tr className="details-row">
+                  <td colSpan="4">
+                    <div className="details">
+                      {/* Display additional details here */}
+                      Date of Required: {form.dateofRequired}<br />
+                      Nature of Duty: {form.natureofDuty}<br />
+                      {/* Add more details as needed */}
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </React.Fragment>
           ))}
         </tbody>
       </table>
