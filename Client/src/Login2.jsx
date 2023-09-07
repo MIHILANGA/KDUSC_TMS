@@ -12,14 +12,14 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/login', {
+    axios.post('http://localhost:3001/login2', {
       email,
       password,
     })
       .then(result => {
         console.log(result);
         if (result.data === 'success') {
-          navigate('/home');
+          navigate('/home2');
         }
       })
       .catch(err => console.log(err));
@@ -39,7 +39,7 @@ function Login() {
 
         <div className="d-flex justify-content-center align-items-center vh-100">
           <div className="bg-white p-3 rounded w-25">
-            <h2>Login MA FOC</h2>
+            <h2>Login MA FOT</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="email">

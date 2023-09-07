@@ -34,7 +34,7 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/home', {
+    axios.post('http://localhost:3001/home1', {
       applicantname,
       appiicantAppoinment,
       vehicleIncharge,
@@ -81,13 +81,13 @@ function Home() {
       {/* Left side with buttons */}
       <div style={{ flex: 1, padding: '10px' }}>
         <div>
-          <h1>FOC MA Home</h1>
+          <h1>FDSS MA Home</h1>
         </div>
         <div>
-          <Link to="/conformation" className="btn btn-curly w-100 mb-3">
+          <Link to="/conformation1" className="btn btn-curly w-100 mb-3">
             <b>Request Confirmations or Rejections</b>
           </Link>
-          <Link to="/cancel" className="btn btn-curly w-100">
+          <Link to="/cancel1" className="btn btn-curly w-100">
             <b>Edit Or Cancel Request</b>
           </Link>
           <p>(If you Cancel Request  please call MTO Office)</p>
