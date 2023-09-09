@@ -90,12 +90,38 @@ function FormD({ showNotification }) {
     const printContent = `
       <html>
         <head>
-          <title>Form Details</title>
+          <title></title>
         </head>
         <body>
-          <h1>Form Details</h1>
+          <h2><center>Sir John Kotelwala Defence University -Southern Campus </center></h2>
+          <h3><center>Application For Transport Requirment</center></h3><br/>
           <p>Applicant Name: ${formData[index].applicantname}</p>
-          <p>Requested date: ${formData[index].dateofApply}</p>
+          <p>Vehicle in Charge: ${formData[index].vehicleIncharge}</p>
+          <p>Required date: ${formData[index].dateofRequired}</p>
+          <p>Required Time: ${formData[index].timeofRequired}</p>
+
+          <p>Nature of Duty: ${formData[index].natureofDuty}</p>
+          <p>Address to Go: ${formData[index].addresstoGo}</p>
+          <p>Requirment: ${formData[index].requirement}</p>
+          <p>TimetobeSpent:${formData[index].timeofRequired}Distance:</p>
+          <p>Distance::${formData[index].distance}</p>
+
+          <p>Date of arrival: ${formData[index].natureofDuty}</p>
+          <p>TIme of arrival: ${formData[index].addresstoGo}</p><br/>
+
+          <p>Number of officers: ${formData[index].numofOfficers}</p>
+          <p>Number of lecturers:${formData[index].numofLectures}Distance:</p>
+          <p>Number of Instruction:${formData[index].numofInstructors}</p>
+          <p>Number of Cadet Officers: ${formData[index].numofcadetOfficers}</p>
+          <p>Number of Day SCholers:${formData[index].numofdayScholers}Distance:</p>
+          <p>Number of Civil Staff:${formData[index].numofcivilStaff}</p><br/>
+          <p>Total Passengers:${formData[index].total}</p>
+
+          <p>Route to Follow:${formData[index].routetoFollow}</p><br/><br/>
+
+          <h3><right> Rector (Southern Campus)</right></h3>
+
+
           <!-- Include other form details here -->
         </body>
       </html>
@@ -152,6 +178,7 @@ function FormD({ showNotification }) {
               <p className="expanded-detail">Num of DayScholers: {form.numofdayScholers}</p>
               <p className="expanded-detail">Num of civil Staff: {form.numofcivilStaff}</p>
               <p className="expanded-detail">Total Passengers: {total}</p>
+              <p className="expanded-detail">Route to Follow:{form.routetoFollow}</p>
 
               {/* .......................... print the form.......................... ... */}
               <div className="" key={index}>
