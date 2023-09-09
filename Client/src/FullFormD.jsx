@@ -91,6 +91,7 @@ function FullFormFormD({ showNotification }) {
           <p className="applicant-name">Applicant Name:{form.applicantname}</p>
           <p className="requested-date1">Requested date: {form.dateofApply}</p>
           <p className="description">Description: {form.appiicantAppoinment}</p>
+          <p className="description">Request Status :{form.rejectOrConfirm}</p>
         
           {/* Add more data fields as needed */}
           {/* <div className="reject-confirm-box">
