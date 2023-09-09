@@ -84,7 +84,7 @@ function FormD({ showNotification }) {
 
   const handlePrint = (index) => {
     // Create a new window for printing
-    const printWindow = window.open('', '', 'width=600,height=600');
+    const printWindow = window.open('', '', 'width=1000,height=600');
   
     // Create the content to be printed
     const printContent = `
