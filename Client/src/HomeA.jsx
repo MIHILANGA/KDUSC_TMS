@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 import FormD from './FormD';
+import FullFormFormD from './FullFormD';
+
+
+
 
 function HomeA() {
   const [notification, setNotification] = useState('');
@@ -25,14 +29,10 @@ function HomeA() {
         </div>
       </div>
       {isAdmin && (
-        <div className="notification-panel">
-          <h2>Notifications</h2>
-          <FormD onDataReady={showNotification} />
-          <p></p>
-          <table style={{ width: '80%' }}>
-            {/* Your table content */}
-            
-          </table>
+        <div className="notification-panel2">
+          <div>
+          <FullFormFormD onDataReady={showNotification} />
+          </div>
         </div>
       )}
     </div>

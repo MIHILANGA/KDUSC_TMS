@@ -250,7 +250,7 @@ app.get("/getAllForm", async (req, res) => {
   
 
   // Update route
-  app.post('/updateFormDatas1', (req, res) => {
+  app.post('/updateFormData1', (req, res) => {
     const { id, updatedData } = req.body;
     
   

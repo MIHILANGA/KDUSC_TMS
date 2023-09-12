@@ -650,6 +650,16 @@ h2 {
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
 }
+.btn2-curly {
+  background: linear-gradient(45deg, #161541, #157ac8);
+  color: white;
+  border-radius: 30px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
 
 .btn-curly:hover {
   transform: scale(1.05);
@@ -681,7 +691,7 @@ h2 {
   border-radius: 20px;
   padding: 10px 45px;
   font-size: 16px;
-  color: #504b4b;
+  color: #3b3b3b;
 }
 
 .form-control-curly::placeholder {
@@ -753,7 +763,7 @@ h2 {
 }
 
 .save-button {
-  background-color: #4caf50;
+  background-color: #4c4caf;
   color: white;
 }
 
