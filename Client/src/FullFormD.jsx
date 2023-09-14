@@ -7,12 +7,29 @@ function FullFormFormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [expandedRecordIndex, setExpandedRecordIndex] = useState(null); // Track expanded record index
-
+ 
+ 
   useEffect(() => {
-    axios.get('http://localhost:3001/getAllForm')
-      .then(response => {
-        setFormData(response.data.data);
-        const filteredData = response.data.data.map(form => ({
+    // Define the URLs for the GET requests
+    const urls = [
+      'http://localhost:3001/getAllForm',
+      'http://localhost:3001/getAllForm1',
+      'http://localhost:3001/getAllForm2',
+    ];
+  
+    // Use Promise.all to make parallel requests
+    Promise.all(urls.map(url => axios.get(url)))
+      .then(responses => {
+        // Process the responses here
+        const combinedData = responses.map(response => response.data.data);
+  
+        // Assuming you want to merge the data into a single array
+        const mergedData = [].concat(...combinedData);
+  
+        setFormData(mergedData);
+  
+        // Further processing or notifications here
+        const filteredData = mergedData.map(form => ({
           ...form,
           rejectOrConfirm: '',
           message: '',
@@ -20,9 +37,12 @@ function FullFormFormD({ showNotification }) {
         showNotification(filteredData);
       })
       .catch(error => {
-        console.error('Error fetching form data:', error);
+        console.error('Error fetching data:', error);
       });
   }, []);
+  
+
+  
 
   const handleRejectConfirmChange = (index, value) => {
     const updatedFormData = [...formData];
