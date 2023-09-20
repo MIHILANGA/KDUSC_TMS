@@ -18,6 +18,8 @@ import Map from './Map';
 import Vehicledetails from './Vehicledetails';
 import Insurancedetails from './Insurancedetails';
 import Driverdetails from './Driverdetails';
+import Vehicleadd from './Vehicleadd';
+import Vehicleedit from './Vehicleedit';
 
 
 function App() {
@@ -44,7 +46,8 @@ function App() {
         <Route path="/Vehicledetails" element={<Vehicledetails />} ></Route>
         <Route path="/InsuranceDetails" element={<Insurancedetails />} ></Route>
         <Route path="/DriversDetails" element={<Driverdetails />} ></Route>
-        
+        <Route path='/vehicleadd' element={<Vehicleadd />} ></Route>
+        <Route path='/vehicleedit' element={<Vehicleedit />} ></Route>
         
       </Routes>
       

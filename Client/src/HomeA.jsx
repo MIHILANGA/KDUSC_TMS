@@ -22,8 +22,8 @@ function HomeA() {
         {/* Navigation Links */}
         <div className="nav-buttons">
           <Link to="/FormD" className="btn btn1-curly gap-5 w-100">Request Forms</Link>
-          <Link to="/VehicleDetails" className="btn btn1-curly gap-5 w-100">Vehicle Details</Link>
-          <Link to="/InsuranceDetails" className="btn btn1-curly gap-5 w-100">Insurance Details</Link>
+          <Link to="/VehicleDetails" className="btn btn1-curly gap-5 w-100">Vehicle and Insurance Details</Link>
+          <Link to="/InsuranceDetails" className="btn btn1-curly gap-5 w-100">Vehicle Assign Details</Link>
           <Link to="/DriversDetails" className="btn btn1-curly gap-5 w-100">Drivers Details</Link>
           <Link to="/SpecialRequest" className="btn btn1-curly gap-5 w-100">Special Requests</Link>
         </div>
