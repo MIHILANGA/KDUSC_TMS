@@ -81,7 +81,7 @@ function Home() {
       {/* Left side with buttons */}
       <div style={{ flex: 1, padding: '10px' }}>
         <div>
-          <h1>FDSS MA Home</h1>
+          <h1>FBESS MA Home</h1>
         </div>
         <div>
           <Link to="/conformation1" className="btn btn-curly w-100 mb-3">

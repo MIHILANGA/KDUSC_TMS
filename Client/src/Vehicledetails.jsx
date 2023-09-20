@@ -6,7 +6,7 @@ import './style.css';
 function Login() {
   return (
     <div>
-        <h1>yvaicubwc</h1>
+        <h1>Vehicle Details</h1>
     </div>
   );
 }

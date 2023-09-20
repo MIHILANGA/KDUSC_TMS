@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Notification from './Notification';
-import '../src/FullFormD.css';
+import './CSS/FullFormD.css';
 
 function FullFormFormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
@@ -13,8 +13,7 @@ function FullFormFormD({ showNotification }) {
     // Define the URLs for the GET requests
     const urls = [
       'http://localhost:3001/getAllForm',
-      'http://localhost:3001/getAllForm1',
-      'http://localhost:3001/getAllForm2',
+      
     ];
   
     // Use Promise.all to make parallel requests

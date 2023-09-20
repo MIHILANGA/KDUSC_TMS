@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style.css';
 import Notification from './Notification';
-import './FormD.css';
+import './CSS/FormD.css';
 
 function FormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
@@ -106,17 +106,17 @@ function FormD({ showNotification }) {
         <p>Nature of Duty: ${formData[index].natureofDuty}</p>
         <p>Address to Go: ${formData[index].addresstoGo}</p>
         <p>Requirment: ${formData[index].requirement}</p>
-        <p>TimetobeSpent:${formData[index].timeofRequired}Distance:</p>
+        <p>TimetobeSpent:${formData[index].timeofRequired}</p>
         <p>Distance::${formData[index].distance}</p>
 
         <p>Date of arrival: ${formData[index].natureofDuty}</p>
         <p>TIme of arrival: ${formData[index].addresstoGo}</p><br/>
 
         <p>Number of officers: ${formData[index].numofOfficers}</p>
-        <p>Number of lecturers:${formData[index].numofLectures}Distance:</p>
+        <p>Number of lecturers:${formData[index].numofLectures}</p>
         <p>Number of Instruction:${formData[index].numofInstructors}</p>
         <p>Number of Cadet Officers: ${formData[index].numofcadetOfficers}</p>
-        <p>Number of Day SCholers:${formData[index].numofdayScholers}Distance:</p>
+        <p>Number of Day SCholers:${formData[index].numofdayScholers}</p>
         <p>Number of Civil Staff:${formData[index].numofcivilStaff}</p><br/>
         <p>Total Passengers:${formData[index].total}</p>
 
@@ -148,7 +148,7 @@ function FormD({ showNotification }) {
           FOC Request Forms
         </button>
         <button onClick={() => fetchFormData('http://localhost:3001/getAllForm1')}>
-          FDSS Request Forms
+          FBESS Request Forms
         </button>
         <button onClick={() => fetchFormData('http://localhost:3001/getAllForm2')}>
           FOT Request Forms
@@ -217,9 +217,7 @@ function FormD({ showNotification }) {
               <button className="action-button2" onClick={() => handleReject(index)}>
                 Reject
               </button>
-              <button className="print-button" onClick={() => handlePrint(index)}>
-                Print
-              </button>
+              
             </div>
             <div>
             <button

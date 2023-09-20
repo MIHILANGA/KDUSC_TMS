@@ -8,6 +8,7 @@ const AdminModel = require('./models/Admin');
 const FormModel = require('./models/Form');
 const FormModel1 = require('./models/Form1');
 const FormModel2 = require('./models/Form2');
+const LoginModel = require('./models/Logins');
 
 
 
@@ -21,26 +22,10 @@ mongoose.connect("mongodb+srv://admin:Miyuru4302@miyuruapi.imhpf7h.mongodb.net/V
 require('./models/Form');
 
 
-app.post("/login",(req, res) => {
-    const {email ,password} = req.body;
-    EmployeeModel.findOne({email: email})
-    .then(user=>{
-        if(user){
-            if(user.password === password){
-                res.json("success")
-            }else{
-                res.json("wrong password")
-            }
-        }else{
-            res.json("wrong email")
-        }
-    })
-})
 
-
-app.post("/login1",(req, res) => {
+app.post("/logins",(req, res) => {
   const {email ,password} = req.body;
-  EmployeeModel1.findOne({email: email})
+  LoginModel.findOne({email: email})
   .then(user=>{
       if(user){
           if(user.password === password){
@@ -53,23 +38,6 @@ app.post("/login1",(req, res) => {
       }
   })
 })
-
-app.post("/login2",(req, res) => {
-  const {email ,password} = req.body;
-  EmployeeModel2.findOne({email: email})
-  .then(user=>{
-      if(user){
-          if(user.password === password){
-              res.json("success")
-          }else{
-              res.json("wrong password")
-          }
-      }else{
-          res.json("wrong email")
-      }
-  })
-})
-
 ////////////////////////////////////
 
 app.post('/register', (req, res) => {

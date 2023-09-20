@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './style.css';
+import './CSS/HomeA.css';
 import FormD from './FormD';
 import FullFormFormD from './FullFormD';
 

@@ -1,82 +1,95 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.css';
+import './CSS/First.css';
 
 function Login() {
-  const [language, setLanguage] = useState('en'); // Default language is English
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  // Define translations for Sinhala
-  const translations = {
-    en: {
-      title: 'KDU Vehicle Management System',
-      loginText: 'Log in Your Interface',
-      loginAdmin: 'Login Admin',
-      loginFOC: 'Login FOC',
-      loginFDSS: 'Login FDSS',
-      loginFOT: 'Login FOT',
-    },
-    si: {
-      title: 'KDU වාහන කළමනාකාර කළමනාකාරකරණය පද්ධතිය',
-      loginText: 'ඔබගේ අතුරු සබැඳිය සොයන්න',
-      loginAdmin: 'පරිපාලක ලොගින්',
-      loginFOC: 'FOC ලොගින්',
-      loginFDSS: 'FDSS ලොගින්',
-      loginFOT: 'FOT ලොගින්',
-    },
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Send the email and password to the server
+    axios
+      .post(`http://localhost:3001/logins`, {
+        email,
+        password,
+      })
+      .then((result) => {
+        console.log(result);
+        if (result.data === 'success') {
+          // Redirect based on the email address
+          if (email === 'foc@gmail.com') {
+            navigate(`/home`);
+          } else if (email === 'fbess@gmail.com') {
+            navigate(`/home1`);
+          } else if (email === 'fot@gmail.com') {
+            navigate(`/home2`);
+          } else if (email === 'admin@gmail.com') {
+            navigate(`/Ahome`);
+          } else {
+            setError('Incorrect email or password. Please try again.');
+          }
+        } else {
+          setError('Incorrect email or password. Please try again.');
+          alert('Incorrect email or password. Please try again.');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        setError('An error occurred while logging in. Please try again later.');
+      });
   };
-
-  // Function to handle language change
-  const handleLanguageChange = (selectedLanguage) => {
-    setLanguage(selectedLanguage);
-  };
-
   return (
-    <div className="login-frame" style={{ backgroundImage: `url('kdu-entrance 1.png')` }}>
-      {/* ... Your existing code ... */}
-      <div className="overlay"></div> {/* Overlay element */}
-      <div className="overlap">
-        <div className="hedder">
-          <div className="rectangle" />
-          <img className="kotelawala-defence" alt="Kotelawala defence" src="p1.png" />
-          <img className="southen" alt="Southen" src="southen1 1.png" />
+      <div className="mainlogin-frame" style={{ backgroundImage: `url('kdu-entrance 1.png')`}}id="bg-image" >
+        <div>
+          <div className="header-rectangle" />
+          <img className="logo" alt="Kotelawala defence" src="kdu.png" />
+          <div class="Midbg"></div> 
         </div>
-        
-
-        <div className="d-flex justify-content-center align-items-center vh-100">
-          
-      
-          <div className="bg-white p-3 rounded w-25 login-content"> {/* Apply login-content class */}
-            <h2>KDU Vehicle Management System</h2>
-            <p>Log in Your Interface</p>
-      <div className="form-control-curly rounded-5">
-        <Link to="/Alogin" className="btn btn-curly gap-5 w-100">
-          {translations[language].loginAdmin}
-        </Link>
+        <div className="midtext"> {/* Apply login-content class */}
+          <div>
+      <h2>
+        General Sir John Kotelawala Defence University
+        <br/>
+        Southern Campus
         <br />
-        <div className="my-2"></div> {/* Add a small space */}
-        <Link to="/login" className="btn btn2-curly w-100">
-          {translations[language].loginFOC}
-        </Link>
-        <div className="my-2"></div> {/* Add a small space */}
-        <Link to="/login1" className="btn btn2-curly w-100">
-          {translations[language].loginFDSS}
-        </Link>
-        <div className="my-2"></div> {/* Add a small space */}
-        <Link to="/login2" className="btn btn2-curly w-100">
-          {translations[language].loginFOT}
-        </Link>
+        Transport Management
+      </h2>
+      <p>
+        To ensure a high-quality, learner-centered educational experience
+        <br />
+        through undergraduate, graduate, and professional programmes
+        <br />
+        along with high-quality research across many disciplines in the
+        <br />
+        field of defence, in both residential and non-residential settings in the campus.
+      </p>
+            </div>
+          {/*<Link to="/" className="backbtn"> Back </Link>*/}
+
+        <div className="loginarea">
+            <form onSubmit={handleSubmit}>
+
+            <input type="email" placeholder="Enter your email" autoComplete="off" name="email" className="emailtextinput" onChange={(e) => setEmail(e.target.value)}required/>
+          
+            <input type="password" placeholder="Enter your password" name="password" className="passwordtextinput" onChange={(e) => setPassword(e.target.value)}required/>
+
+            <button type="submit" className="submitbtn"> Login </button>
+          
+          </form>
+          </div>
+        </div>
       </div>
 
-      {/* Language Change Buttons */}
-      <div className="language-buttons">
-        <button className="btn" onClick={() => handleLanguageChange('en')}>English</button>
-        <button className="btn" onClick={() => handleLanguageChange('si')}>සිංහල</button>
-      </div>
-    </div>
-    </div>
-    </div>
-    </div>
+
+
+
   );
 }
 
