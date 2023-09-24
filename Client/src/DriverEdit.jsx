@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './CSS/VehicleEdit.css'
+import './CSS/VehicleEdit.css';
 
 function FormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editedIndex, setEditedIndex] = useState(-1); // Track the index of the edited row
-  const [expandedRecordIndex, setExpandedRecordIndex] = useState(-1); // Track the index of the expanded record
 
   useEffect(() => {
-    // Fetch form data from the server when the component mounts
-    axios.get('http://localhost:3001/getAllVehicle')
+    // Fetch driver data from the server when the component mounts
+    axios.get('http://localhost:3001/getAllDriver')
       .then(response => {
         setFormData(response.data.data);
         setLoading(false); // Data has been loaded
@@ -23,13 +22,13 @@ function FormD({ showNotification }) {
         showNotification(filteredData);
       })
       .catch(error => {
-        console.error('Error fetching form data:', error);
+        console.error('Error fetching driver data:', error);
         setLoading(false); // Error occurred while loading data
       });
   }, [showNotification]);
 
   // Handle cell click for editing
-  const handleCellClick = (rowIndex, columnName) => {
+  const handleCellClick = (rowIndex) => {
     setEditedIndex(rowIndex); // Set the edited row index
   };
 
@@ -45,44 +44,42 @@ function FormD({ showNotification }) {
     const updatedForm = formData[index];
 
     // Update the data in the MongoDB database
-    axios.post('http://localhost:3001/updateVehicleDatas', {
+    axios.post('http://localhost:3001/updateDriverDatas', {
       id: updatedForm._id,
       updatedData: updatedForm,
     })
     .then(response => {
-      console.log('Form data updated in MongoDB:', response.data);
+      console.log('Driver data updated in MongoDB:', response.data);
       alert('Data Update successfully!');
+      setEditedIndex(-1); // Reset the editedIndex after saving
     })
     .catch(error => {
-      console.error('Error updating form data in MongoDB:', error);
+      console.error('Error updating driver data in MongoDB:', error);
       alert('Data Update error!');
     });
-
-    // Reset the editedIndex after saving
-    setEditedIndex(-1);
   };
 
   // Handle delete
   const handleDelete = (id) => {
     // Delete data from the MongoDB database
-    axios.post('http://localhost:3001/deleteVehicleData', {
+    axios.post('http://localhost:3001/deleteDriverData', {
       id: id,
     })
     .then(response => {
-      console.log('Form data deleted from MongoDB:', response.data);
-      // Refresh form data after deletion
-      axios.get('http://localhost:3001/getAllVehicle')
+      console.log('Driver data deleted from MongoDB:', response.data);
+      // Refresh driver data after deletion
+      axios.get('http://localhost:3001/getAllDriver')
         .then(response => {
           setFormData(response.data.data);
-          alert('Request Form Cancel successfully!');
+          alert('Driver data deleted successfully!');
         })
         .catch(error => {
-          console.error('Error fetching updated form data:', error);
-          alert('Request Form Cancel Error!');
+          console.error('Error fetching updated driver data:', error);
+          alert('Driver data deletion error!');
         });
     })
     .catch(error => {
-      console.error('Error deleting form data from MongoDB:', error);
+      console.error('Error deleting driver data from MongoDB:', error);
     });
   };
 
@@ -92,15 +89,13 @@ function FormD({ showNotification }) {
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center">Vehicle Details Edit and Delete</h1>
+      <h1 className="text-center">Driver Details Edit and Delete</h1>
       <table className="table">
         <thead>
           <tr>
-            <th>Vehicle Number</th>
-            <th>Vehicle Owner Name</th>
-            <th>Register Date</th>
-            <th>Insurance Date</th>
-            <th>Expired Date</th> {/* Corrected the typo here */}
+            <th>Register Number</th>
+            <th>Driver Name</th>
+            <th>Telephone Number</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -111,62 +106,39 @@ function FormD({ showNotification }) {
                 {editedIndex === index ? (
                   <input
                     type="text"
-                    value={form.vehiclenumber}
-                    onChange={(e) => handleCellChange(index, 'vehiclenumber', e.target.value)}
+                    value={form.registernumber}
+                    onChange={(e) => handleCellChange(index, 'registernumber', e.target.value)}
                   />
                 ) : (
-                  <span onClick={() => handleCellClick(index, 'vehiclenumber')}>{form.vehiclenumber}</span>
+                  <span onClick={() => handleCellClick(index)}>{form.registernumber}</span>
                 )}
               </td>
               <td>
                 {editedIndex === index ? (
                   <input
                     type="text"
-                    value={form.vehicleowner}
-                    onChange={(e) => handleCellChange(index, 'vehicleowner', e.target.value)}
+                    value={form.drivername}
+                    onChange={(e) => handleCellChange(index, 'drivername', e.target.value)}
                   />
                 ) : (
-                  <span onClick={() => handleCellClick(index, 'vehicleowner')}>{form.vehicleowner}</span>
+                  <span onClick={() => handleCellClick(index)}>{form.drivername}</span>
                 )}
               </td>
               <td>
                 {editedIndex === index ? (
                   <input
                     type="text"
-                    value={form.registerdate}
-                    onChange={(e) => handleCellChange(index, 'registerdate', e.target.value)}
+                    value={form.Telephone}
+                    onChange={(e) => handleCellChange(index, 'Telephone', e.target.value)}
                   />
                 ) : (
-                  <span onClick={() => handleCellClick(index, 'registerdate')}>{form.registerdate}</span>
-                )}
-              </td>
-              <td>
-                {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.insurancedate}
-                    onChange={(e) => handleCellChange(index, 'insurancedate', e.target.value)}
-                  />
-                ) : (
-                  <span onClick={() => handleCellClick(index, 'insurancedate')}>{form.insurancedate}</span>
-                )}
-              </td>
-              <td>
-                {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.expireddate}
-                    onChange={(e) => handleCellChange(index, 'expireddate', e.target.value)}
-                  />
-                ) : (
-                  <span onClick={() => handleCellClick(index, 'expireddate')}>{form.expireddate}</span>
+                  <span onClick={() => handleCellClick(index)}>{form.Telephone}</span>
                 )}
               </td>
               <td>
                 {editedIndex === index && (
                   <button onClick={() => handleFormSubmit(index)}>Save</button>
                 )}
-                
                 <button onClick={() => handleDelete(form._id)}>Delete</button>
               </td>
             </tr>

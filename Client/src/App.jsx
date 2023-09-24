@@ -16,10 +16,13 @@ import Cancel2 from './cancel2';
 import Specialrequest from './Specialrequest';
 import Map from './Map';
 import Vehicledetails from './Vehicledetails';
-import Insurancedetails from './Insurancedetails';
+import Assign from './Assign';
 import Driverdetails from './Driverdetails';
+import DriverAdd from './DriverAdd';
+import DriverEdit from './DriverEdit';
 import Vehicleadd from './Vehicleadd';
 import Vehicleedit from './Vehicleedit';
+import RectorHome from './RectorHome';
 
 
 function App() {
@@ -44,10 +47,13 @@ function App() {
         <Route path="/SpecialRequest" element={<Specialrequest />} ></Route>
         <Route path="/Map" element={<Map />} ></Route>
         <Route path="/Vehicledetails" element={<Vehicledetails />} ></Route>
-        <Route path="/InsuranceDetails" element={<Insurancedetails />} ></Route>
+        <Route path="/Assign" element={<Assign />} ></Route>
         <Route path="/DriversDetails" element={<Driverdetails />} ></Route>
+        <Route path='/DriverAdd' element={<DriverAdd />} ></Route>
+        <Route path='/DriverEdit' element={<DriverEdit />}></Route>
         <Route path='/vehicleadd' element={<Vehicleadd />} ></Route>
         <Route path='/vehicleedit' element={<Vehicleedit />} ></Route>
+        <Route path='/RectorHome' element={<RectorHome />} ></Route>
         
       </Routes>
       

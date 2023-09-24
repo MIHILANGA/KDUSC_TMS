@@ -15,28 +15,32 @@ function HomeA() {
     setNotification(message);
   };
 
+
   return (
-    <div className="dashboard-container">
-      <div className="dashboard-content">
-        <h1>Admin Dashboard</h1>
+      <><div className="header-rectangle" />
+      <img className="logo" alt="Kotelawala defence" src="kdu.png" />
+      
+      <Link to="/" className="logoutbtn">Logout</Link>
         {/* Navigation Links */}
+
         <div className="nav-buttons">
-          <Link to="/FormD" className="btn btn1-curly gap-5 w-100">Request Forms</Link>
-          <Link to="/VehicleDetails" className="btn btn1-curly gap-5 w-100">Vehicle and Insurance Details</Link>
-          <Link to="/InsuranceDetails" className="btn btn1-curly gap-5 w-100">Vehicle Assign Details</Link>
-          <Link to="/DriversDetails" className="btn btn1-curly gap-5 w-100">Drivers Details</Link>
-          <Link to="/SpecialRequest" className="btn btn1-curly gap-5 w-100">Special Requests</Link>
+          <Link to="/FormD" className="requestsbtn">Requests</Link>
+          <Link to="/VehicleDetails" className="vehiclesbtn">Vehicles</Link>
+          <Link to="/Assign" className="assignbtn">Assign</Link>
+          <Link to="/DriversDetails" className="driverbtn">Drivers</Link>
+          <Link to="/SpecialRequest" className="reservationbtn">Reservations</Link>
         </div>
-      </div>
+      
       {isAdmin && (
-        <div className="notification-panel2">
+        <div className="notification-panel">
           <div>
-          <FullFormFormD onDataReady={showNotification} />
+            <FullFormFormD onDataReady={showNotification} />
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
+
 
 export default HomeA;

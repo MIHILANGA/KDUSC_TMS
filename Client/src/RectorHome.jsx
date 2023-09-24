@@ -20,7 +20,7 @@ function FormD({ showNotification }) {
         setFormData(response.data.data.reverse());
         const filteredData = response.data.data.map((form) => ({
           ...form,
-          rejectOrConfirm: '',
+          rejectOrConfirm1: '',
           message: '',
         }));
         showNotification(filteredData);
@@ -30,20 +30,20 @@ function FormD({ showNotification }) {
       });
   };
 
-  const handleRejectConfirmChange = (index, value) => {
-    const updatedFormData = [...formData];
-    updatedFormData[index].rejectOrConfirm = value;
-    setFormData(updatedFormData);
+  const handleRejectConfirmChange1 = (index, value) => {
+    const updatedFormData1 = [...formData];
+    updatedFormData1[index].rejectOrConfirm1 = value;
+    setFormData(updatedFormData1);
   };
 
-  const handleFormSubmit = (index) => {
-    const updatedFormData = [...formData];
-    const { _id, rejectOrConfirm, message } = updatedFormData[index];
+  const handleFormSubmit1 = (index) => {
+    const updatedFormData1 = [...formData];
+    const { _id, rejectOrConfirm1, message } = updatedFormData1[index];
 
     axios
-      .post('http://localhost:3001/updateFormData', {
+      .post('http://localhost:3001/updateFormData1', {
         id: _id,
-        rejectOrConfirm: rejectOrConfirm,
+        rejectOrConfirm1: rejectOrConfirm1,
         message: message,
       })
       .then((response) => {
@@ -63,19 +63,19 @@ function FormD({ showNotification }) {
   };
 
   const handleConfirm = (index) => {
-    const updatedFormData = [...formData];
-    updatedFormData[index].rejectOrConfirm = 'Confirmed';
-    updatedFormData[index].message = 'Request Confirmed';
-    setFormData(updatedFormData);
-    handleFormSubmit(index);
+    const updatedFormData1 = [...formData];
+    updatedFormData1[index].rejectOrConfirm1 = 'Confirmed';
+    updatedFormData1[index].message = 'Request Confirmed';
+    setFormData(updatedFormData1);
+    handleFormSubmit1(index);
   };
 
   const handleReject = (index) => {
-    const updatedFormData = [...formData];
-    updatedFormData[index].rejectOrConfirm = 'Rejected';
-    updatedFormData[index].message = 'Request Rejected';
-    setFormData(updatedFormData);
-    handleFormSubmit(index);
+    const updatedFormData1 = [...formData];
+    updatedFormData1[index].rejectOrConfirm1 = 'Rejected';
+    updatedFormData1[index].message = 'Request Rejected';
+    setFormData(updatedFormData1);
+    handleFormSubmit1(index);
   };
 
   const toggleExpanded = (index) => {
@@ -142,7 +142,8 @@ function FormD({ showNotification }) {
 
   return (
     <div className="form-container">
-      <h1 className="request-head">Vehicle Request Forms</h1>
+      <h1 className="request-head">Rector Dashboard</h1>
+      <h2 className="request-head">Vehicle Request Forms</h2>
       <div className="buttons-container">
         <button onClick={() => fetchFormData('http://localhost:3001/getAllForm')}>
           FOC Request Forms
@@ -208,8 +209,8 @@ function FormD({ showNotification }) {
             <div className="reject-confirm-box">
               <input
                 type="text"
-                onChange={(e) => handleRejectConfirmChange(index, e.target.value)}
-                value={form.rejectOrConfirm}
+                onChange={(e) => handleRejectConfirmChange1(index, e.target.value)}
+                value={form.rejectOrConfirm1}
               />
               <button className="action-button" onClick={() => handleConfirm(index)}>
                 Confirm
@@ -217,8 +218,7 @@ function FormD({ showNotification }) {
               <button className="action-button2" onClick={() => handleReject(index)}>
                 Reject
               </button>
-              
-            
+             
               
             </div>
             <div>

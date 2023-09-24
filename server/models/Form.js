@@ -23,6 +23,7 @@ const FormSchema = new mongoose.Schema({
     routetoFollow : String,
     dateofApply : Date,
     rejectOrConfirm : String,
+    rejectOrConfirm1 : String,
 
 }
 )

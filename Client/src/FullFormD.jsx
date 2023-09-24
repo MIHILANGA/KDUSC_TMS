@@ -103,7 +103,6 @@ function FullFormFormD({ showNotification }) {
 
   return (
     <div className="form-container2">
-        <h1 className="notific"> Request Notification</h1>
       {/* Render each record in a separate box in LIFO order */}
       {reversedFormData.map((form, index) => (
         <div className="record-box1" key={index}>
