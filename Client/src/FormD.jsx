@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './style.css';
 import Notification from './Notification';
 import './CSS/FormD.css';
 
@@ -45,6 +44,7 @@ function FormD({ showNotification }) {
         id: _id,
         rejectOrConfirm: rejectOrConfirm,
         message: message,
+        
       })
       .then((response) => {
         console.log('Form data updated in MongoDB:', response.data);
@@ -141,91 +141,80 @@ function FormD({ showNotification }) {
   };
 
   return (
-    <div className="form-container">
-      <h1 className="request-head">Vehicle Request Forms</h1>
-      <div className="buttons-container">
-        <button onClick={() => fetchFormData('http://localhost:3001/getAllForm')}>
-          FOC Request Forms
+    <><div className="header-rectangle" />
+    <img className="logo" alt="Kotelawala defence" src="kdu.png" />
+    <button type="button" className="backbtn" onClick={() => window.location.href = '/Ahome'}>Back</button>
+
+
+    <div className="buttons-container">
+        <button className='btn1' onClick={() => fetchFormData('http://localhost:3001/getAllForm')}>
+          FOC
         </button>
-        <button onClick={() => fetchFormData('http://localhost:3001/getAllForm1')}>
-          FBESS Request Forms
+        <button className='btn2' onClick={() => fetchFormData('http://localhost:3001/getAllForm1')}>
+          FBESS
         </button>
-        <button onClick={() => fetchFormData('http://localhost:3001/getAllForm2')}>
-          FOT Request Forms
+        <button className='btn3' onClick={() => fetchFormData('http://localhost:3001/getAllForm2')}>
+          FOT
         </button>
       </div>
+    <div className='notification-panel'>
+
       {formData.map((form, index) => {
-        const total =
-          form.numofOfficers +
+        const total = form.numofOfficers +
           form.numofLectures +
           form.numofInstructors +
           form.numofcadetOfficers +
           form.numofdayScholers +
           form.numofcivilStaff;
 
-          return (
-            <div className="record-box" key={index}>
-              <p className="applicant-name">Applicant Name: {form.applicantname}</p>
-              <p className="requested-date">Requested date: {form.dateofApply}</p>
-              <p className="description">Description: {form.appiicantAppoinment}</p>
-  
-              {/* Render additional details only for the expanded record */}
-              {expandedRecordIndex === index && (
-                <div className="description">
-                <p className="expanded-detail">vehicleIncharge : {form.vehicleIncharge}</p>
-                <p className="expanded-detail">dateofRequired : {form.dateofRequired}</p>
-                <p className="expanded-detail">timeofRequired : {form.timeofRequired}</p>
-                <p className="expanded-detail">natureofDuty : {form.natureofDuty}</p> <br/>
-  
-                <p className="expanded-detail"> addresstoGo : {form.addresstoGo}</p>
-                <p className="expanded-detail">requirement : {form.requirement}</p>
-                <p className="expanded-detail">timetobeSpent : {form.timetobeSpent}</p>
-                <p className="expanded-detail">distance : {form.distance}</p> <br/>
-  
-                <p className="expanded-detail">dateofArriva: {form.dateofArriva}</p>
-                <p className="expanded-detail"> timeofArrival: {form.timeofArrival}</p>
-  
-                <p className="expanded-detail"> numofOfficers : {form.numofOfficers}</p>
-                <p className="expanded-detail"> numofLectures : {form.numofLectures}</p>
-                <p className="expanded-detail"> numofInstructors : {form.numofInstructors}</p>
-                <p className="expanded-detail">numofcadetOfficers : {form.numofcadetOfficers}</p>
-                <p className="expanded-detail">numofdayScholers: {form.numofdayScholers}</p>
-                <p className="expanded-detail"> numofcivilStaff : {form.numofcivilStaff}</p>
-                <p className="expanded-detail"> totalofPassengers : {total}</p>
-                 {/* .......................... print the form.......................... ... */}
-                 <div className="" key={index}>
-                      {/* ... other details ... */}
-                        <button
-                          className="print-button"
-                          onClick={() => handlePrint(index)}
-                        >
-                          Print
-                        </button>
-                      </div>
+        return (
+          <div className="record-box" key={index}>
+            <p className="applicant-name">Applicant Name: {form.applicantname}</p>
+            <p className="requested-date">Requested date: {form.dateofApply}</p>
+            <p className="description">Description: {form.appiicantAppoinment}</p> <br />
+
+            {/* Render additional details only for the expanded record */}
+            {expandedRecordIndex === index && (
+            <div className="details">
+                <p className="expanded-detail"> <b>Vehicle Incharge : </b> {form.vehicleIncharge}</p>
+                <p className="expanded-detail"><b>Date Required : </b> {form.dateofRequired}</p>
+                <p className="expanded-detail"><b>Time Required : </b>{form.timeofRequired}</p>
+                <p className="expanded-detail"><b>Nature of Duty : </b>{form.natureofDuty}</p> 
+                <p className="expanded-detail"><b>Address : </b>{form.addresstoGo}</p><br />
+              
+              <div className="detail-row">
+                <p className="expanded-detail"><b>Requirement : </b>{form.requirement}</p>
+                <p className="expanded-detail"><b>Time to be Spent : </b>{form.timetobeSpent}</p>
+                <p className="expanded-detail"><b>Distance : </b>{form.distance}</p> 
+                <p className="expanded-detail"><b>Date Arrival: </b>{form.dateofArriva}</p>
+                <p className="expanded-detail"><b>Time Arrival: </b>{form.timeofArrival}</p><br />
+              </div>
+              <div className="detail-row1">
+                <p className="expanded-detail"><b>No. Of Officers : </b>{form.numofOfficers}</p>
+                <p className="expanded-detail"><b>No. Of Lectures : </b>{form.numofLectures}</p>
+                <p className="expanded-detail"><b>No. Of Instructors : </b>{form.numofInstructors}</p><br />
+              </div>  
+              <div className="detail-row2">
+                <p className="expanded-detail"><b>No. Of CivilStaff : </b>{form.numofcivilStaff}</p>
+                <p className="expanded-detail"><b>No. Of Cadet Officers : </b>{form.numofcadetOfficers}</p>
+                <p className="expanded-detail"><b>No. Of DayScholers: </b>{form.numofdayScholers}</p><br />
+              </div>  
+                <p className="expanded-detail"><b>Total Passengers : </b>{total}</p>
+                {/* .......................... print the form.......................... ... */}
+                <div className="" key={index}>
+                  {/* ... other details ... */}
+                  <button className="print-button" onClick={() => handlePrint(index)}>Print</button>
                 </div>
-              )}
+              </div>
+            )}
 
             <div className="reject-confirm-box">
-              <input
-                type="text"
-                onChange={(e) => handleRejectConfirmChange(index, e.target.value)}
-                value={form.rejectOrConfirm}
-              />
-              <button className="action-button" onClick={() => handleConfirm(index)}>
-                Confirm
-              </button>
-              <button className="action-button2" onClick={() => handleReject(index)}>
-                Reject
-              </button>
-              
-            
-              
+            <input type="text" onChange={(e) => handleRejectConfirmChange(index, e.target.value)} value={form.rejectOrConfirm} readOnly/>
             </div>
+              <button className="action-button" onClick={() => handleConfirm(index)}> Confirm </button>
+              <button className="action-button2" onClick={() => handleReject(index)}> Reject </button>
             <div>
-            <button
-                className="action-button-showmore"
-                onClick={() => toggleExpanded(index)}
-              >
+              <button className="action-button-showmore" onClick={() => toggleExpanded(index)} >
                 {expandedRecordIndex === index ? "Hide Details" : "Show More"}
               </button>
             </div>
@@ -238,7 +227,8 @@ function FormD({ showNotification }) {
           <Notification key={index} message={notification.message} type={notification.type} />
         ))}
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

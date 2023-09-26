@@ -111,11 +111,11 @@ function FullFormFormD({ showNotification }) {
           <p className="description">Description: {form.appiicantAppoinment}</p>
         
           {/* Add more data fields as needed */}
-           <div className="reject-confirm-box">
+           <div className="reject-confirm-boxA">
             <input className=".inputt"
               type="text"
               onChange={e => handleRejectConfirmChange(index, e.target.value)}
-              value={form.rejectOrConfirm}
+              value={form.rejectOrConfirm} readOnly
             />
             
       </div>
@@ -129,7 +129,8 @@ function FullFormFormD({ showNotification }) {
           <Notification key={index} message={notification.message} type={notification.type} />
         ))}
       </div>
-    </div>
+</div>
+    
   );
 }
 

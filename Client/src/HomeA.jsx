@@ -19,20 +19,21 @@ function HomeA() {
   return (
       <><div className="header-rectangle" />
       <img className="logo" alt="Kotelawala defence" src="kdu.png" />
-      
-      <Link to="/" className="logoutbtn">Logout</Link>
+      <button type="button" className="logoutbtn" onClick={() => window.location.href = '/'}>Logout</button>
+
+
         {/* Navigation Links */}
 
         <div className="nav-buttons">
           <Link to="/FormD" className="requestsbtn">Requests</Link>
           <Link to="/VehicleDetails" className="vehiclesbtn">Vehicles</Link>
-          <Link to="/Assign" className="assignbtn">Assign</Link>
+          <Link to="/InsuranceDetails" className="assignbtn">Assign</Link>
           <Link to="/DriversDetails" className="driverbtn">Drivers</Link>
           <Link to="/SpecialRequest" className="reservationbtn">Reservations</Link>
         </div>
       
       {isAdmin && (
-        <div className="notification-panel">
+        <div className="notification-panelA">
           <div>
             <FullFormFormD onDataReady={showNotification} />
           </div>
