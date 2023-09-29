@@ -77,7 +77,7 @@ p {               /*------------space between details of tile------------*/
   background: #FF8811; /* Button background color */
   color: #000000; /* Text color */
   border: none;
-  width: 200px; /* Fixed width for all buttons */
+  width: 250px; /* Fixed width for all buttons */
   height: 75px; /* Fixed height for all buttons */
   font-size: 16px;
   border-radius: 20px;

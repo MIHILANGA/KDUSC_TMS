@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getDatabase, ref, onValue } from 'firebase/database'; // Import Firebase database functions
-import { initializeApp } from 'firebase/app'; // Import Firebase app
+import { getDatabase, ref, onValue } from 'firebase/database';
+import { initializeApp } from 'firebase/app';
 
 // Initialize Firebase with your configuration
 const firebaseConfig = {
@@ -18,13 +18,13 @@ const app = initializeApp(firebaseConfig);
 function GoogleMapsLocation() {
   let map, infoWindow;
 
-  const [locations, setLocations] = useState([]); // State to hold location data
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
     const initMap = () => {
       map = new window.google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.397, lng: 150.644 },
-        zoom: 6,
+        zoom: 10,
       });
       infoWindow = new window.google.maps.InfoWindow();
 
@@ -32,7 +32,7 @@ function GoogleMapsLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            const { latitude, longitude } = position.coords; // Extract latitude and longitude
+            const { latitude, longitude } = position.coords;
 
             const pos = {
               lat: latitude,
@@ -49,29 +49,24 @@ function GoogleMapsLocation() {
           }
         );
       } else {
-        // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
       }
 
-      // Retrieve location data from Firebase Realtime Database
-      const database = getDatabase(app); // Pass the Firebase app instance
+      const database = getDatabase(app);
       const livePositionRef = ref(database, 'live_position');
 
-      // Use the 'onValue' listener to continuously update the location data
       onValue(livePositionRef, (snapshot) => {
-        const data = snapshot.val(); // Get the data from the snapshot
+        const data = snapshot.val();
         if (data) {
           const { latitude, longitude } = data;
           const location = new window.google.maps.LatLng(latitude, longitude);
 
-          // Add a marker for the retrieved location on the map
           new window.google.maps.Marker({
             position: location,
             map: map,
             title: 'Live Location',
           });
 
-          // Update the locations state with the new data
           setLocations((prevLocations) => [...prevLocations, location]);
         }
       });
@@ -87,24 +82,20 @@ function GoogleMapsLocation() {
       infoWindow.open(map);
     };
 
-    // Check if the Google Maps API script is already loaded
     if (!window.google) {
-      // If not, load it dynamically
       const script = document.createElement('script');
       script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA-TgmRlan5NTLnoNSOBie9j4XxXzHv200&callback=initMap';
       script.defer = true;
       script.async = true;
       document.head.appendChild(script);
 
-      // Define the initMap function as a global function
       window.initMap = initMap;
     } else {
-      // If the Google Maps API script is already loaded, directly call initMap
       initMap();
     }
-  }, []); // Remove 'locations' from the dependency array
+  }, []);
 
-  return <div id="map" style={{ width: '100%', height: '800px' }}></div>;
+  return <div id="map" style={{ width: '100%', height: '550px' }}></div>;
 }
 
 export default GoogleMapsLocation;

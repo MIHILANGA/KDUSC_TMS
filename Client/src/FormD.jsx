@@ -9,20 +9,21 @@ function FormD({ showNotification }) {
   const [expandedRecordIndex, setExpandedRecordIndex] = useState(null);
 
   useEffect(() => {
-    fetchFormData('http://localhost:3001/getAllForm');
+    fetchFormData('http://localhost:3001/getAllForm', '');
   }, []);
 
-  const fetchFormData = (url) => {
+  const fetchFormData = (url, formType) => {
     axios
       .get(url)
       .then((response) => {
-        setFormData(response.data.data.reverse());
-        const filteredData = response.data.data.map((form) => ({
+        const formDataWithTypes = response.data.data.map((form) => ({
           ...form,
           rejectOrConfirm: '',
           message: '',
+          formType,
         }));
-        showNotification(filteredData);
+        setFormData(formDataWithTypes.reverse());
+        showNotification(formDataWithTypes);
       })
       .catch((error) => {
         console.error('Error fetching form data:', error);
@@ -35,16 +36,15 @@ function FormD({ showNotification }) {
     setFormData(updatedFormData);
   };
 
-  const handleFormSubmit = (index) => {
+  const handleFormSubmit = (index, updateEndpoint) => {
     const updatedFormData = [...formData];
     const { _id, rejectOrConfirm, message } = updatedFormData[index];
 
     axios
-      .post('http://localhost:3001/updateFormData', {
+      .post(updateEndpoint, {
         id: _id,
         rejectOrConfirm: rejectOrConfirm,
         message: message,
-        
       })
       .then((response) => {
         console.log('Form data updated in MongoDB:', response.data);
@@ -63,23 +63,24 @@ function FormD({ showNotification }) {
   };
 
   const handleConfirm = (index) => {
+    const updateEndpoint = `http://localhost:3001/updateFormData${formData[index].formType}`;
     const updatedFormData = [...formData];
     updatedFormData[index].rejectOrConfirm = 'Confirmed';
     updatedFormData[index].message = 'Request Confirmed';
     setFormData(updatedFormData);
-    handleFormSubmit(index);
+    handleFormSubmit(index, updateEndpoint);
   };
 
   const handleReject = (index) => {
+    const updateEndpoint = `http://localhost:3001/updateFormData${formData[index].formType}`;
     const updatedFormData = [...formData];
     updatedFormData[index].rejectOrConfirm = 'Rejected';
     updatedFormData[index].message = 'Request Rejected';
     setFormData(updatedFormData);
-    handleFormSubmit(index);
+    handleFormSubmit(index, updateEndpoint);
   };
 
   const toggleExpanded = (index) => {
-    // Toggle the expanded state of the record at the given index
     if (expandedRecordIndex === index) {
       setExpandedRecordIndex(null);
     } else {
@@ -135,98 +136,93 @@ function FormD({ showNotification }) {
     printWindow.document.write(printContent);
     printWindow.document.close();
 
-    printWindow.print();
 
+    printWindow.print();
     printWindow.close();
   };
 
   return (
-    <><div className="header-rectangle" />
-    <img className="logo" alt="Kotelawala defence" src="kdu.png" />
-    <button type="button" className="backbtn" onClick={() => window.location.href = '/Ahome'}>Back</button>
+    <>
+      <div className="header-rectangle" />
+      <img className="logo" alt="Kotelawala defence" src="kdu.png" />
+      <button type="button" className="backbtn" onClick={() => window.location.href = '/Ahome'}>Back</button>
 
-
-    <div className="buttons-container">
-        <button className='btn1' onClick={() => fetchFormData('http://localhost:3001/getAllForm')}>
+      <div className="buttons-container">
+        <button className='btn1' onClick={() => fetchFormData('http://localhost:3001/getAllForm', '')}>
           FOC
         </button>
-        <button className='btn2' onClick={() => fetchFormData('http://localhost:3001/getAllForm1')}>
+        <button className='btn2' onClick={() => fetchFormData('http://localhost:3001/getAllForm1', '1')}>
           FBESS
         </button>
-        <button className='btn3' onClick={() => fetchFormData('http://localhost:3001/getAllForm2')}>
+        <button className='btn3' onClick={() => fetchFormData('http://localhost:3001/getAllForm2', '2')}>
           FOT
         </button>
       </div>
-    <div className='notification-panel'>
 
-      {formData.map((form, index) => {
-        const total = form.numofOfficers +
-          form.numofLectures +
-          form.numofInstructors +
-          form.numofcadetOfficers +
-          form.numofdayScholers +
-          form.numofcivilStaff;
+      <div className='notification-panel'>
+        {formData.map((form, index) => {
+          const total = form.numofOfficers +
+            form.numofLectures +
+            form.numofInstructors +
+            form.numofcadetOfficers +
+            form.numofdayScholers +
+            form.numofcivilStaff;
 
-        return (
-          <div className="record-box" key={index}>
-            <p className="applicant-name">Applicant Name: {form.applicantname}</p>
-            <p className="requested-date">Requested date: {form.dateofApply}</p>
-            <p className="description">Description: {form.appiicantAppoinment}</p> <br />
+          return (
+            <div className="record-box" key={index}>
+              <p className="applicant-name">Applicant Name: {form.applicantname}</p>
+              <p className="requested-date">Requested date: {form.dateofApply}</p>
+              <p className="description">Description: {form.appiicantAppoinment}</p> <br />
 
-            {/* Render additional details only for the expanded record */}
-            {expandedRecordIndex === index && (
-            <div className="details">
-                <p className="expanded-detail"> <b>Vehicle Incharge : </b> {form.vehicleIncharge}</p>
-                <p className="expanded-detail"><b>Date Required : </b> {form.dateofRequired}</p>
-                <p className="expanded-detail"><b>Time Required : </b>{form.timeofRequired}</p>
-                <p className="expanded-detail"><b>Nature of Duty : </b>{form.natureofDuty}</p> 
-                <p className="expanded-detail"><b>Address : </b>{form.addresstoGo}</p><br />
-              
-              <div className="detail-row">
-                <p className="expanded-detail"><b>Requirement : </b>{form.requirement}</p>
-                <p className="expanded-detail"><b>Time to be Spent : </b>{form.timetobeSpent}</p>
-                <p className="expanded-detail"><b>Distance : </b>{form.distance}</p> 
-                <p className="expanded-detail"><b>Date Arrival: </b>{form.dateofArriva}</p>
-                <p className="expanded-detail"><b>Time Arrival: </b>{form.timeofArrival}</p><br />
-              </div>
-              <div className="detail-row1">
-                <p className="expanded-detail"><b>No. Of Officers : </b>{form.numofOfficers}</p>
-                <p className="expanded-detail"><b>No. Of Lectures : </b>{form.numofLectures}</p>
-                <p className="expanded-detail"><b>No. Of Instructors : </b>{form.numofInstructors}</p><br />
-              </div>  
-              <div className="detail-row2">
-                <p className="expanded-detail"><b>No. Of CivilStaff : </b>{form.numofcivilStaff}</p>
-                <p className="expanded-detail"><b>No. Of Cadet Officers : </b>{form.numofcadetOfficers}</p>
-                <p className="expanded-detail"><b>No. Of DayScholers: </b>{form.numofdayScholers}</p><br />
-              </div>  
-                <p className="expanded-detail"><b>Total Passengers : </b>{total}</p>
-                {/* .......................... print the form.......................... ... */}
-                <div className="" key={index}>
-                  {/* ... other details ... */}
+              {expandedRecordIndex === index && (
+                <div className="details">
+                  <p className="expanded-detail"> <b>Vehicle Incharge : </b> {form.vehicleIncharge}</p>
+                  <p className="expanded-detail"><b>Date Required : </b> {form.dateofRequired}</p>
+                  <p className="expanded-detail"><b>Time Required : </b>{form.timeofRequired}</p>
+                  <p className="expanded-detail"><b>Nature of Duty : </b>{form.natureofDuty}</p>
+                  <p className="expanded-detail"><b>Address : </b>{form.addresstoGo}</p><br />
+
+                  <div className="detail-row">
+                    <p className="expanded-detail"><b>Requirement : </b>{form.requirement}</p>
+                    <p className="expanded-detail"><b>Time to be Spent : </b>{form.timetobeSpent}</p>
+                    <p className="expanded-detail"><b>Distance : </b>{form.distance}</p>
+                    <p className="expanded-detail"><b>Date Arrival: </b>{form.dateofArriva}</p>
+                    <p className="expanded-detail"><b>Time Arrival: </b>{form.timeofArrival}</p><br />
+                  </div>
+                  <div className="detail-row1">
+                    <p className="expanded-detail"><b>No. Of Officers : </b>{form.numofOfficers}</p>
+                    <p className="expanded-detail"><b>No. Of Lectures : </b>{form.numofLectures}</p>
+                    <p className="expanded-detail"><b>No. Of Instructors : </b>{form.numofInstructors}</p><br />
+                  </div>
+                  <div className="detail-row2">
+                    <p className="expanded-detail"><b>No. Of CivilStaff : </b>{form.numofcivilStaff}</p>
+                    <p className="expanded-detail"><b>No. Of Cadet Officers : </b>{form.numofcadetOfficers}</p>
+                    <p className="expanded-detail"><b>No. Of DayScholers: </b>{form.numofdayScholers}</p><br />
+                  </div>
+                  <p className="expanded-detail"><b>Total Passengers : </b>{total}</p>
                   <button className="print-button" onClick={() => handlePrint(index)}>Print</button>
                 </div>
-              </div>
-            )}
+              )}
 
-            <div className="reject-confirm-box">
-            <input type="text" onChange={(e) => handleRejectConfirmChange(index, e.target.value)} value={form.rejectOrConfirm} readOnly/>
-            </div>
+              <div className="reject-confirm-box">
+                <input type="text" onChange={(e) => handleRejectConfirmChange(index, e.target.value)} value={form.rejectOrConfirm} readOnly />
+              </div>
               <button className="action-button" onClick={() => handleConfirm(index)}> Confirm </button>
               <button className="action-button2" onClick={() => handleReject(index)}> Reject </button>
-            <div>
-              <button className="action-button-showmore" onClick={() => toggleExpanded(index)} >
-                {expandedRecordIndex === index ? "Hide Details" : "Show More"}
-              </button>
+              <div>
+                <button className="action-button-showmore" onClick={() => toggleExpanded(index)} >
+                  {expandedRecordIndex === index ? "Hide Details" : "Show More"}
+                </button>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
 
-      <div>
-        {notifications.map((notification, index) => (
-          <Notification key={index} message={notification.message} type={notification.type} />
-        ))}
-      </div>
+        <div>
+          {notifications.map((notification, index) => (
+            <Notification key={index} message={notification.message} type={notification.type} />
+          ))}
+        </div>
       </div>
     </>
   );

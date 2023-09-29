@@ -2,8 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const EmployeeModel = require('./models/Employee');
-const EmployeeModel1 = require('./models/Employee1');
-const EmployeeModel2 = require('./models/Employee2');
 const AdminModel = require('./models/Admin');
 const FormModel = require('./models/Form');
 const FormModel1 = require('./models/Form1');
@@ -263,27 +261,7 @@ app.post('/deleteDriverData', (req, res) => {
       });
   });
   
-  app.post('/updateFormData1', (req, res) => {
-    const { id, rejectOrConfirm1 } = req.body;
-  
-    FormModel.findOneAndUpdate(
-      { _id: id }, // Match the document by ID
-      { $set: { rejectOrConfirm: rejectOrConfirm1 } }, // Update the rejectOrConfirm field
-      { new: true } // Return the updated document
-    )
-      .then(updatedForm => {
-        if (updatedForm) {
-          res.json(updatedForm);
-        } else {
-          res.status(404).json({ message: 'Form not found' });
-        }
-      })
-      .catch(err => {
-        console.error('Error updating form data:', err);
-        res.status(500).json({ message: 'Internal server error' });
-      });
-  });
-  
+
 
 
   // Update route
@@ -355,7 +333,7 @@ app.post('/deleteDriverData', (req, res) => {
   
 
   // Update route
-  app.post('/updateFormData1', (req, res) => {
+  app.post('/updateFormDatas1', (req, res) => {
     const { id, updatedData } = req.body;
     
   

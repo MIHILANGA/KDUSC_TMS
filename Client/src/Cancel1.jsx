@@ -44,7 +44,7 @@ function FormD({ showNotification }) {
     const updatedForm = formData[index];
 
     // Update the data in the MongoDB database
-    axios.post('http://localhost:3001/updateFormData1', {
+    axios.post('http://localhost:3001/updateFormDatas1', {
       id: updatedForm._id,
       updatedData: updatedForm,
     })

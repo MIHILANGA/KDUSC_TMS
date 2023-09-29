@@ -23,6 +23,7 @@ import DriverEdit from './DriverEdit';
 import Vehicleadd from './Vehicleadd';
 import Vehicleedit from './Vehicleedit';
 import RectorHome from './RectorHome';
+import Locatin from './Locatin';
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
         <Route path='/vehicleadd' element={<Vehicleadd />} ></Route>
         <Route path='/vehicleedit' element={<Vehicleedit />} ></Route>
         <Route path='/RectorHome' element={<RectorHome />} ></Route>
+        <Route path='/Locatin' element={<Locatin />} ></Route>
         
       </Routes>
       
