@@ -29,7 +29,7 @@ function FullFormFormD({ showNotification }) {
         const sortedData = mergedData.sort((a, b) => {
           const dateA = new Date(a.dateofApply);
           const dateB = new Date(b.dateofApply);
-          
+
           return dateB - dateA;
         });
 
@@ -48,29 +48,29 @@ function FullFormFormD({ showNotification }) {
       });
   }, []);
 
-  // Rest of your code (handleRejectConfirmChange, handleFormSubmit, handleConfirm, handleReject, toggleExpanded, rendering)
+  // Rest of your code (handleRejectConfirmChange, handleFormSubmit, handleConfirm, handleReject, toggleExpanded)
 
   return (
     <div className="form-container2">
       {/* Render each record in a separate box */}
-      {formData.map((form, index) => (
-        <div className="record-box1" key={index}>
-          <p className="applicant-name">Applicant Name: {form.applicantname}</p>
-          <p className="requested-date1">Requested date: {form.dateofApply}</p>
-          <p className="description">Description: {form.appiicantAppoinment}</p>
+      {formData.map((form, index) => {
+        // Skip records where rejectOrConfirm is present
+        if (form.rejectOrConfirm) {
+          return null;
+        }
+
+        return (
           
-          {/* Add more data fields as needed */}
-          <div className="reject-confirm-boxA">
-            <input
-              className=".inputt"
-              type="text"
-              onChange={e => handleRejectConfirmChange(index, e.target.value)}
-              value={form.rejectOrConfirm}
-              readOnly
-            />
+          <div className="record-box1" key={index}>
+            <p className="applicant-name">Applicant Name: {form.applicantname}</p>
+            <p className="requested-date1">Requested date: {form.dateofApply}<p className="Name" >New Request</p></p>
+            <p className="description">Description: {form.appiicantAppoinment} </p>
+
+            {/* Add more data fields as needed */}
           </div>
-        </div>
-      ))}
+          
+        );
+      })}
 
       {/* Render Notifications */}
       <div>

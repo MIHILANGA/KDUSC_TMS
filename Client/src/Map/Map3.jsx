@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { getDatabase, ref, onValue } from 'firebase/database';
-import { initializeApp } from 'firebase/app';
+import React, { useEffect } from 'react';
+import { getDatabase, ref, set } from 'firebase/database'; // Import Firebase database functions
+import { initializeApp } from 'firebase/app'; // Import Firebase app
 
+// Initialize Firebase with your configuration
 const firebaseConfig = {
-  // Your Firebase configuration here
   apiKey: "AIzaSyCxFh-6KQdS7XIjdXGwx8zBVCGfxEX1XpM",
   authDomain: "kdusc-tms.firebaseapp.com",
   projectId: "kdusc-tms",
@@ -18,8 +18,6 @@ const app = initializeApp(firebaseConfig);
 function GoogleMapsLocation() {
   let map, infoWindow;
 
-  const [locations, setLocations] = useState([]); // State to hold location data
-
   useEffect(() => {
     const initMap = () => {
       map = new window.google.maps.Map(document.getElementById('map'), {
@@ -32,7 +30,8 @@ function GoogleMapsLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            const { latitude, longitude } = position.coords;
+            const { latitude, longitude } = position.coords; // Extract latitude and longitude
+
             const pos = {
               lat: latitude,
               lng: longitude,
@@ -42,6 +41,11 @@ function GoogleMapsLocation() {
             infoWindow.setContent('Location found.');
             infoWindow.open(map);
             map.setCenter(pos);
+
+            // Store the live position data in Firebase Realtime Database
+            const database = getDatabase(app); // Pass the Firebase app instance
+            const livePositionRef = ref(database, 'live_position3');
+            set(livePositionRef, { latitude, longitude });
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -51,37 +55,6 @@ function GoogleMapsLocation() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
       }
-
-      // Retrieve location data from Firebase Realtime Database for multiple locations
-      const database = getDatabase(app); // Pass the Firebase app instance
-
-      // Example database references for multiple locations
-      const locationRefs = [
-        ref(database, 'live_position1'),
-        ref(database, 'live_position2'),
-        ref(database, 'live_position3'),
-      ];
-
-      // Use the 'onValue' listener for each location reference
-      locationRefs.forEach((locationRef) => {
-        onValue(locationRef, (snapshot) => {
-          const data = snapshot.val(); // Get the data from the snapshot
-          if (data) {
-            const { latitude, longitude } = data;
-            const location = new window.google.maps.LatLng(latitude, longitude);
-
-            // Add a marker for the retrieved location on the map
-            new window.google.maps.Marker({
-              position: location,
-              map: map,
-              title: 'Live Location',
-            });
-
-            // Update the locations state with the new data
-            setLocations((prevLocations) => [...prevLocations, location]);
-          }
-        });
-      });
     };
 
     const handleLocationError = (browserHasGeolocation, infoWindow, pos) => {
@@ -109,9 +82,9 @@ function GoogleMapsLocation() {
       // If the Google Maps API script is already loaded, directly call initMap
       initMap();
     }
-  }, []); // Remove 'locations' from the dependency array
+  }, []);
 
-  return <div id="map" style={{ width: '100%', height: '550px' }}></div>;
+  return <div id="map" style={{ width: '100%', height: '800px' }}></div>;
 }
 
 export default GoogleMapsLocation;

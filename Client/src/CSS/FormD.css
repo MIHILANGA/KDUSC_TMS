@@ -255,3 +255,13 @@
     margin-right: 10px;
     border-radius: 10px;
   }
+
+
+  .record-box.confirm {
+    background-color: rgb(198, 235, 198);
+  }
+  
+  .record-box.reject {
+    background-color: rgb(238, 195, 195);
+  }
+  

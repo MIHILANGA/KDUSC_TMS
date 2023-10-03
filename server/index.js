@@ -261,7 +261,26 @@ app.post('/deleteDriverData', (req, res) => {
       });
   });
   
-
+  app.post('/updateAssignData', (req, res) => {
+    const { id, driver, vehicle } = req.body;
+  
+    FormModel.findOneAndUpdate(
+      { _id: id }, // Match the document by ID
+      { $set: { driver: driver, vehicle: vehicle } }, // Update the rejectOrConfirm field
+      { new: true } // Return the updated document
+    )
+      .then(updatedForm => {
+        if (updatedForm) {
+          res.json(updatedForm);
+        } else {
+          res.status(404).json({ message: 'Form not found' });
+        }
+      })
+      .catch(err => {
+        console.error('Error updating form data:', err);
+        res.status(500).json({ message: 'Internal server error' });
+      });
+  });
 
 
   // Update route
@@ -330,7 +349,27 @@ app.post('/deleteDriverData', (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
       });
   });
+ 
+  app.post('/updateAssignData1', (req, res) => {
+    const { id, driver, vehicle } = req.body;
   
+    FormModel1.findOneAndUpdate(
+      { _id: id }, // Match the document by ID
+      { $set: { driver: driver, vehicle: vehicle } }, // Update the rejectOrConfirm field
+      { new: true } // Return the updated document
+    )
+      .then(updatedForm => {
+        if (updatedForm) {
+          res.json(updatedForm);
+        } else {
+          res.status(404).json({ message: 'Form not found' });
+        }
+      })
+      .catch(err => {
+        console.error('Error updating form data:', err);
+        res.status(500).json({ message: 'Internal server error' });
+      });
+  });
 
   // Update route
   app.post('/updateFormDatas1', (req, res) => {
@@ -397,6 +436,26 @@ app.post('/updateFormData2', (req, res) => {
     });
 });
 
+app.post('/updateAssignData2', (req, res) => {
+  const { id, driver, vehicle } = req.body;
+
+  FormModel2.findOneAndUpdate(
+    { _id: id }, // Match the document by ID
+    { $set: { driver: driver, vehicle: vehicle } }, // Update the rejectOrConfirm field
+    { new: true } // Return the updated document
+  )
+    .then(updatedForm => {
+      if (updatedForm) {
+        res.json(updatedForm);
+      } else {
+        res.status(404).json({ message: 'Form not found' });
+      }
+    })
+    .catch(err => {
+      console.error('Error updating form data:', err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
 
 // Update route
 app.post('/updateFormDatas2', (req, res) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './CSS/VehicleEdit.css';
+import './CSS/DriverEdit.css';
 
 function FormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
@@ -88,64 +88,64 @@ function FormD({ showNotification }) {
   }
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center">Driver Details Edit and Delete</h1>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Register Number</th>
-            <th>Driver Name</th>
-            <th>Telephone Number</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {formData.map((form, index) => (
-            <tr key={index}>
-              <td>
-                {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.registernumber}
-                    onChange={(e) => handleCellChange(index, 'registernumber', e.target.value)}
-                  />
-                ) : (
-                  <span onClick={() => handleCellClick(index)}>{form.registernumber}</span>
-                )}
-              </td>
-              <td>
-                {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.drivername}
-                    onChange={(e) => handleCellChange(index, 'drivername', e.target.value)}
-                  />
-                ) : (
-                  <span onClick={() => handleCellClick(index)}>{form.drivername}</span>
-                )}
-              </td>
-              <td>
-                {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.Telephone}
-                    onChange={(e) => handleCellChange(index, 'Telephone', e.target.value)}
-                  />
-                ) : (
-                  <span onClick={() => handleCellClick(index)}>{form.Telephone}</span>
-                )}
-              </td>
-              <td>
-                {editedIndex === index && (
-                  <button onClick={() => handleFormSubmit(index)}>Save</button>
-                )}
-                <button onClick={() => handleDelete(form._id)}>Delete</button>
-              </td>
+    <><div className='header-rectangle' />
+    <img className='logo' alt='Kotelawala defence' src='kdu.png' />
+    <button type='button' className='backbtn' onClick={() => window.history.back()}> Back </button>
+   
+    <div className="mid-container">
+        <table className="Dtable">
+        <thead className='fixed-headerD'>
+            <tr>
+              <th>Register Number</th>
+              <th>Driver Name</th>
+              <th>Telephone Number</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {formData.map((form, index) => (
+              <tr key={index}>
+                <td>
+                  {editedIndex === index ? (
+                    <input
+                      type="text"
+                      value={form.registernumber}
+                      onChange={(e) => handleCellChange(index, 'registernumber', e.target.value)} />
+                  ) : (
+                    <span onClick={() => handleCellClick(index)}>{form.registernumber}</span>
+                  )}
+                </td>
+                <td>
+                  {editedIndex === index ? (
+                    <input
+                      type="text"
+                      value={form.drivername}
+                      onChange={(e) => handleCellChange(index, 'drivername', e.target.value)} />
+                  ) : (
+                    <span onClick={() => handleCellClick(index)}>{form.drivername}</span>
+                  )}
+                </td>
+                <td>
+                  {editedIndex === index ? (
+                    <input
+                      type="text"
+                      value={form.Telephone}
+                      onChange={(e) => handleCellChange(index, 'Telephone', e.target.value)} />
+                  ) : (
+                    <span onClick={() => handleCellClick(index)}>{form.Telephone}</span>
+                  )}
+                </td>
+                <td>
+                  {editedIndex === index && (
+                    <button className='savebtn' onClick={() => handleFormSubmit(index)}>Save</button>
+                  )}
+                  <button className='deletebtn' onClick={() => handleDelete(form._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div></>
   );
 }
 

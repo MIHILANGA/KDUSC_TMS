@@ -44,12 +44,10 @@ function Home() {
   };
 
   return (
-    <>
-      <div className="header-rectangle" />
-      <img className="logo" alt="Kotelawala defence" src="kdu.png" />
-      <button type="button" className="backbtn" onClick={() => navigate('/')} >Back</button>
 
       <form onSubmit={handleSubmit} className="form-bg">
+      <button type="button" className="closebtn" onClick={() => { navigate('/VehicleDetails'); window.location.reload(); }}> X </button>
+
         <div className="row1">
           <label htmlFor="name">Vehicle Number</label>
           <input type="text" placeholder="Enter Vehicle Number" autoComplete="off" name="applicantname" className="input-box" value={vehiclenumber} onChange={(e) => setvehiclenumber(e.target.value)} required />
@@ -68,9 +66,13 @@ function Home() {
           <label htmlFor="dateofRequired"> Expire Date of Insurance </label>
           <input type="date" placeholder="Enter Expired Date" autoComplete="off" name="dateofRequired" className="input-box" value={expierddate} onChange={(e) => setexpierddate(e.target.value)} required />
           <button type="submit" className="Addbtn"> Add </button>
+          
+
+            
         </div>
+
       </form>
-    </>
+    
   );
 }
 

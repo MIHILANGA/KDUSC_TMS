@@ -141,3 +141,28 @@
 .action-button:hover {
   background-color: #333;
 }
+
+
+.user{
+  text-align: center;
+  margin-top: 10px;
+}
+
+  /*-----------notification background-----------*/
+  .notification-panelA {
+    text-align: left;
+    font-family: Arial, sans-serif;
+    border-radius: 15px;
+    height: 500px;
+    width: 1500px;
+    margin-right: 10px;
+    margin-top: 60px;
+    margin-left: -400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    
+  }
+  .notification-panelS:hover{
+    transition: transform 0.2s ease; /* Add a separate transition for transform */
+    transform: scale(1.01); /* Add a scaling effect on hover */
+    background-color: #ffffff;
+  }

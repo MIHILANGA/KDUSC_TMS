@@ -91,89 +91,87 @@ function FormD({ showNotification }) {
   }
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center">Vehicle Details Edit and Delete</h1>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Vehicle Number</th>
-            <th>Vehicle Owner Name</th>
-            <th>Register Date</th>
-            <th>Insurance Date</th>
-            <th>Expired Date</th> {/* Corrected the typo here */}
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {formData.map((form, index) => (
-            <tr key={index}>
-              <td>
-                {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.vehiclenumber}
-                    onChange={(e) => handleCellChange(index, 'vehiclenumber', e.target.value)}
-                  />
-                ) : (
-                  <span onClick={() => handleCellClick(index, 'vehiclenumber')}>{form.vehiclenumber}</span>
-                )}
-              </td>
-              <td>
-                {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.vehicleowner}
-                    onChange={(e) => handleCellChange(index, 'vehicleowner', e.target.value)}
-                  />
-                ) : (
-                  <span onClick={() => handleCellClick(index, 'vehicleowner')}>{form.vehicleowner}</span>
-                )}
-              </td>
-              <td>
-                {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.registerdate}
-                    onChange={(e) => handleCellChange(index, 'registerdate', e.target.value)}
-                  />
-                ) : (
-                  <span onClick={() => handleCellClick(index, 'registerdate')}>{form.registerdate}</span>
-                )}
-              </td>
-              <td>
-                {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.insurancedate}
-                    onChange={(e) => handleCellChange(index, 'insurancedate', e.target.value)}
-                  />
-                ) : (
-                  <span onClick={() => handleCellClick(index, 'insurancedate')}>{form.insurancedate}</span>
-                )}
-              </td>
-              <td>
-                {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.expireddate}
-                    onChange={(e) => handleCellChange(index, 'expireddate', e.target.value)}
-                  />
-                ) : (
-                  <span onClick={() => handleCellClick(index, 'expireddate')}>{form.expireddate}</span>
-                )}
-              </td>
-              <td>
-                {editedIndex === index && (
-                  <button onClick={() => handleFormSubmit(index)}>Save</button>
-                )}
-                
-                <button onClick={() => handleDelete(form._id)}>Delete</button>
-              </td>
+    <><div className='header-rectangle' />
+    <img className='logo' alt='Kotelawala defence' src='kdu.png' />
+    <button type='button' className='backbtn' onClick={() => window.history.back()}> Back </button>
+    
+    <div className="mid-container">
+        <table className="table">
+        <thead className='fixed-header1'>
+            <tr>
+              <th>Vehicle Number</th>
+              <th>Vehicle Owner </th>
+              <th>Register Date</th>
+              <th>Start Date of Insurance	</th>
+              <th>Expire Date of Insurance </th> {/* Corrected the typo here */}
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {formData.map((form, index) => (
+              <tr key={index}>
+                <td>
+                  {editedIndex === index ? (
+                    <input
+                      type="text"
+                      value={form.vehiclenumber}
+                      onChange={(e) => handleCellChange(index, 'vehiclenumber', e.target.value)} />
+                  ) : (
+                    <span onClick={() => handleCellClick(index, 'vehiclenumber')}>{form.vehiclenumber}</span>
+                  )}
+                </td>
+                <td>
+                  {editedIndex === index ? (
+                    <input
+                      type="text"
+                      value={form.vehicleowner}
+                      onChange={(e) => handleCellChange(index, 'vehicleowner', e.target.value)} />
+                  ) : (
+                    <span onClick={() => handleCellClick(index, 'vehicleowner')}>{form.vehicleowner}</span>
+                  )}
+                </td>
+                <td>
+                  {editedIndex === index ? (
+                    <input
+                      type="text"
+                      value={form.registerdate}
+                      onChange={(e) => handleCellChange(index, 'registerdate', e.target.value)} />
+                  ) : (
+                    <span onClick={() => handleCellClick(index, 'registerdate')}>{form.registerdate}</span>
+                  )}
+                </td>
+                <td>
+                  {editedIndex === index ? (
+                    <input
+                      type="text"
+                      value={form.insurancedate}
+                      onChange={(e) => handleCellChange(index, 'insurancedate', e.target.value)} />
+                  ) : (
+                    <span onClick={() => handleCellClick(index, 'insurancedate')}>{form.insurancedate}</span>
+                  )}
+                </td>
+                <td>
+                  {editedIndex === index ? (
+                    <input
+                      type="text"
+                      value={form.expireddate}
+                      onChange={(e) => handleCellChange(index, 'expireddate', e.target.value)} />
+                  ) : (
+                    <span onClick={() => handleCellClick(index, 'expireddate')}>{form.expierddate}</span>
+                  )}
+                </td>
+                <td>
+                  {editedIndex === index && (
+                    <button className='savebtn' onClick={() => handleFormSubmit(index)}>Save</button>
+                  )}
+
+                  <button className='deletebtn' onClick={() => handleDelete(form._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div></>
   );
 }
 

@@ -34,6 +34,8 @@ function Login() {
             navigate(`/Ahome`);
           } else if (email === 'rector@gmail.com') {
             navigate(`/RectorHome`);  
+          } else if (email === 'driver@gmail.com') {
+            navigate(`/DriverHome`); 
           } else {
             setError('Incorrect email or password. Please try again.');
           }

@@ -18,9 +18,8 @@ function FormD({ showNotification }) {
       .then((response) => {
         const formDataWithTypes = response.data.data.map((form) => ({
           ...form,
-          rejectOrConfirm: '',
-          message: '',
           formType,
+          message: '',
         }));
         setFormData(formDataWithTypes.reverse());
         showNotification(formDataWithTypes);
@@ -141,6 +140,7 @@ function FormD({ showNotification }) {
     printWindow.close();
   };
 
+
   return (
     <>
       <div className="header-rectangle" />
@@ -161,15 +161,19 @@ function FormD({ showNotification }) {
 
       <div className='notification-panel'>
         {formData.map((form, index) => {
-          const total = form.numofOfficers +
+          const total =
+            form.numofOfficers +
             form.numofLectures +
             form.numofInstructors +
             form.numofcadetOfficers +
             form.numofdayScholers +
             form.numofcivilStaff;
 
+          // Determine the CSS class based on the value of rejectOrConfirm
+          const recordBoxClass = form.rejectOrConfirm === 'Confirmed' ? 'confirm' : (form.rejectOrConfirm === 'Rejected' ? 'reject' : '');
+
           return (
-            <div className="record-box" key={index}>
+            <div className={`record-box ${recordBoxClass}`} key={index}>
               <p className="applicant-name">Applicant Name: {form.applicantname}</p>
               <p className="requested-date">Requested date: {form.dateofApply}</p>
               <p className="description">Description: {form.appiicantAppoinment}</p> <br />
@@ -205,7 +209,12 @@ function FormD({ showNotification }) {
               )}
 
               <div className="reject-confirm-box">
-                <input type="text" onChange={(e) => handleRejectConfirmChange(index, e.target.value)} value={form.rejectOrConfirm} readOnly />
+                <input
+                  type="text"
+                  onChange={(e) => handleRejectConfirmChange(index, e.target.value)}
+                  value={form.rejectOrConfirm}
+                  readOnly
+                />
               </div>
               <button className="action-button" onClick={() => handleConfirm(index)}> Confirm </button>
               <button className="action-button2" onClick={() => handleReject(index)}> Reject </button>

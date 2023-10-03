@@ -46,7 +46,7 @@ function Home() {
   return (
 
       <form onSubmit={handleSubmit} className="form-bg">
-                <button type="button" className="closebtn" onClick={() => { navigate('/VehicleDetails'); window.location.reload(); }}> X </button>
+      <button type="button" className="closebtn" onClick={() => { navigate('/VehicleDetails'); window.location.reload(); }}> X </button>
 
         <div className="row1">
           <label htmlFor="name">Vehicle Number</label>

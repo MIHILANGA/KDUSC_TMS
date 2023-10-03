@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.css';
+import './CSS/DriverAdd.css';
 
 
 
@@ -32,30 +32,7 @@ function Home() {
       alert('An error occurred. Please try again.');
     });
   };
-  return (
-<div
-      style={{
-        background: 'linear-gradient(120deg, #a1c4fd, #c2e9fb)',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'row', // Align components side by side
-        padding: '20px',
-      }}
-    >
-      {/* Left side with buttons */}
-      <div style={{ flex: 1, padding: '10px' }}>
-        <div>
-          <h1>Add Driver Details</h1>
-        </div>
-        
-      </div>
-
-      {/* Right side with form */}
-      <div style={{ flex: 3, padding: '10px' }}>
-        <div className="bg-light p-3 rounded w-100">
-          <h3>Details Form</h3>
-          
-          
+  return (          
           <form onSubmit={handleSubmit} className="custom-text-color">
             {/* First Column */}
             <div className="row mb-3">
@@ -91,12 +68,6 @@ function Home() {
               Submit Form
             </button>
           </form>
-          
-        </div>
-        
-      </div>
-      
-    </div>
     
   );
 }

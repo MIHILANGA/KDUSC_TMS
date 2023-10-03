@@ -1,4 +1,4 @@
-.Addbtn{
+.DAddbtn{
     background: #FF8811; /* Button background color */
     color: #000000; /* Text color */
     border: 0.5px solid #ccc;
@@ -9,17 +9,17 @@
     transition: background 0.3s, color 0.3s;
     position: fixed;
     width: 350px;
-    top: 264px; /* Adjust the top position as needed */
-    left: 420px;
+    top: 212px; /* Adjust the top position as needed */
+    left: 412px;
     z-index: 1;
 
 }
-.Addbtn:hover {   /*-----------hover effect of tile styles------------*/
+.DAddbtn:hover {   /*-----------hover effect of tile styles------------*/
   background: #FF8811; /* Button background color on hover */
   color: #fff; /* Text color on hover */
   transform:scale(1.01);
 }
-.closebtn{
+.Dclosebtn{
   margin-left: 718px;
   margin-top: -50px;
   color: #ff0000;
@@ -30,7 +30,7 @@
 
 }
 
-.form-bg {
+.Dform-bg {
     background: linear-gradient(rgba(255, 255, 255, 0.6));
     backdrop-filter: blur(20px);
     border-radius: 40px;
@@ -38,13 +38,13 @@
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     padding: 30px;
     width: 800px; /* Adjust the width as needed */
-    height: 350px;
+    height: 310px;
     position: absolute;
     left: 25%; /* Center horizontally */
     top: 35%; /* Center vertically */
     transition: background 0.5s, transform 0.5s;
   }
-  .form-bg:hover {   /*-----------hover effect of tile styles------------*/
+  .Dform-bg:hover {   /*-----------hover effect of tile styles------------*/
     transform: translateY(-5px);
   }
   
@@ -61,18 +61,3 @@
     
   }
   
-  label {
-    display: block;
-    font-weight:500;
-    margin-bottom: 8px;
-  }
-  .row1{
-    margin-left: 0px;
-    }
-    .row2{
-        margin-top: 5px;
-    }
-    .row3{
-        margin-left: 390px;
-        margin-top: -250px;
-    }

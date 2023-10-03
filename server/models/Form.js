@@ -24,6 +24,8 @@ const FormSchema = new mongoose.Schema({
     dateofApply : Date,
     rejectOrConfirm : String,
     rejectOrConfirm1 : String,
+    driver : String,
+    vehicle: String,
 
 }
 )
