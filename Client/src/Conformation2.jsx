@@ -9,9 +9,11 @@ function FormD({ showNotification }) {
     // Fetch form data from the server
     axios.get('http://localhost:3001/getAllForm2')
       .then(response => {
-        setFormData(response.data.data);
+        // Reverse the data array to display in reverse order
+        const reversedData = response.data.data.reverse();
+        setFormData(reversedData);
         // Filter and prepare the data for the notification
-        const filteredData = response.data.data.map(form => ({
+        const filteredData = reversedData.map(form => ({
           ...form, // Keep all existing data
           rejectOrConfirm: '', // Add a new property for reject/confirm input
         }));
@@ -46,21 +48,22 @@ function FormD({ showNotification }) {
   };
 
   return (
-    <div className="form-container">
-      <h1>Form Comformation Data</h1>
-      <table className="data-table full-width">
-        <thead>
+
+    <><div className='header-rectangle' />
+    <img className='logo' alt='Kotelawala defence' src='kdu.png' />
+    <button type='button' className='backbtn' onClick={() => window.history.back()}> Back </button>
+    
+    <div className="mid-container">
+
+    <table className="Stable">
+      <thead className='fixed-headerD'>
           <tr>
-          <th>applicant
-                   ID</th>
-                  <th>applicant
-                  name</th>
-                <th>appiicant
-                  Appoinment</th>
-                
-                <th>dateof
-                  Apply</th>
-            <th>Reject or Confirm</th>
+          <th>Applicant ID</th>
+            <th>Applicant Name</th>
+            <th>Appiicant Appoinment</th>
+
+            <th>Date Apply</th>
+            <th>Request Status</th>
           </tr>
         </thead>
         <tbody>
@@ -68,15 +71,15 @@ function FormD({ showNotification }) {
             <tr key={index}>
               <td>{form._id}</td>
               <td>{form.applicantname}</td>
-                <td>{form.appiicantAppoinment}</td>
-                <td>{form.dateofApply}</td>
-                <td bgcolor="#ffcc00">{form.rejectOrConfirm}</td>
-             
+              <td>{form.appiicantAppoinment}</td>
+              <td>{form.dateofApply}</td>
+              <td bgcolor="#ffcc00">{form.rejectOrConfirm1}</td>
+
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+    </div></>
   );
 }
 

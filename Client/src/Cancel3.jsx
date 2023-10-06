@@ -10,7 +10,7 @@ function FormD({ showNotification }) {
 
   useEffect(() => {
     // Fetch form data from the server when the component mounts
-    axios.get('http://localhost:3001/getAllForm1')
+    axios.get('http://localhost:3001/getAllForm3')
       .then(response => {
         // Reverse the data array to display it in reverse order
         const reversedData = response.data.data.reverse();
@@ -47,7 +47,7 @@ function FormD({ showNotification }) {
     const updatedForm = formData[index];
 
     // Update the data in the MongoDB database
-    axios.post('http://localhost:3001/updateFormDatas1', {
+    axios.post('http://localhost:3001/updateFormDatas3', {
       id: updatedForm._id,
       updatedData: updatedForm,
     })
@@ -67,13 +67,13 @@ function FormD({ showNotification }) {
   // Handle delete
   const handleDelete = (id) => {
     // Delete data from the MongoDB database
-    axios.post('http://localhost:3001/deleteFormData1', {
+    axios.post('http://localhost:3001/deleteFormData3', {
       id: id,
     })
     .then(response => {
       console.log('Form data deleted from MongoDB:', response.data);
       // Refresh form data after deletion
-      axios.get('http://localhost:3001/getAllForm1')
+      axios.get('http://localhost:3001/getAllForm3')
         .then(response => {
           setFormData(response.data.data);
           alert('Request Form Cancel successfully!');
@@ -105,10 +105,11 @@ function FormD({ showNotification }) {
   }
 
   return (
-    <><div className='header-rectangle' />
-    <img className='logo' alt='Kotelawala defence' src='kdu.png' />
-    <button type='button' className='backbtn' onClick={() => window.history.back()}> Back </button>
-    
+
+  <><div className='header-rectangle' />
+  <img className='logo' alt='Kotelawala defence' src='kdu.png' />
+  <button type='button' className='backbtn' onClick={() => window.history.back()}> Back </button>
+  
     <div className="Smid-container">
       {formData.map((form, index) => (
         <div className="record-boxA" key={index}>
@@ -263,7 +264,6 @@ function FormD({ showNotification }) {
             </div>
           
           )}
-
 
           {/* Save button */}
           {editedIndex === index && (

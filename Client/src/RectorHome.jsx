@@ -31,18 +31,18 @@ function FormD({ showNotification }) {
 
   const handleRejectConfirmChange = (index, value) => {
     const updatedFormData = [...formData];
-    updatedFormData[index].rejectOrConfirm = value;
+    updatedFormData[index].rejectOrConfirm1 = value;
     setFormData(updatedFormData);
   };
 
   const handleFormSubmit = (index, updateEndpoint) => {
     const updatedFormData = [...formData];
-    const { _id, rejectOrConfirm, message } = updatedFormData[index];
+    const { _id, rejectOrConfirm1, message } = updatedFormData[index];
 
     axios
       .post(updateEndpoint, {
         id: _id,
-        rejectOrConfirm: rejectOrConfirm,
+        rejectOrConfirm1: rejectOrConfirm1,
         message: message,
       })
       .then((response) => {
@@ -62,18 +62,18 @@ function FormD({ showNotification }) {
   };
 
   const handleConfirm = (index) => {
-    const updateEndpoint = `http://localhost:3001/updateFormData${formData[index].formType}`;
+    const updateEndpoint = `http://localhost:3001/updateRectorData${formData[index].formType}`;
     const updatedFormData = [...formData];
-    updatedFormData[index].rejectOrConfirm = 'Confirmed';
+    updatedFormData[index].rejectOrConfirm1 = 'Confirmed';
     updatedFormData[index].message = 'Request Confirmed';
     setFormData(updatedFormData);
     handleFormSubmit(index, updateEndpoint);
   };
 
   const handleReject = (index) => {
-    const updateEndpoint = `http://localhost:3001/updateFormData${formData[index].formType}`;
+    const updateEndpoint = `http://localhost:3001/updateRectorData${formData[index].formType}`;
     const updatedFormData = [...formData];
-    updatedFormData[index].rejectOrConfirm = 'Rejected';
+    updatedFormData[index].rejectOrConfirm1 = 'Rejected';
     updatedFormData[index].message = 'Request Rejected';
     setFormData(updatedFormData);
     handleFormSubmit(index, updateEndpoint);
@@ -130,21 +130,20 @@ function FormD({ showNotification }) {
     </html>
   `;
 
-
     printWindow.document.open();
     printWindow.document.write(printContent);
     printWindow.document.close();
-
 
     printWindow.print();
     printWindow.close();
   };
 
-
   return (
     <>
       <div className="header-rectangle" />
       <img className="logo" alt="Kotelawala defence" src="kdu.png" />
+      <h1 className='user'>RECTOR</h1>
+      <img src='profile-user.png' className='userimg'></img>
       <button type="button" className="backbtn" onClick={() => window.location.href = '/Ahome'}>Back</button>
 
       <div className="buttons-container">
@@ -160,20 +159,22 @@ function FormD({ showNotification }) {
       </div>
 
       <div className='notification-panel'>
-        {formData.map((form, index) => {
-          const total =
-            form.numofOfficers +
-            form.numofLectures +
-            form.numofInstructors +
-            form.numofcadetOfficers +
-            form.numofdayScholers +
-            form.numofcivilStaff;
+        {formData
+          .filter((form) => form.rejectOrConfirm === 'Confirmed')
+          .map((form, index) => {
+            const total =
+              form.numofOfficers +
+              form.numofLectures +
+              form.numofInstructors +
+              form.numofcadetOfficers +
+              form.numofdayScholers +
+              form.numofcivilStaff;
 
-          // Determine the CSS class based on the value of rejectOrConfirm
-          const recordBoxClass = form.rejectOrConfirm === 'Confirmed' ? 'confirm' : (form.rejectOrConfirm === 'Rejected' ? 'reject' : '');
+            
+            const recordBoxClass = form.rejectOrConfirm1 === 'Confirmed' ? 'confirm' : (form.rejectOrConfirm1 === 'Rejected' ? 'reject' : '');
 
-          return (
-            <div className={`record-box ${recordBoxClass}`} key={index}>
+            return (
+              <div className={`record-box ${recordBoxClass}`} key={index}>
               <p className="applicant-name">Applicant Name: {form.applicantname}</p>
               <p className="requested-date">Requested date: {form.dateofApply}</p>
               <p className="description">Description: {form.appiicantAppoinment}</p> <br />
@@ -208,23 +209,25 @@ function FormD({ showNotification }) {
                 </div>
               )}
 
+              
               <div className="reject-confirm-box">
                 <input
                   type="text"
                   onChange={(e) => handleRejectConfirmChange(index, e.target.value)}
-                  value={form.rejectOrConfirm}
+                  value={form.rejectOrConfirm1}
                   readOnly
                 />
               </div>
-              
+              <button className="action-button" onClick={() => handleConfirm(index)}> Confirm </button>
+              <button className="action-button2" onClick={() => handleReject(index)}> Reject </button>
               <div>
                 <button className="action-button-showmore" onClick={() => toggleExpanded(index)} >
                   {expandedRecordIndex === index ? "Hide Details" : "Show More"}
                 </button>
               </div>
             </div>
-          );
-        })}
+            );
+          })}
 
         <div>
           {notifications.map((notification, index) => (

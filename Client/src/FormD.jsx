@@ -32,17 +32,19 @@ function FormD({ showNotification }) {
   const handleRejectConfirmChange = (index, value) => {
     const updatedFormData = [...formData];
     updatedFormData[index].rejectOrConfirm = value;
+    updatedFormData[index].rejectOrConfirm1 = value;
     setFormData(updatedFormData);
   };
 
   const handleFormSubmit = (index, updateEndpoint) => {
     const updatedFormData = [...formData];
-    const { _id, rejectOrConfirm, message } = updatedFormData[index];
+    const { _id, rejectOrConfirm, rejectOrConfirm1, message } = updatedFormData[index];
 
     axios
       .post(updateEndpoint, {
         id: _id,
         rejectOrConfirm: rejectOrConfirm,
+        rejectOrConfirm1: rejectOrConfirm1,
         message: message,
       })
       .then((response) => {
@@ -65,6 +67,7 @@ function FormD({ showNotification }) {
     const updateEndpoint = `http://localhost:3001/updateFormData${formData[index].formType}`;
     const updatedFormData = [...formData];
     updatedFormData[index].rejectOrConfirm = 'Confirmed';
+    updatedFormData[index].rejectOrConfirm1 = 'Pending';
     updatedFormData[index].message = 'Request Confirmed';
     setFormData(updatedFormData);
     handleFormSubmit(index, updateEndpoint);
@@ -74,6 +77,7 @@ function FormD({ showNotification }) {
     const updateEndpoint = `http://localhost:3001/updateFormData${formData[index].formType}`;
     const updatedFormData = [...formData];
     updatedFormData[index].rejectOrConfirm = 'Rejected';
+    updatedFormData[index].rejectOrConfirm1 = 'Rejected';
     updatedFormData[index].message = 'Request Rejected';
     setFormData(updatedFormData);
     handleFormSubmit(index, updateEndpoint);
@@ -157,6 +161,9 @@ function FormD({ showNotification }) {
         <button className='btn3' onClick={() => fetchFormData('http://localhost:3001/getAllForm2', '2')}>
           FOT
         </button>
+        <button className='btn1' onClick={() => fetchFormData('http://localhost:3001/getAllForm3', '2')}>
+          OTHERS
+        </button>
       </div>
 
       <div className='notification-panel'>
@@ -176,7 +183,7 @@ function FormD({ showNotification }) {
             <div className={`record-box ${recordBoxClass}`} key={index}>
               <p className="applicant-name">Applicant Name: {form.applicantname}</p>
               <p className="requested-date">Requested date: {form.dateofApply}</p>
-              <p className="description">Description: {form.appiicantAppoinment}</p> <br />
+               <br />
 
               {expandedRecordIndex === index && (
                 <div className="details">
@@ -190,7 +197,7 @@ function FormD({ showNotification }) {
                     <p className="expanded-detail"><b>Requirement : </b>{form.requirement}</p>
                     <p className="expanded-detail"><b>Time to be Spent : </b>{form.timetobeSpent}</p>
                     <p className="expanded-detail"><b>Distance : </b>{form.distance}</p>
-                    <p className="expanded-detail"><b>Date Arrival: </b>{form.dateofArriva}</p>
+                    <p className="expanded-detail"><b>Date Arrival: </b>{form.dateofArrival}</p>
                     <p className="expanded-detail"><b>Time Arrival: </b>{form.timeofArrival}</p><br />
                   </div>
                   <div className="detail-row1">

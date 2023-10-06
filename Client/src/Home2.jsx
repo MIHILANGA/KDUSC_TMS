@@ -36,7 +36,7 @@ function Home() {
     e.preventDefault();
     axios.post('http://localhost:3001/home2', {
       applicantname,
-      appiicantAppoinment,
+      
       vehicleIncharge,
       dateofRequired,
       timeofRequired,
@@ -61,7 +61,7 @@ function Home() {
     .then(result => {
       console.log(result);
       alert('Request submitted successfully!');
-      
+      e.target.reset();
     })
     .catch(err => {
       console.log(err);
@@ -69,331 +69,127 @@ function Home() {
     });
   };
   return (
-<div
-      style={{
-        background: 'linear-gradient(120deg, #a1c4fd, #c2e9fb)',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'row', // Align components side by side
-        padding: '20px',
-      }}
-    >
-      {/* Left side with buttons */}
-      <div style={{ flex: 1, padding: '10px' }}>
-        <div>
-          <h1>FOT MA Home</h1>
-        </div>
-        <div>
-          <Link to="/conformation2" className="btn btn-curly w-100 mb-3">
-            <b>Request Confirmations or Rejections</b>
-          </Link>
-          <Link to="/cancel2" className="btn btn-curly w-100">
-            <b>Edit Or Cancel Request</b>
-          </Link>
-          <p>(If you Cancel Request  please call MTO Office)</p>
-        </div>
-      </div>
+    <><div className='header-rectangle' />
+    <img className='logo' alt='Kotelawala defence' src='kdu.png' />
+    <h1 className='user'>FOT</h1>
+    <img src='profile-user.png' className='userimg'></img>
+    <button type="button" className="logoutbtn" onClick={() => window.location.href = '/'}>Logout</button>
 
-      {/* Right side with form */}
-      <div style={{ flex: 3, padding: '10px' }}>
-        <div className="bg-light p-3 rounded w-100">
-          <h3>Request Form</h3>
-          
-          
-          <form onSubmit={handleSubmit} className="custom-text-color">
-            {/* First Column */}
-            <div className="row mb-3">
-              <div className="col">
-                <label htmlFor="name"><strong>Applicant Name</strong></label>
-                <input type="text" placeholder="Enter your name" autoComplete="off" name="applicantname" className="form-control rounded-0" onChange={(e) => setapplicantname(e.target.value)} />
-              </div>
-              <div className="col">
-                <label htmlFor="appiicantAppoinment"><strong>Appiicant Appoinment</strong></label>
-                <input type="text" placeholder="Enter your appointment" autoComplete="off" name="appiicantAppoinment" className="form-control rounded-0" onChange={(e) => setappiicantAppoinment(e.target.value)} />
-              </div>
-            </div>
-            
-            <div className="row mb-3">
-              <div className="col">
-              <label htmlFor="vehicleIncharge">
-              <strong>Vehicle Incharge</strong>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your Vehicle Incharge"
-              autoComplete="off"
-              name="vehicleIncharge"
-              className="form-control rounded-0"
-              onChange={(e) => setvehicleIncharge(e.target.value)}
-            />
-          </div>
-              <div className="col">
-              <label htmlFor="dateofRequired">
-              <strong>Date Of Required</strong>
-            </label>
-            <input
-              type="date"
-              placeholder="Enter your appointment"
-              autoComplete="off"
-              name="dateofRequired"
-              className="form-control rounded-0"
-              onChange={(e) => setdateofRequired(e.target.value)}
-            />
-          </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col">
-              <label htmlFor="timeofRequired">
-              <strong>Time Of Required</strong>
-            </label>
-            <input
-              type="time"
-              placeholder="Enter your Time of Required"
-              autoComplete="off"
-              name="appiicantAppoinment"
-              className="form-control rounded-0"
-              onChange={(e) => settimeofRequired(e.target.value)}
-            />
-          </div>
-              <div className="col">
-              <label htmlFor="natureofDuty">
-              <strong>Nature Of Duty</strong>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your Nature of Duty"
-              autoComplete="off"
-              name="natureofDuty"
-              className="form-control rounded-0"
-              onChange={(e) => setnatureofDuty(e.target.value)}
-            />
-          </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col">
-              <label htmlFor="addresstoGo">
-              <strong>Address To Go</strong>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your Address to Go"
-              autoComplete="off"
-              name="addresstoGo"
-              className="form-control rounded-0"
-              onChange={(e) => setaddresstoGo(e.target.value)}
-            />
-          </div>
-              <div className="col">
-              <label htmlFor="requirement">
-              <strong>Requirement</strong>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your requirement"
-              autoComplete="off"
-              name="requirement"
-              className="form-control rounded-0"
-              onChange={(e) => setrequirement(e.target.value)}
-            />
-          </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col">
-              <label htmlFor="timetobeSpent">
-              <strong>Time To Be Spent</strong>
-            </label>
-            <input
-              type="time"
-              placeholder="Enter your Time to be Spent"
-              autoComplete="off"
-              name="timetobeSpent"
-              className="form-control rounded-0"
-              onChange={(e) => settimetobeSpent(e.target.value)}
-            />
-          </div>
-              <div className="col">
-              <label htmlFor="distance">
-              <strong>Distance</strong>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your distance"
-              autoComplete="off"
-              name="distance"
-              className="form-control rounded-0"
-              onChange={(e) => setdistance(e.target.value)}
-            />
-          </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col">
-              <label htmlFor="dateofArrival">
-              <strong>Date Of Arrival</strong>
-            </label>
-            <input
-              type="date"
-              placeholder="Enter your Date of Arrival"
-              autoComplete="off"
-              name="dateofArrival"
-              className="form-control rounded-0"
-              onChange={(e) => setdateofArrival(e.target.value)}
-            />
-          </div>
-              <div className="col">
-              <label htmlFor="timeofArrival">
-              <strong>Time Of Arrival</strong>
-            </label>
-            <input
-              type="time"
-              placeholder="Enter your Time of Arrival"
-              autoComplete="off"
-              name="timeofArrival"
-              className="form-control rounded-0"
-              onChange={(e) => settimeofArrival(e.target.value)}
-            />
-          </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col">
-              <label htmlFor="numofOfficers">
-              <strong>Number Of Officers</strong>
-            </label>
-            <input
-              type="number"
-              placeholder="Enter your Num of Officers"
-              autoComplete="off"
-              name="numofOfficers"
-              className="form-control rounded-0"
-              onChange={(e) => setnumofOfficers(e.target.value)}
-            />
-          </div>
-              <div className="col">
-              <label htmlFor="numofLectures">
-              <strong>Number of Lectures</strong>
-            </label>
-            <input
-              type="number"
-              placeholder="Enter your Num of Lectures"
-              autoComplete="off"
-              name="numofLectures"
-              className="form-control rounded-0"
-              onChange={(e) => setnumofLectures(e.target.value)}
-            />
-          </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col">
-              <label htmlFor="numofInstructors">
-              <strong>Number Of Instructors</strong>
-            </label>
-            <input
-              type="number"
-              placeholder="Enter your Num of Instructors"
-              autoComplete="off"
-              name="numofInstructors"
-              className="form-control rounded-0"
-              onChange={(e) => setnumofInstructors(e.target.value)}
-            />
-          </div>
-              <div className="col">
-              <label htmlFor="numofcadetOfficers">
-              <strong>Number Of Cadet Officers</strong>
-            </label>
-            <input
-              type="number"
-              placeholder="Enter your Num of Cadet Officers"
-              autoComplete="off"
-              name="numofcadetOfficers"
-              className="form-control rounded-0"
-              onChange={(e) => setnumofcadetOfficers(e.target.value)}
-            />
-          </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col">
-              <label htmlFor="numofdayScholers">
-              <strong>Number Of Day Scholers</strong>
-            </label>
-            <input
-              type="number"
-              placeholder="Enter your Num of DayScholers"
-              autoComplete="off"
-              name="numofdayScholers"
-              className="form-control rounded-0"
-              onChange={(e) => setnumofdayScholers(e.target.value)}
-            />
-          </div>
-              <div className="col">
-              <label htmlFor="numofcivilStaff">
-              <strong>Number Of Civil Staff</strong>
-            </label>
-            <input
-              type="number"
-              placeholder="Enter your Num of Civil Staff"
-              autoComplete="off"
-              name="numofcivilStaff"
-              className="form-control rounded-0"
-              onChange={(e) => setnumofcivilStaff(e.target.value)}
-            />
-          </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col">
-              <label htmlFor="Total of Passengers">
-              <strong>Total Of Passengers</strong>
-            </label>
-            <input
-              type="number"
-              placeholder="Enter your totalofPassengers"
-              autoComplete="off"
-              name="totalofPassengers"
-              className="form-control rounded-0"
-              onChange={(e) => settotalofPassengers(e.target.value)}
-            />
-          </div>
-              <div className="col">
-              <label htmlFor="routetoFollow">
-              <strong>Route To Follow</strong>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your Route to Follow"
-              autoComplete="off"
-              name="routetoFollow"
-              className="form-control rounded-0"
-              onChange={(e) => setroutetoFollow(e.target.value)}
-            />
-          </div>
-            </div>
-            <div className="row mb-3">
-              <div className="col">
-              <label htmlFor="dateofApply">
-              <strong>Date Of Apply</strong>
-            </label>
-            <input
-              type="date"
-              placeholder="Enter your Date of Apply"
-              autoComplete="off"
-              name="dateofApply"
-              className="form-control rounded-0"
-              onChange={(e) => setdateofApply(e.target.value)}
-            />
-          </div>
-              </div>
-            
-            {/* Continue with other fields similarly */}
-            
-            <button type="submit" className="btn btn-success w-100 rounded-0" style={{ backgroundColor: 'darkgoldenrod' }}>
-              Submit Form
-            </button>
-          </form>
-          
-        </div>
-        
-      </div>
-      
+    <div className='Buttons'>
+        <Link to="/conformation2" className="Requestbtn"> View </Link>
+        <Link to="/cancel2" className="Editbtn"> Edit </Link>
     </div>
-    
+      
+
+    <div className="notification-panelS">
+        <form onSubmit={handleSubmit} className="form-container">
+          {/* First Column */}
+          <div className="row mb-3">
+            <div className="col">
+              <label htmlFor="name"><strong>Applicant Name</strong></label>
+              <input type="text" placeholder="Enter Name" autoComplete="off" name="applicantname" className="input-box" onChange={(e) => setapplicantname(e.target.value)} required />
+            </div>
+            
+            <div className="col">
+              <label htmlFor="vehicleIncharge"> <strong>Vehicle Incharge</strong> </label>
+              <input type="text" placeholder="Enter Vehicle Incharge" autoComplete="off" name="vehicleIncharge" className="input-box" onChange={(e) => setvehicleIncharge(e.target.value)} />
+            </div>
+            <div className="col">
+              <label htmlFor="dateofRequired"> <strong>Date Of Required</strong> </label>
+              <input type="date" placeholder="Enter your Appointment" autoComplete="off" name="dateofRequired" className="input-box" onChange={(e) => setdateofRequired(e.target.value)} />
+            </div>
+
+            <div className="col">
+              <label htmlFor="timeofRequired"> <strong>Time Of Required</strong> </label>
+              <input type="time" placeholder="Enter Time of Required" autoComplete="off" name="timeofRequired" className="input-box" onChange={(e) => settimeofRequired(e.target.value)} />
+            </div>
+            <div className="col">
+              <label htmlFor="natureofDuty"> <strong>Nature Of Duty</strong> </label>
+              <input type="text"
+                placeholder="Enter Nature of Duty" autoComplete="off" name="natureofDuty" className="input-box" onChange={(e) => setnatureofDuty(e.target.value)} />
+            </div>
+
+            <div className="col">
+              <label htmlFor="addresstoGo"> <strong>Address To Go</strong> </label>
+              <input
+                type="text" placeholder="Enter Address to Go" autoComplete="off" name="addresstoGo" className="input-box" onChange={(e) => setaddresstoGo(e.target.value)} />
+            </div>
+            <div className="col">
+              <label htmlFor="requirement"> <strong>Requirement</strong> </label>
+              <input type="text" placeholder="Enter Requirement" autoComplete="off" name="requirement" className="input-box" onChange={(e) => setrequirement(e.target.value)} />
+            </div>
+
+            <div className="col">
+              <label htmlFor="timetobeSpent"> <strong>Time To Be Spent</strong> </label>
+              <input type="time" placeholder="Enter Time to be Spent" autoComplete="off" name="timetobeSpent" className="input-box" onChange={(e) => settimetobeSpent(e.target.value)} />
+            </div>
+            <div className="col">
+              <label htmlFor="distance"> <strong>Distance</strong> </label>
+              <input type="text" placeholder="Enter Distance" autoComplete="off" name="distance" className="input-box" onChange={(e) => setdistance(e.target.value)} />
+            </div>
+
+            <div className="col">
+              <label htmlFor="dateofArrival">
+                <strong>Date Of Arrival</strong>
+              </label>
+              <input type="date" placeholder="Enter Date of Arrival" autoComplete="off" name="dateofArrival" className="input-box" onChange={(e) => setdateofArrival(e.target.value)} />
+            </div>
+            <div className="col">
+              <label htmlFor="timeofArrival"> <strong>Time Of Arrival</strong> </label>
+              <input
+                type="time" placeholder="Enter Time of Arrival" autoComplete="off" name="timeofArrival" className="input-box" onChange={(e) => settimeofArrival(e.target.value)} />
+            </div>
+
+            <div className="col">
+              <label htmlFor="numofOfficers"> <strong>Number Of Officers</strong> </label>
+              <input type="number" placeholder="Enter No. of Officers" autoComplete="off" name="numofOfficers" className="input-box" onChange={(e) => setnumofOfficers(e.target.value)} />
+            </div>
+            <div className="col">
+              <label htmlFor="numofLectures"> <strong>Number of Lectures</strong> </label>
+              <input type="number" placeholder="Enter No. of Lectures" autoComplete="off" name="numofLectures" className="input-box" onChange={(e) => setnumofLectures(e.target.value)} />
+            </div>
+
+            <div className="col">
+              <label htmlFor="numofInstructors"> <strong>Number Of Instructors</strong> </label>
+              <input
+                type="number" placeholder="Enter No. of Instructors" autoComplete="off" name="numofInstructors" className="input-box" onChange={(e) => setnumofInstructors(e.target.value)} />
+            </div>
+            <div className="col">
+              <label htmlFor="numofcadetOfficers"> <strong>Number Of Cadet Officers</strong> </label>
+              <input type="number" placeholder="Enter No. of Cadet Officers" autoComplete="off" name="numofcadetOfficers" className="input-box" onChange={(e) => setnumofcadetOfficers(e.target.value)} />
+            </div>
+
+            <div className="col">
+              <label htmlFor="numofdayScholers"> <strong>Number Of Day Scholers</strong> </label>
+              <input type="number" placeholder="Enter No. of DayScholers" autoComplete="off" name="numofdayScholers" className="input-box" onChange={(e) => setnumofdayScholers(e.target.value)} />
+            </div>
+            <div className="col">
+              <label htmlFor="numofcivilStaff"> <strong>Number Of Civil Staff</strong> </label>
+              <input type="number" placeholder="Enter No. of Civil Staff" autoComplete="off" name="numofcivilStaff" className="input-box" onChange={(e) => setnumofcivilStaff(e.target.value)} />
+            </div>
+
+            <div className="col">
+              <label htmlFor="Total of Passengers"> <strong>Total Of Passengers</strong> </label>
+              <input type="number" placeholder="Enter Total of Passengers" autoComplete="off" name="totalofPassengers" className="input-box" onChange={(e) => settotalofPassengers(e.target.value)} />
+            </div>
+            <div className="col">
+              <label htmlFor="routetoFollow"> <strong>Route To Follow</strong> </label>
+              <input type="text" placeholder="Enter Route to Follow" autoComplete="off" name="routetoFollow" className="input-box" onChange={(e) => setroutetoFollow(e.target.value)} />
+            </div>
+
+            <div className="col">
+              <label htmlFor="dateofApply"> <strong>Date Of Apply</strong> </label>
+              <input type="date" placeholder="Enter Date of Apply" autoComplete="off" name="dateofApply" className="input-box" onChange={(e) => setdateofApply(e.target.value)} />
+            </div>
+            <div className="col1">
+              {/* button*/}
+              <button type="submit" className="SAddbtn"> Submit </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    <p className='msg'>If You Canceled a Request,<br />Please Contact MTO Office</p></>
+
   );
 }
 export default Home;

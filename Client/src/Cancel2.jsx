@@ -12,10 +12,12 @@ function FormD({ showNotification }) {
     // Fetch form data from the server when the component mounts
     axios.get('http://localhost:3001/getAllForm2')
       .then(response => {
-        setFormData(response.data.data);
+        // Reverse the data array to display it in reverse order
+        const reversedData = response.data.data.reverse();
+        setFormData(reversedData);
         setLoading(false); // Data has been loaded
         // Filter and prepare the data for the notification
-        const filteredData = response.data.data.map(form => ({
+        const filteredData = reversedData.map(form => ({
           ...form,
           isEditing: false, // Add property to track editing state
         }));
@@ -26,6 +28,7 @@ function FormD({ showNotification }) {
         setLoading(false); // Error occurred while loading data
       });
   }, [showNotification]);
+  
 
   // Handle cell click for editing
   const handleCellClick = (rowIndex, columnName) => {
@@ -102,234 +105,180 @@ function FormD({ showNotification }) {
   }
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center">Vehicle Request Forms Edit and Cancel</h1>
+
+  <><div className='header-rectangle' />
+  <img className='logo' alt='Kotelawala defence' src='kdu.png' />
+  <button type='button' className='backbtn' onClick={() => window.history.back()}> Back </button>
+  
+    <div className="Smid-container">
       {formData.map((form, index) => (
-        <div className="record-box" key={index}>
-          <p className="applicant-name">
-            Applicant Name: {editedIndex === index ? (
-              <input
-                type="text"
-                value={form.applicantname}
-                onChange={(e) => handleCellChange(index, 'applicantname', e.target.value)}
-              />
+        <div className="record-boxA" key={index}>
+
+<p className="applicant-name"> Applicant Name: {editedIndex === index ? (
+              <input type="text" value={form.applicantname} onChange={(e) => handleCellChange(index, 'applicantname', e.target.value)} />
             ) : (
               <span onClick={() => setEditedIndex(index)}>{form.applicantname}</span>
             )}
           </p>
           <p className="requested-date">Requested date: {form.dateofApply}</p>
-          <p className="description">
-            Description: {editedIndex === index ? (
-              <input
-                type="text"
-                value={form.appiicantAppoinment}
-                onChange={(e) => handleCellChange(index, 'appiicantAppoinment', e.target.value)}
-              />
-            ) : (
-              <span onClick={() => setEditedIndex(index)}>{form.appiicantAppoinment}</span>
-            )}
-          </p>
+          
 
           {/* Render additional details */}
           {expandedRecordIndex === index && (
-            <div className="description">
-              <p className="expanded-detail">Vehicle Incharge: 
+            
+   <div className="Sdetails">
+        
+
+              <p className="expanded-detail">Vehicle Incharge :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.vehicleIncharge}
-                    onChange={(e) => handleCellChange(index, 'vehicleIncharge', e.target.value)}
-                  />
+                  <input type="text" value={form.vehicleIncharge} onChange={(e) => handleCellChange(index, 'vehicleIncharge', e.target.value)} />
                 ) : (
-                  <span onClick={() => setEditedIndex(index)}>{form.vehicleIncharge}</span>
+                  <span onClick={() => setEditedIndex(index)}>{form.vehicleIncharge} </span>
                 )}
               </p>
-              <p className="expanded-detail">Date of Required: 
+
+              <p className="expanded-detail">Date Required :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.dateofRequired}
-                    onChange={(e) => handleCellChange(index, 'dateofRequired', e.target.value)}
-                  />
+                  <input type="Date" value={form.dateofRequired} onChange={(e) => handleCellChange(index, 'dateofRequired', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.dateofRequired}</span>
                 )}
               </p>
-              <p className="expanded-detail">Time of Required: 
+              
+              <p className="expanded-detail">Time of Required :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.timeofRequired}
-                    onChange={(e) => handleCellChange(index, 'timeofRequired', e.target.value)}
-                  />
+                  <input type="text" value={form.timeofRequired} onChange={(e) => handleCellChange(index, 'timeofRequired', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.timeofRequired}</span>
                 )}
               </p>
-              <p className="expanded-detail">Nature of Duty: 
+
+              <p className="expanded-detail">Nature of Duty :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.natureofDuty}
-                    onChange={(e) => handleCellChange(index, 'natureofDuty', e.target.value)}
-                  />
+                  <input type="text" value={form.natureofDuty} onChange={(e) => handleCellChange(index, 'natureofDuty', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.natureofDuty}</span>
                 )}
-              </p> <br/>
+              </p> 
 
-              <p className="expanded-detail">Address to Go: 
+              <p className="expanded-detail">Address :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.addresstoGo}
-                    onChange={(e) => handleCellChange(index, 'addresstoGo', e.target.value)}
-                  />
+                  <input type="text" value={form.addresstoGo} onChange={(e) => handleCellChange(index, 'addresstoGo', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.addresstoGo}</span>
                 )}
               </p>
-              <p className="expanded-detail">Requirement: 
+      
+      <div className="Sdetail-row2">
+              <p className="expanded-detail">Requirement :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.requirement}
-                    onChange={(e) => handleCellChange(index, 'requirement', e.target.value)}
-                  />
+                  <input type="text" value={form.requirement} onChange={(e) => handleCellChange(index, 'requirement', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.requirement}</span>
                 )}
               </p>
-              <p className="expanded-detail">Time to be Spent: 
+
+              <p className="expanded-detail">Time to be Spent :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.timetobeSpent}
-                    onChange={(e) => handleCellChange(index, 'timetobeSpent', e.target.value)}
-                  />
+                  <input type="time" value={form.timetobeSpent} onChange={(e) => handleCellChange(index, 'timetobeSpent', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.timetobeSpent}</span>
                 )}
               </p>
-              <p className="expanded-detail">Distance: 
+
+              <p className="expanded-detail">Distance :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.distance}
-                    onChange={(e) => handleCellChange(index, 'distance', e.target.value)}
-                  />
+                  <input type="text" value={form.distance} onChange={(e) => handleCellChange(index, 'distance', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.distance}</span>
                 )}
-              </p> <br/>
+              </p>
 
-              <p className="expanded-detail">Date of Arrival: 
+              <p className="expanded-detail">Date Arrival :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.dateofArrival}
-                    onChange={(e) => handleCellChange(index, 'dateofArrival', e.target.value)}
-                  />
+                  <input type="date" value={form.dateofArrival} onChange={(e) => handleCellChange(index, 'dateofArrival', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.dateofArrival}</span>
                 )}
               </p>
-              <p className="expanded-detail">Time of Arrival: 
+
+              <p className="expanded-detail">Time Arrival :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.timeofArrival}
-                    onChange={(e) => handleCellChange(index, 'timeofArrival', e.target.value)}
-                  />
+                  <input type="time" value={form.timeofArrival} onChange={(e) => handleCellChange(index, 'timeofArrival', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.timeofArrival}</span>
                 )}
               </p>
-
-              <p className="expanded-detail">Num of Officers: 
+        </div>
+        <div className="Sdetail-row3">
+              <p className="expanded-detail">No. Of Officers :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.numofOfficers}
-                    onChange={(e) => handleCellChange(index, 'numofOfficers', e.target.value)}
-                  />
+                  <input type="text" value={form.numofOfficers} onChange={(e) => handleCellChange(index, 'numofOfficers', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.numofOfficers}</span>
                 )}
               </p>
-              <p className="expanded-detail">Num of Lectures: 
+
+              <p className="expanded-detail">No. Of Lectures :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.numofLectures}
-                    onChange={(e) => handleCellChange(index, 'numofLectures', e.target.value)}
-                  />
+                  <input type="text" value={form.numofLectures} onChange={(e) => handleCellChange(index, 'numofLectures', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.numofLectures}</span>
                 )}
               </p>
-              <p className="expanded-detail">Num of Instructors: 
+
+              <p className="expanded-detail">No. Of Instructors :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.numofInstructors}
-                    onChange={(e) => handleCellChange(index, 'numofInstructors', e.target.value)}
-                  />
+                  <input type="text"  value={form.numofInstructors} onChange={(e) => handleCellChange(index, 'numofInstructors', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.numofInstructors}</span>
                 )}
               </p>
-              <p className="expanded-detail">Num of Cadet Officers: 
+        </div>
+        <div className="Sdetail-row">
+              <p className="expanded-detail">No. Of Cadet Officers :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.numofCadetOfficers}
-                    onChange={(e) => handleCellChange(index, 'numofCadetOfficers', e.target.value)}
-                  />
+                  <input type="text" value={form.numofCadetOfficers} onChange={(e) => handleCellChange(index, 'numofCadetOfficers', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.numofCadetOfficers}</span>
                 )}
               </p>
-              <p className="expanded-detail">Num of Day Scholars: 
+
+              <p className="expanded-detail">No. Of DayScholers:
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.numofDayScholars}
-                    onChange={(e) => handleCellChange(index, 'numofDayScholars', e.target.value)}
-                  />
+                  <input type="text" value={form.numofDayScholars} onChange={(e) => handleCellChange(index, 'numofDayScholars', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.numofDayScholars}</span>
                 )}
               </p>
-              <p className="expanded-detail">Num of Civil Staff: 
+
+              <p className="expanded-detail">No. Of CivilStaff :
                 {editedIndex === index ? (
-                  <input
-                    type="text"
-                    value={form.numofCivilStaff}
-                    onChange={(e) => handleCellChange(index, 'numofCivilStaff', e.target.value)}
-                  />
+                  <input type="text" value={form.numofCivilStaff} onChange={(e) => handleCellChange(index, 'numofCivilStaff', e.target.value)} />
                 ) : (
                   <span onClick={() => setEditedIndex(index)}>{form.numofCivilStaff}</span>
                 )}
               </p>
-              <p className="expanded-detail">Total of Passengers: {calculateTotal(form)}</p>
+       </div>           
+              <p className="expanded-detailS">Total of Passengers: {calculateTotal(form)}</p>
             </div>
+          
           )}
           {/* Save button */}
           {editedIndex === index && (
-            <button onClick={() => handleFormSubmit(index)}>Save</button>
-          )}
+            <button className='action-buttonSave' onClick={() => handleFormSubmit(index)}>Save</button>)}
+          
+          {/* Delete button */}
+            <button className='action-buttonDelete' onClick={() => handleDelete(form._id)}>Delete</button>
 
           {/* Hide/Show Details button */}
-          <button onClick={() => setExpandedRecordIndex(prevIndex => prevIndex === index ? -1 : index)}>
-            {expandedRecordIndex === index ? 'Hide Details' : 'Show Details'}
-          </button>
+          <button className='action-button-showmore' onClick={() => setExpandedRecordIndex(prevIndex => prevIndex === index ? -1 : index)}>
+            {expandedRecordIndex === index ? 'Hide Details' : 'Show Details'} </button>
 
-          {/* Delete button */}
-          <button onClick={() => handleDelete(form._id)}>Delete</button>
+
         </div>
       ))}
-    </div>
+    </div></>
   );
 }
 

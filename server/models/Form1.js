@@ -23,6 +23,7 @@ const FormSchema1 = new mongoose.Schema({
     routetoFollow : String,
     dateofApply : Date,
     rejectOrConfirm : String,
+    rejectOrConfirm1 : String,
     driver : String,
     vehicle: String,
 

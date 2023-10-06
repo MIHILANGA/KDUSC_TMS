@@ -60,9 +60,9 @@ const resetForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/home', {
+    axios.post('http://localhost:3001/home3', {
       applicantname,
-      appiicantAppoinment,
+      
       vehicleIncharge,
       dateofRequired,
       timeofRequired,
@@ -103,8 +103,8 @@ const resetForm = () => {
     
 
         <div className='Buttons'>
-            <Link to="/conformation" className="Requestbtn"> Requests </Link>
-            <Link to="/cancel" className="Editbtn"> Edit </Link>
+            <Link to="/conformation3" className="Requestbtn"> View </Link>
+            <Link to="/cancel3" className="Editbtn"> Edit </Link>
         </div>
 
         <div className="notification-panelS">
@@ -115,10 +115,7 @@ const resetForm = () => {
                   <label htmlFor="name"><strong>Applicant Name</strong></label>
                   <input type="text" placeholder="Enter Name" autoComplete="off" name="applicantname" className="input-box" onChange={(e) => setapplicantname(e.target.value)} required/>
               </div>
-              <div className="col">
-                  <label htmlFor="appiicantAppoinment"><strong>Appiicant Appoinment</strong></label>
-                  <input type="text" placeholder="Enter Appointment" autoComplete="off" name="appiicantAppoinment" className="input-box" onChange={(e) => setappiicantAppoinment(e.target.value)} />
-              </div>
+              
               <div className="col">
                   <label htmlFor="vehicleIncharge"> <strong>Vehicle Incharge</strong> </label>
                   <input type="text" placeholder="Enter Vehicle Incharge" autoComplete="off" name="vehicleIncharge" className="input-box" onChange={(e) => setvehicleIncharge(e.target.value)} />

@@ -1,168 +1,203 @@
-
-
-
-
-/* ... your existing styles ... */
-
-/* Curly button style */
-.btn-curly {
-  background: linear-gradient(45deg, #ff9933, #ffcc00);
-  color: white;
-  border-radius: 30px;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-.btn2-curly {
-  background: linear-gradient(45deg, #161541, #157ac8);
-  color: white;
-  border-radius: 30px;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-.btn-curly:hover {
-  transform: scale(1.05);
-}
-
-
-/*homr button*/
-.btn1-curly {
-  background: #FF8811;
-  color: white;
-  border-radius: 30px;
-  border: none;
-  padding: 10px 20px;
-  font-size: 21px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-.btn1-curly:hover {
-  transform: scale(1.05);
-  background: #FF8811;
-}
-
-
-
-/* Curly text field style */
-.form-control-curly {
-  background-color: rgba(236, 236, 236, 0.7);
-  border: none;
-  border-radius: 20px;
-  padding: 10px 45px;
-  font-size: 16px;
-  color: #3b3b3b;
-}
-
-.form-control-curly::placeholder {
-  color: #b8b1b1;
-}
-
-.form-control-curly:focus {
-  outline: none;
-  box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
-  padding: auto;
-}
-
-
-
-
-/* style.css */
-.full-width {
-  width: 50%; /* This will make the table take up 100% of its parent container's width */
-}
-
-
-
-
-
-
-
-
-
 .form-container {
   padding: 20px;
 }
 
-.data-table {
-  border-collapse: collapse;
-  width: 100%;
-}
+/*---------------------------Confirmation js file css styles-----------------------------*/
 
-.data-table th,
-.data-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-
-.data-table th {
-  background-color: #f2f2f2;
-}
-
-.data-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-
-
-
-/* edit and cancel button  */
-
-.button-container {
-  display: flex;
-  gap: 10px;
-}
-
-.action-button {
-  padding: 8px 12px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.save-button {
-  background-color: #4c4caf;
-  color: white;
-}
-
-.delete-button {
-  background-color: #f44336;
-  color: white;
-}
-
-.action-button:hover {
-  background-color: #333;
-}
-
-
-.user{
-  text-align: center;
-  margin-top: 10px;
-}
-
-  /*-----------notification background-----------*/
-  .notification-panelA {
-    text-align: left;
-    font-family: Arial, sans-serif;
-    border-radius: 15px;
-    height: 500px;
-    width: 1500px;
-    margin-right: 10px;
-    margin-top: 60px;
-    margin-left: -400px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    
+  /*---------------------------Table-----------------------------*/
+  .Stable {
+    border-collapse: collapse;
+    width: 100%; /* Make the table take up 100% of its container's width */
   }
-  .notification-panelS:hover{
+  
+  .Stable th,
+  .Stable td {
+    border: 1px solid #ddd;
+
+  }
+  .Stable th {
+    background-color: #f2f2f2;
+  }
+  
+  .Stable tr:nth-child(even) {
+    background-color: #b8b8b828;    
+  }
+/* Change the width and center text in the first column */
+.Stable th:nth-child(1),
+.Stable td:nth-child(1) {
+    width: 300px; /* Adjust the width as needed */
+    text-align: center; /* Center text horizontally */
+}
+
+/* Change the width of the "Actions" column (fourth column) */
+.Stable th:nth-child(4),
+.Stable td:nth-child(4) {
+  width: 250px; /* Adjust the width as needed */
+  height: 60px;
+
+}
+/* Change the width of the column (fifth column) */
+.Stable th:nth-child(5){
+  text-align: center; /* Center text horizontally */
+}
+.Stable td:nth-child(5) {
+  width: 250px; /* Adjust the width as needed */
+  text-align: center; /* Center text horizontally */
+  background-color:beige;
+}
+/*-------------------------------------------------------------------------------------*/
+/*---------------------------Cancel js file css styles-----------------------------*/
+  
+/* Style for the delete button */
+.action-buttonDelete {
+  background-color: #ff6842;
+  color: #fff;
+  border: none;
+  margin-top: -20px;
+  margin-left: 1190px;
+  padding: 5px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100px;
+}
+.action-buttonDelete:hover {
+  transform: scale(1.05); /* Add a scaling effect on hover */
+  color: #000;
+}
+/* Style for the save button */
+.action-buttonSave{
+  background-color: #2fc224;
+  color: #fff;
+  border: none;
+  position: absolute;
+  margin-top: -5px;
+  margin-left: 1081px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100px;
+} 
+.action-buttonSave:hover {
+  background-color: #2fc224;
+  transform: scale(1.05); /* Add a scaling effect on hover */
+  color: #000;
+  transition: transform 0.2s ease; /* Add a separate transition for transform */
+}
+  /*-----------notification tiles-----------*/
+  .record-boxA {
+    margin-top: 50px;
+    background-color: #d9e4e8;
+    background:#e3daff; 
+    border: 1px solid #247bc25a;
+    padding: 20px;
+    margin: 20px;
+    margin-top: 18px;
+    border-radius: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    width: 97%;
+    
+  
+  }
+  .record-boxA:hover{
     transition: transform 0.2s ease; /* Add a separate transition for transform */
     transform: scale(1.01); /* Add a scaling effect on hover */
     background-color: #ffffff;
   }
+    
+/*-----------notification background-----------*/
+
+.Smid-container{
+  background: linear-gradient(rgba(255, 255, 255, 0.6));
+  backdrop-filter: blur(10px);
+  border-radius: 40px;
+  border: 0px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  width: 1450px; /* Adjust the width as needed */
+  position: absolute;
+  top: 130px;
+  bottom: 20px;
+  right: 20px;
+  transition: background 0.5s, transform 0.5s;
+  overflow-y: auto; /* Add scrollbar when content overflows */
+}
+.Smid-container:hover {   /*-----------hover effect of tile styles------------*/
+  transform: translateY(-5px);
+}
+/*-------------Details of tiles------------*/
+.Sdetails{
+  color: #000000;
+  margin-top: 20px;
+  margin-left: 30px;
+
+}
+
+.Sdetail-row2{
+  margin-left: 500px;
+  margin-top: -120px;
+}
+.Sdetail-row3{  
+  margin-top: 30px;
+  margin-left: 500px;
+}
+.Sdetail-row{  
+  margin-top: -71px;
+  margin-left: 0px;
+}
+.expanded-detailS{
+  margin-top: 10px;
+
+}
+/*-------------------------------------------------------------------------------------*/
+/*---------------------------------------------Login page's Login icon & common elements styles----------------------------------------*/
+
+.user{
+  font-size: small;
+  position: fixed;
+  top: 50px; /* Adjust the top position as needed */
+  right: 200px; /* Adjust the right position as needed */
+  z-index: 1;
+  color: #ffffff;
+  margin-top: 31px;
+  margin-right: -10px;    cursor: help;
+}
+.userimg{
+  border-radius: 100px;
+  border: none;
+  width: 43px;
+  height: -5px;
+  top: 36px; /* Adjust the top position as needed */
+  right: 182px; /* Adjust the right position as needed */
+  position: fixed;
+  z-index: 1;
+
+}
+
+.msg {
+  text-decoration: none;
+  text-align: center;
+  color: #000000; /* Text color */
+  border: none;
+  width: 200px; /* Fixed width for all buttons */
+  height: 50px; /* Fixed height for all buttons */
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: help;
+  /* Center text vertically */
+  align-items: center;
+  font-weight: 500;
+  z-index: 0;
+  margin-top: -50px;
+  margin-left: 20px;
+}
+.fbessuser {
+  font-size: small;
+  position: fixed;
+  top: 50px; /* Adjust the top position as needed */
+  right: 200px; /* Adjust the right position as needed */
+  z-index: 1;
+  color: #ffffff;
+  margin-top: 31px;
+  margin-right: -17px;    
+  cursor: help;
+}
+/*---------------------------------------------------------------------------------------------------------------------------------------*/

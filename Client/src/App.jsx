@@ -10,9 +10,11 @@ import FormD from './FormD';
 import Conformation from './conformation';
 import Conformation1 from './conformation1';
 import Conformation2 from './conformation2';
+import Conformation3 from './conformation3';
 import Cancel from './cancel';
 import Cancel1 from './cancel1';
 import Cancel2 from './cancel2';
+import Cancel3 from './cancel3';
 import Specialrequest from './Specialrequest';
 import Map from './Map';
 import Vehicledetails from './Vehicledetails';
@@ -47,9 +49,11 @@ function App() {
         <Route path="/conformation" element={<Conformation />} ></Route>
         <Route path="/conformation1" element={<Conformation1 />} ></Route>
         <Route path="/conformation2" element={<Conformation2 />} ></Route>
+        <Route path="/conformation3" element={<Conformation3 />} ></Route>
         <Route path="/cancel" element={<Cancel />} ></Route>
         <Route path="/cancel1" element={<Cancel1 />} ></Route>
         <Route path="/cancel2" element={<Cancel2 />} ></Route>
+        <Route path="/cancel3" element={<Cancel3 />} ></Route>
         <Route path="/SpecialRequest" element={<Specialrequest />} ></Route>
         <Route path="/Map" element={<Map />} ></Route>
         <Route path="/Vehicledetails" element={<Vehicledetails />} ></Route>

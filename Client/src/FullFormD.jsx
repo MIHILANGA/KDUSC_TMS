@@ -14,6 +14,7 @@ function FullFormFormD({ showNotification }) {
       'http://localhost:3001/getAllForm',
       'http://localhost:3001/getAllForm1',
       'http://localhost:3001/getAllForm2',
+      'http://localhost:3001/getAllForm3',
     ];
 
     // Use Promise.all to make parallel requests
@@ -63,8 +64,8 @@ function FullFormFormD({ showNotification }) {
           
           <div className="record-box1" key={index}>
             <p className="applicant-name">Applicant Name: {form.applicantname}</p>
-            <p className="requested-date1">Requested date: {form.dateofApply}<p className="Name" >New Request</p></p>
-            <p className="description">Description: {form.appiicantAppoinment} </p>
+            <p className="requested-date1">Requested date: {form.dateofApply}<p className="Name" >Pending</p></p>
+            <p className="description">Description: {form.requirement} </p>
 
             {/* Add more data fields as needed */}
           </div>

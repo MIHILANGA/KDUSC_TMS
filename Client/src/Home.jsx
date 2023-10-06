@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
-<script src="https://kit.fontawesome.com/2fa262d30e.js" crossorigin="anonymous"></script>
-
-
+<script src="https://kit.fontawesome.com/2fa262d30e.js" crossorigin="anonymous"></script> // Make sure to add the FontAwesome CSS properly
 
 function Home() {
-  // ... State and handleSubmit definitions ...
   const [applicantname, setapplicantname] = useState('');
   const [appiicantAppoinment, setappiicantAppoinment] = useState('');
   const [vehicleIncharge, setvehicleIncharge] = useState('');
@@ -29,72 +26,84 @@ function Home() {
   const [numofdayScholers, setnumofdayScholers] = useState('');
   const [numofcivilStaff, setnumofcivilStaff] = useState('');
   const [totalofPassengers, settotalofPassengers] = useState('');
-  const [routetoFollow, setroutetoFollow] = useState('');
-  const [dateofApply, setdateofApply] = useState('');
+  
+  // Initialize dateOfApply with the current date in YYYY-MM-DD format
+  const currentDate = new Date();
+  const [dateofApply, setdateofApply] = useState(
+    currentDate.toISOString().split('T')[0]
+  );
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/home', {
-      applicantname,
-      appiicantAppoinment,
-      vehicleIncharge,
-      dateofRequired,
-      timeofRequired,
-      natureofDuty,
-      addresstoGo,
-      requirement,
-      timetobeSpent,
-      distance,
-      dateofArrival,
-      timeofArrival,
-      numofOfficers,
-      numofLectures,
-      numofInstructors,
-      numofcadetOfficers,
-      numofdayScholers,
-      numofcivilStaff,
-      totalofPassengers,
-      routetoFollow,
-      dateofApply,
-
-    })
-    .then(result => {
-      console.log(result);
-      alert('Request submitted successfully!');
-      
-    })
-    .catch(err => {
-      console.log(err);
-      alert('An error occurred. Please try again.');
-    });
+    axios
+      .post('http://localhost:3001/home', {
+        applicantname,
+        appiicantAppoinment,
+        vehicleIncharge,
+        dateofRequired,
+        timeofRequired,
+        natureofDuty,
+        addresstoGo,
+        requirement,
+        timetobeSpent,
+        distance,
+        dateofArrival,
+        timeofArrival,
+        numofOfficers,
+        numofLectures,
+        numofInstructors,
+        numofcadetOfficers,
+        numofdayScholers,
+        numofcivilStaff,
+        totalofPassengers,
+        dateofApply,
+      })
+      .then((result) => {
+        console.log(result);
+        alert('Request submitted successfully!');
+        e.target.reset();
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('An error occurred. Please try again.');
+      });
   };
+
   return (
-    <><><div className='header-rectangle' />
-      <img className='logo' alt='Kotelawala defence' src='kdu.png' />
-      <h1 className='user'>FOC Dashboard</h1>
-      
-      <button type="button" className="logoutbtn" onClick={() => window.location.href = '/'}>Logout</button>
+    <>
+      <div className="header-rectangle" />
+      <img className="logo" alt="Kotelawala defence" src="kdu.png" />
+      <h1 className="user">FOC</h1>
+      <img src="profile-user.png" className="userimg" alt="User" />
+      <button
+        type="button"
+        className="logoutbtn"
+        onClick={() => window.location.href = '/'}
+      >
+        Logout
+      </button>
 
-
-      <div className='Buttons'>
-        <Link to="/conformation" className="Requestbtn"> Requests </Link>
-        <Link to="/cancel" className="Editbtn"> Edit </Link>
+      <div className="Buttons">
+        <Link to="/conformation" className="Requestbtn">
+          {' '}
+          View{' '}
+        </Link>
+        <Link to="/cancel" className="Editbtn">
+          {' '}
+          Edit{' '}
+        </Link>
       </div>
 
-
-      <div className="notification-panelA">
+      <div className="notification-panelS">
         <form onSubmit={handleSubmit} className="form-container">
-          {/* First Column */}
-          <div className="row mb-3">
+        <div className="row mb-3">
             <div className="col">
               <label htmlFor="name"><strong>Applicant Name</strong></label>
               <input type="text" placeholder="Enter Name" autoComplete="off" name="applicantname" className="input-box" onChange={(e) => setapplicantname(e.target.value)} required />
             </div>
-            <div className="col">
-              <label htmlFor="appiicantAppoinment"><strong>Appiicant Appoinment</strong></label>
-              <input type="text" placeholder="Enter Appointment" autoComplete="off" name="appiicantAppoinment" className="input-box" onChange={(e) => setappiicantAppoinment(e.target.value)} />
-            </div>
+            
             <div className="col">
               <label htmlFor="vehicleIncharge"> <strong>Vehicle Incharge</strong> </label>
               <input type="text" placeholder="Enter Vehicle Incharge" autoComplete="off" name="vehicleIncharge" className="input-box" onChange={(e) => setvehicleIncharge(e.target.value)} />
@@ -126,7 +135,7 @@ function Home() {
 
             <div className="col">
               <label htmlFor="timetobeSpent"> <strong>Time To Be Spent</strong> </label>
-              <input type="time" placeholder="Enter Time to be Spent" autoComplete="off" name="timetobeSpent" className="input-box" onChange={(e) => settimetobeSpent(e.target.value)} />
+              <input type="text" placeholder="Enter Hours" autoComplete="off" name="timetobeSpent" className="input-box" onChange={(e) => settimetobeSpent(e.target.value)} />
             </div>
             <div className="col">
               <label htmlFor="distance"> <strong>Distance</strong> </label>
@@ -181,20 +190,31 @@ function Home() {
               <label htmlFor="routetoFollow"> <strong>Route To Follow</strong> </label>
               <input type="text" placeholder="Enter Route to Follow" autoComplete="off" name="routetoFollow" className="input-box" onChange={(e) => setroutetoFollow(e.target.value)} />
             </div>
-
             <div className="col">
               <label htmlFor="dateofApply"> <strong>Date Of Apply</strong> </label>
-              <input type="date" placeholder="Enter Date of Apply" autoComplete="off" name="dateofApply" className="input-box" onChange={(e) => setdateofApply(e.target.value)} />
+              <input
+                type="date"
+                placeholder="Enter Date of Apply"
+                autoComplete="off"
+                name="dateofApply"
+                className="input-box"
+                value={dateofApply}
+                onChange={(e) => setdateofApply(e.target.value)}
+              />
             </div>
+
             <div className="col1">
-              {/* button*/}
               <button type="submit" className="SAddbtn"> Submit </button>
             </div>
           </div>
         </form>
       </div>
-    </><p className='msg'>If You Canceled a Request,<br />Please Contact MTO Office</p></>
 
+      <p className="msg">
+        If You Canceled a Request,<br />Please Contact MTO Office
+      </p>
+    </>
   );
 }
+
 export default Home;

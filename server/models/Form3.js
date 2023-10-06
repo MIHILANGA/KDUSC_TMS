@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const FormSchema2 = new mongoose.Schema({
+const FormSchema3 = new mongoose.Schema({
     applicantname : String,
     appiicantAppoinment : String,
     vehicleIncharge : String,
@@ -31,5 +31,5 @@ const FormSchema2 = new mongoose.Schema({
 )
 
 
-const FormModel2 = mongoose.model("Form2", FormSchema2)
-module.exports = FormModel2
+const FormModel3 = mongoose.model("Form3", FormSchema3)
+module.exports = FormModel3

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Notification from './Notification';
-import './CSS/FormD.css';
+import './CSS/Assign.css';
 
 function FormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
@@ -29,10 +29,10 @@ function FormD({ showNotification }) {
       .get(url)
       .then((response) => {
         const formDataWithTypes = response.data.data
-          .filter((form) => form.rejectOrConfirm === 'Confirmed') // Filter forms with rejectOrConfirm equal to 'Confirmed'
+          .filter((form) => form.rejectOrConfirm1 === 'Confirmed') // Filter forms with rejectOrConfirm equal to 'Confirmed'
           .map((form) => ({
             ...form,
-            rejectOrConfirm: '',
+            rejectOrConfirm1: '',
             message: '',
             formType,
             isEditing: false,
@@ -275,7 +275,7 @@ function FormD({ showNotification }) {
                 </td>
                 <td>
                   {!form.isCompleted && (
-                    <button onClick={() => handleCompleteClick(index)}>Complete</button>
+                    <button1 onClick={() => handleCompleteClick(index)}>Complete</button1>
                   )}
                 </td>
               </tr>

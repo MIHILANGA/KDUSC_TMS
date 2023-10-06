@@ -31,6 +31,8 @@ function HomeA() {
     <>
       <div className="header-rectangle" />
       <img className="logo" alt="Kotelawala defence" src="kdu.png" />
+      <h1 className='user'>MTO</h1>
+      <img src='profile-user.png' className='userimg'></img>
       <button
         type="button"
         className="logoutbtn"

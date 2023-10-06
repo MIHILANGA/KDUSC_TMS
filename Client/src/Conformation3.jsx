@@ -7,7 +7,7 @@ function FormD({ showNotification }) {
 
   useEffect(() => {
     // Fetch form data from the server
-    axios.get('http://localhost:3001/getAllForm')
+    axios.get('http://localhost:3001/getAllForm3')
       .then(response => {
         // Reverse the data array to display in reverse order
         const reversedData = response.data.data.reverse();
@@ -48,36 +48,38 @@ function FormD({ showNotification }) {
   };
 
   return (
-    <>
-      <div className='header-rectangle' />
-      <img className='logo' alt='Kotelawala defence' src='kdu.png' />
-      <button type='button' className='backbtn' onClick={() => window.history.back()}> Back </button>
 
-      <div className="mid-container">
-        <table className="Stable">
-          <thead className='fixed-headerD'>
-            <tr>
-              <th>Applicant ID</th>
-              <th>Applicant Name</th>
-              <th>Requirement</th>
-              <th>Date Apply</th>
-              <th>Request Status</th>
+    <><div className='header-rectangle' />
+    <img className='logo' alt='Kotelawala defence' src='kdu.png' />
+    <button type='button' className='backbtn' onClick={() => window.history.back()}> Back </button>
+    
+    <div className="mid-container">
+
+    <table className="Stable">
+      <thead className='fixed-headerD'>
+          <tr>
+          <th>Applicant ID</th>
+            <th>Applicant Name</th>
+            <th>Appiicant Appoinment</th>
+
+            <th>Date Apply</th>
+            <th>Request Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {formData.map((form, index) => (
+            <tr key={index}>
+              <td>{form._id}</td>
+              <td>{form.applicantname}</td>
+              <td>{form.appiicantAppoinment}</td>
+              <td>{form.dateofApply}</td>
+              <td bgcolor="#ffcc00">{form.rejectOrConfirm1}</td>
+
             </tr>
-          </thead>
-          <tbody>
-            {formData.map((form, index) => (
-              <tr key={index}>
-                <td>{form._id}</td>
-                <td>{form.applicantname}</td>
-                <td>{form.requirement}</td>
-                <td>{form.dateofApply}</td>
-                <td>{form.rejectOrConfirm1}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+          ))}
+        </tbody>
+      </table>
+    </div></>
   );
 }
 
