@@ -142,7 +142,7 @@ function FormD({ showNotification }) {
     <>
       <div className="header-rectangle" />
       <img className="logo" alt="Kotelawala defence" src="kdu.png" />
-      <h1 className='user'>RECTOR</h1>
+      <h1 className='user1'>RECTOR</h1>
       <img src='profile-user.png' className='userimg'></img>
       <button type="button" className="backbtn" onClick={() => window.location.href = '/Ahome'}>Back</button>
 
@@ -155,6 +155,9 @@ function FormD({ showNotification }) {
         </button>
         <button className='btn3' onClick={() => fetchFormData('http://localhost:3001/getAllForm2', '2')}>
           FOT
+        </button>
+        <button className='btn3' onClick={() => fetchFormData('http://localhost:3001/getAllForm3', '3')}>
+          OTHER
         </button>
       </div>
 

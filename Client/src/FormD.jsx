@@ -122,7 +122,7 @@ function FormD({ showNotification }) {
         <p>Number of Cadet Officers: ${formData[index].numofcadetOfficers}</p>
         <p>Number of Day SCholers:${formData[index].numofdayScholers}</p>
         <p>Number of Civil Staff:${formData[index].numofcivilStaff}</p><br/>
-        <p>Total Passengers:${formData[index].total}</p>
+        <p>Total Passengers:${formData[index].totalofPassengers}</p>
 
         <p>Route to Follow:${formData[index].routetoFollow}</p><br/><br/>
 
@@ -161,8 +161,8 @@ function FormD({ showNotification }) {
         <button className='btn3' onClick={() => fetchFormData('http://localhost:3001/getAllForm2', '2')}>
           FOT
         </button>
-        <button className='btn1' onClick={() => fetchFormData('http://localhost:3001/getAllForm3', '2')}>
-          OTHERS
+        <button className='btn4' onClick={() => fetchFormData('http://localhost:3001/getAllForm3', '3')}>
+          OTHER
         </button>
       </div>
 

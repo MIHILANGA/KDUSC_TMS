@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
 
 const DriverSchema = new mongoose.Schema({
-    registernumber : String,
+    regnumber : String,
     drivername : String,
     Telephone : String,
+    driveravailability :String
     
 }
 )

@@ -45,14 +45,16 @@ function FormD({ showNotification }) {
                 <th>Register Number</th>
                 <th>Driver Name</th>
                 <th>Telephone Number</th>
+                <th>Drivar availabiliry</th>
               </tr>
             </thead>
             <tbody>
               {formData.map((form, index) => (
                 <tr key={index}>
-                  <td>{form.registernumber}</td>
+                  <td>{form.regnumber}</td>
                   <td>{form.drivername}</td>
                   <td>{form.Telephone}</td>
+                  <td>{form.driveravailability}</td>
                 </tr>
               ))}
             </tbody>
@@ -71,6 +73,19 @@ function FormD({ showNotification }) {
   const hidePopup = () => {
     setIsPopupVisible(false);
   };
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+
+  //time an date showing
+  useEffect(() => {
+    // Update the current date and time every second
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    // Cleanup the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
 
   return (
     <>
@@ -79,6 +94,8 @@ function FormD({ showNotification }) {
       <button type='button' className='backbtn' onClick={() => window.history.back()}>
         Back
       </button>
+      {/* Show the popup form when the "Add" button is clicked */}
+      <div className='time'>{currentDateTime.toLocaleString()}</div>
 
       {/* Left side with buttons */}
       <div style={{ flex: 1, padding: '10px' }}>

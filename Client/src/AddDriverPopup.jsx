@@ -6,24 +6,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './CSS/DriverAdd.css';
 
 function Home() {
-  const [registernumber, setregisternumber] = useState('');
+  const [regnumber, setregnumber] = useState('');
   const [drivername, setdrivername] = useState('');
   const [Telephone, setTelephone] = useState('');
+  const [driveravailability, setdriveravailability] = useState('');
   const navigate = useNavigate();
 
   // Function to reset form fields
   const resetForm = () => {
-    setregisternumber('');
+    setregnumber('');
     setdrivername('');
     setTelephone('');
+    setdriveravailability('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:3001/DriverDetails', {
-      registernumber,
+      regnumber,
       drivername,
       Telephone,
+      driveravailability
     })
     .then(result => {
       console.log(result);
@@ -44,21 +47,31 @@ function Home() {
       <div className="row mb-3">
         <div className="col">
           <label htmlFor="name">Register Number</label>
-          <input type="text" placeholder="Enter Register Number" autoComplete="off" name="applicantname" className="input-box" onChange={(e) => setregisternumber(e.target.value)} required value={registernumber} />
+          <input type="text" placeholder="Enter Register Number" autoComplete="off" name="applicantname" className="input-box" onChange={(e) => setregnumber(e.target.value)} required value={regnumber} />
         </div>
+
         <div className="col">
           <label htmlFor="appiicantAppoinment">Driver Name</label>
           <input type="text" placeholder="Enter Driver's Name" autoComplete="off" name="appiicantAppoinment" className="input-box" onChange={(e) => setdrivername(e.target.value)} required value={drivername} />
         </div>
       </div>
-                
+
       <div className="row mb-3">
         <div className="col">
           <label htmlFor="vehicleIncharge">Telephone Number</label>
-          <input type="text" placeholder="Enter your Vehicle Incharge" autoComplete="off" name="vehicleIncharge" className="input-box" onChange={(e) => setTelephone(e.target.value)} required value={Telephone} />
+          <input type="text" placeholder="Enter Driver Telephone" autoComplete="off" name="vehicleIncharge" className="input-box" onChange={(e) => setTelephone(e.target.value)} required value={Telephone} />
         </div>
       </div>
-                
+
+      <div className="col">
+          <label htmlFor="vehicleIncharge">Driver Availability</label>
+          <select name="driveravailability" className="input-box" onChange={(e) => setdriveravailability(e.target.value)} required value={driveravailability}>
+            <option value="">Select Availability</option>
+            <option value="Available">Available</option>
+            <option value="Unavailable">Unavailable</option>
+            {/* Add more options as needed */}
+          </select>
+        </div>        
       <button type="submit" className="DAddbtn"> Add </button>
     </form>
   );

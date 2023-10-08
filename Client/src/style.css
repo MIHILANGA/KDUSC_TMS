@@ -171,6 +171,28 @@
   z-index: 1;
 
 }
+.user1{
+  font-size: small;
+  position: fixed;
+  top: 50px; /* Adjust the top position as needed */
+  right: 200px; /* Adjust the right position as needed */
+  z-index: 1;
+  color: #ffffff;
+  margin-top: 31px;
+  margin-right: -25px;    
+  cursor: help;
+}
+.user2{
+  font-size: small;
+  position: fixed;
+  top: 50px; /* Adjust the top position as needed */
+  right: 200px; /* Adjust the right position as needed */
+  z-index: 1;
+  color: #ffffff;
+  margin-top: 31px;
+  margin-right: -20px;    
+  cursor: help;
+}
 
 .msg {
   text-decoration: none;

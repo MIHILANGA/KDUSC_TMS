@@ -50,28 +50,28 @@ function FormD({ showNotification }) {
   // Render the table with the fetched data
   const renderTable = () => {
     return (
-      <div className='notification-panelV'>
+      <div className='notification-panelVD'>
         <table className='Vehicledata-table'>
           <div className='table-container'>
             <thead className='fixed-header'>
               <tr>
                 <th>Vehicle Number</th>
-                <th>Vehicle type</th>
+               
                 <th>Vehicle Model</th>
-                <th>Vehicle A.P</th>
-                <th>Register Date</th>
-                <th>Availability</th>
+                <th>Maintanance Date</th>
+                <th>Parts</th>
+                <th>Price</th>
               </tr>
             </thead>
             <tbody>
               {formData.map((form, index) => (
                 <tr key={index}>
                   <td>{form.vehiclenumber}</td>
-                  <td>{form.vehicletype}</td>
-                  <td>{form.vehiclemodel}</td>
-                  <td>{form.vehicleowner}</td>
-                  <td>{form.registerdate}</td>
-                  <td>{form.vehicleAvailability}</td>
+               
+                  <td>{}</td>
+                  <td>{}</td>
+                  <td>{}</td>
+                  <td>{}</td>
 
                 </tr>
               ))}
@@ -96,7 +96,7 @@ function FormD({ showNotification }) {
     <>
       <div className='header-rectangle' />
       <img className='logo' alt='Kotelawala defence' src='kdu.png' />
-      <button type="button" className="backbtn" onClick={() => window.location.href = '/Ahome'}>
+      <button type="button" className="backbtn" onClick={() => window.location.href = '/VehicleDetails'}>
         Back
       </button>
 
@@ -113,12 +113,7 @@ function FormD({ showNotification }) {
         <Link to='/vehicleedit' className='Editvehiclebtn'>
           Edit
         </Link>
-        <Link to='/Locatin' className='Editvehiclebtn'>
-          Locate<br></br> Vehicles 
-        </Link>
-        <Link to='/Maintains' className='Editvehiclebtn'>
-          Maintanace<br></br> Insuarence
-        </Link>
+        
         {/* Display the current date and time */}
        
       </div>

@@ -87,7 +87,10 @@ function FormD({ showNotification }) {
       updateUrl = 'http://localhost:3001/updateAssignData1';
     } else if (selectedFormType === 'FOT') {
       updateUrl = 'http://localhost:3001/updateAssignData2';
+    }else if (selectedFormType === 'OTHER') {
+      updateUrl = 'http://localhost:3001/updateAssignData2';
     }
+
 
     // Send the edited data to your API endpoint for saving
     axios
@@ -153,6 +156,8 @@ function FormD({ showNotification }) {
       updateUrl = 'http://localhost:3001/updateAssignData1';
     } else if (selectedFormType === 'FOT') {
       updateUrl = 'http://localhost:3001/updateAssignData2';
+    } else if (selectedFormType === 'OTHER') {
+      updateUrl = 'http://localhost:3001/updateAssignData3';
     }
 
     // Send the updated data to the appropriate API endpoint for saving
@@ -207,17 +212,24 @@ function FormD({ showNotification }) {
         }}>
           FOT
         </button>
+        <button className='btn3' onClick={() => {
+          fetchFormData('http://localhost:3001/getAllForm3', '3');
+          setSelectedFormType('FOT');
+        }}>
+          OTHER
+        </button>
       </div>
       <div className='notification-panel'>
         <table className="data-table full-width">
           <thead>
             <tr>
               <th>Applicant Name</th>
-              <th>Applicant Appointment</th>
-              <th>Date of Apply</th>
+              <th>Requerment</th>
+              <th>Date of Required</th>
+              <th>Total No Passangers</th>
               <th>Driver Name</th>
               <th>Vehicle</th>
-              <th>Edit</th>
+              <th>Actions</th>
               <th></th>
             </tr>
           </thead>
@@ -225,8 +237,10 @@ function FormD({ showNotification }) {
             {formData.map((form, index) => (
               <tr key={index}>
                 <td>{form.applicantname}</td>
-                <td>{form.appiicantAppoinment}</td>
-                <td>{form.dateofApply}</td>
+                <td>{form.requirement}</td>
+                <td>{form.dateofRequired}</td>
+                <td>{form.totalofPassengers}</td>
+                
                 <td>
                   {form.isEditing ? (
                     <select

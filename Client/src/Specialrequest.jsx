@@ -207,7 +207,7 @@ const resetForm = () => {
                   <label htmlFor="dateofApply"> <strong>Date Of Apply</strong> </label>
                   <input  type="date" placeholder="Enter Date of Apply" autoComplete="off" name="dateofApply"  className="input-box" onChange={(e) => setdateofApply(e.target.value)} />
               </div>
-              <div className="col1">
+              <div className="col">
                   {/* button*/}
                   <button type="submit" className="SAddbtn"  onClick={() => { navigate('/SpecialRequest'); window.location.reload(); }} > Submit </button>
               </div>

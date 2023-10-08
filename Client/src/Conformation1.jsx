@@ -55,30 +55,28 @@ function FormD({ showNotification }) {
     
     <div className="mid-container">
 
-      <table className="Stable">
-      <thead className='fixed-headerD'>
-          <tr>
-            <th>Applicant ID</th>
-            <th>Applicant Name</th>
-            <th>Appiicant Appoinment</th>
-
-            <th>Date Apply</th>
-            <th>Request Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {formData.map((form, index) => (
-            <tr key={index}>
-              <td>{form._id}</td>
-              <td>{form.applicantname}</td>
-                <td>{form.appiicantAppoinment}</td>
-                <td>{form.dateofApply}</td>
-                <td bgcolor="#ffcc00">{form.rejectOrConfirm1}</td>
-             
+    <table className="Stable">
+          <thead className='fixed-headerD'>
+            <tr>
+              <th>Applicant ID</th>
+              <th>Applicant Name</th>
+              <th>Requirement</th>
+              <th>Date Apply</th>
+              <th>Request Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {formData.map((form, index) => (
+              <tr key={index}>
+                <td>{form._id}</td>
+                <td>{form.applicantname}</td>
+                <td>{form.requirement}</td>
+                <td>{form.dateofApply}</td>
+                <td>{form.rejectOrConfirm1}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
     </div></>
   ); 
 }

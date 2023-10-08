@@ -31,6 +31,7 @@ import Map1 from './Map/Map1';
 import Map2 from './Map/Map2';
 import Map3 from './Map/Map3';
 import Map0 from './Map/Map0';
+import Maintains from './Maintains';
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
         <Route path='/Map2' element={<Map2 />} ></Route>
         <Route path='/Map3' element={<Map3 />} ></Route>
         <Route path='/Map0' element={<Map0 />} ></Route>
+        <Route path='/Maintains' element={<Maintains />} ></Route>
         
       </Routes>
       

@@ -123,7 +123,7 @@
     height: 550px;
     width: 1180px;
     margin-right: -100px;
-    margin-top: -400px;
+    margin-top: -550px;
     margin-left: 270px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     
@@ -133,6 +133,24 @@
     transform: scale(1.01); /* Add a scaling effect on hover */
     background-color: #ffffff;
   } 
+    /*-----------notification background of vehicle details-----------*/
+.notification-panelVD {
+  text-align: left;
+  font-family: Arial, sans-serif;
+  border-radius: 15px;
+  height: 550px;
+  width: 1180px;
+  margin-right: -100px;
+  margin-top: -300px;
+  margin-left: 270px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  
+}
+.notification-panelVD:hover{
+  transition: transform 0.2s ease; /* Add a separate transition for transform */
+  transform: scale(1.01); /* Add a scaling effect on hover */
+  background-color: #ffffff;
+} 
 .table-container {
   max-height: 550px; /* Set a maximum height for the table container */
   max-width: 1180;

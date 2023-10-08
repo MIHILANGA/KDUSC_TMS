@@ -91,7 +91,7 @@
     height: 550px;
     width: 1180px;
     margin-right: -100px;
-    margin-top: -270px;
+    margin-top: -310px;
     margin-left: 270px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     
@@ -119,4 +119,7 @@
     z-index: 999; /* Ensure the popup appears above other elements */
     display: none; /* Initially hide the popup */
   }
-  
+  .time{
+    margin-left: 58px;
+    margin-top: 20px;
+  }

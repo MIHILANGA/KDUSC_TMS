@@ -99,6 +99,7 @@ function FormD({ showNotification }) {
               <th>Register Number</th>
               <th>Driver Name</th>
               <th>Telephone Number</th>
+              <th>Availability</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -109,12 +110,13 @@ function FormD({ showNotification }) {
                   {editedIndex === index ? (
                     <input
                       type="text"
-                      value={form.registernumber}
-                      onChange={(e) => handleCellChange(index, 'registernumber', e.target.value)} />
+                      value={form.regnumber}
+                      onChange={(e) => handleCellChange(index, 'regnumber', e.target.value)} />
                   ) : (
-                    <span onClick={() => handleCellClick(index)}>{form.registernumber}</span>
+                    <span onClick={() => handleCellClick(index)}>{form.regnumber}</span>
                   )}
                 </td>
+
                 <td>
                   {editedIndex === index ? (
                     <input
@@ -136,10 +138,30 @@ function FormD({ showNotification }) {
                   )}
                 </td>
                 <td>
-                  {editedIndex === index && (
+                    {editedIndex === index ? (
+                      <select
+                        value={form.driveravailability}
+                        onChange={(e) => handleCellChange(index, 'driveravailability', e.target.value)}
+                      >
+                        <option value="Available">Available</option>
+                        <option value="Unavailable">Unavailable</option>
+                      </select>
+                    ) : (
+                      <span onClick={() => handleCellClick(index)}>{form.driveravailability}</span>
+                    )}
+                  </td>
+
+
+
+                  <td>
+                  {editedIndex === index ? (
                     <button className='savebtn' onClick={() => handleFormSubmit(index)}>Save</button>
+                  ) : (
+                    <>
+                      <button className='savebtn' onClick={() => handleCellClick(index)}>Edit</button>
+                      <button className='deletebtn' onClick={() => handleDelete(form._id)}>Delete</button>
+                    </>
                   )}
-                  <button className='deletebtn' onClick={() => handleDelete(form._id)}>Delete</button>
                 </td>
               </tr>
             ))}

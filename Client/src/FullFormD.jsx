@@ -49,6 +49,19 @@ function FullFormFormD({ showNotification }) {
       });
   }, []);
 
+  useEffect(() => {
+    // Update notifications whenever formData changes
+    const newForms = formData.filter(form => !form.rejectOrConfirm);
+    if (newForms.length > 0) {
+      // Assuming you want to create notifications for new forms
+      const newNotifications = newForms.map(form => ({
+        
+        type: 'info', // You can set the appropriate notification type
+      }));
+      setNotifications([...notifications, ...newNotifications]);
+    }
+  }, [formData, notifications]);
+
   // Rest of your code (handleRejectConfirmChange, handleFormSubmit, handleConfirm, handleReject, toggleExpanded)
 
   return (
@@ -61,23 +74,24 @@ function FullFormFormD({ showNotification }) {
         }
 
         return (
-          
           <div className="record-box1" key={index}>
             <p className="applicant-name">Applicant Name: {form.applicantname}</p>
             <p className="requested-date1">Requested date: {form.dateofApply}<p className="Name" >Pending</p></p>
             <p className="description">Description: {form.requirement} </p>
-
             {/* Add more data fields as needed */}
           </div>
-          
         );
       })}
 
       {/* Render Notifications */}
       <div>
-        {notifications.map((notification, index) => (
-          <Notification key={index} message={notification.message} type={notification.type} />
-        ))}
+        {notifications.length === 0 ? (
+          <p>No new notifications</p>
+        ) : (
+          notifications.map((notification, index) => (
+            <Notification key={index} message={notification.message} type={notification.type} />
+          ))
+        )}
       </div>
     </div>
   );
