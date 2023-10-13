@@ -8,7 +8,7 @@ const VehicleSchema = new mongoose.Schema({
     registerdate : Date,
     insurancedate : Date,
     expierddate : Date,
-    vehicleAvailability : String
+    vehicleAvailability :Boolean
     
 }
 )

@@ -4,8 +4,7 @@ const DriverSchema = new mongoose.Schema({
     regnumber : String,
     drivername : String,
     Telephone : String,
-    driveravailability :String
-    
+    driveravailability :Boolean
 }
 )
 

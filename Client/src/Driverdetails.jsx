@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CSS/Driverdetails.css';
-import AddDriverPopup from './AddDriverPopup'; // Import the AddVehiclePopup component
+import AddDriverPopup from './AddDriverPopup'; // Import the AddDriverPopup component
+import Switch from 'react-switch'; // Import the react-switch library
 
 function FormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
@@ -34,6 +35,33 @@ function FormD({ showNotification }) {
     setFormData(data);
   };
 
+  // Function to handle the change in driver availability
+  const handleAvailabilityChange = (index, checked) => {
+    // Clone the formData array to avoid mutating state directly
+    const updatedFormData = [...formData];
+    // Update the availability for the item at the specified index
+    updatedFormData[index].driveravailability = checked;
+
+    // Prepare the data to send to the server
+    const dataToUpdate = {
+      id: updatedFormData[index]._id, // Assuming you have an _id property
+      updatedData: { driveravailability: checked },
+    };
+
+    // Send a request to update the availability on the server
+    axios
+      .post('http://localhost:3001/updateDriverDatas', dataToUpdate)
+      .then((response) => {
+        console.log('Driver availability updated:', response.data);
+
+        // Update the local state with the updated data
+        setFormData(updatedFormData);
+      })
+      .catch((error) => {
+        console.error('Error updating driver availability:', error);
+      });
+  };
+
   // Render the table with the fetched data
   const renderTable = () => {
     return (
@@ -45,7 +73,7 @@ function FormD({ showNotification }) {
                 <th>Register Number</th>
                 <th>Driver Name</th>
                 <th>Telephone Number</th>
-                <th>Drivar availabiliry</th>
+                <th>Driver Availability</th>
               </tr>
             </thead>
             <tbody>
@@ -54,7 +82,13 @@ function FormD({ showNotification }) {
                   <td>{form.regnumber}</td>
                   <td>{form.drivername}</td>
                   <td>{form.Telephone}</td>
-                  <td>{form.driveravailability}</td>
+                  <td>
+                    {/* Use the Switch component here */}
+                    <Switch
+                      onChange={(checked) => handleAvailabilityChange(index, checked)}
+                      checked={form.driveravailability} // Assuming form.driveravailability is a boolean
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -73,9 +107,10 @@ function FormD({ showNotification }) {
   const hidePopup = () => {
     setIsPopupVisible(false);
   };
+
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
-  //time an date showing
+  // time and date showing
   useEffect(() => {
     // Update the current date and time every second
     const intervalId = setInterval(() => {
@@ -85,7 +120,6 @@ function FormD({ showNotification }) {
     // Cleanup the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, []);
-
 
   return (
     <>
@@ -101,8 +135,12 @@ function FormD({ showNotification }) {
       <div style={{ flex: 1, padding: '10px' }}>
         <div className='Buttons'>
           {/* Show the popup form when the "Add" button is clicked */}
-          <button className='AddDriverbtn' onClick={showPopup}> Add </button>
-          <Link to='/DriverEdit' className='EditDriverbtn'> Edit </Link>
+          <button className='AddDriverbtn' onClick={showPopup}>
+            Add
+          </button>
+          <Link to='/DriverEdit' className='EditDriverbtn'>
+            Edit
+          </Link>
         </div>
       </div>
 
@@ -111,7 +149,6 @@ function FormD({ showNotification }) {
 
       {/* Render the popup form if isPopupVisible is true */}
       {isPopupVisible && <AddDriverPopup onClose={hidePopup} onAdd={fetchData} />}
-   
     </>
   );
 }

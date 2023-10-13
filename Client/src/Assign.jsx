@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Notification from './Notification';
 import './CSS/Assign.css';
 
 function FormD({ showNotification }) {
@@ -10,18 +9,14 @@ function FormD({ showNotification }) {
   const [driver, setDriver] = useState('');
   const [vehicle, setVehicle] = useState('');
   const [selectedFormType, setSelectedFormType] = useState('');
-
-  // Sets to keep track of selected drivers and vehicles in forms
-  const driversInForms = new Set();
-  const vehiclesInForms = new Set();
-
-  // Lists of drivers and vehicles
-  const driversList = ['Driver 1', 'Driver 2', 'Driver 3','Driver 4', 'Driver 5', 'Driver 6']; // Replace with your driver list
-  const vehiclesList = ['Vehicle 1', 'Vehicle 2', 'Vehicle 3','Vehicle 4', 'Vehicle 5', 'Vehicle 6']; // Replace with your vehicle list
+  const [driversList, setDriversList] = useState([]);
+  const [vehiclesList, setVehiclesList] = useState([]);
 
   useEffect(() => {
     fetchFormData('http://localhost:3001/getAllForm', '');
     setSelectedFormType('FOC');
+    fetchDriverData('http://localhost:3001/getAllDriver');
+    fetchVehicleData('http://localhost:3001/getAllVehicle');
   }, []);
 
   const fetchFormData = (url, formType) => {
@@ -29,7 +24,7 @@ function FormD({ showNotification }) {
       .get(url)
       .then((response) => {
         const formDataWithTypes = response.data.data
-          .filter((form) => form.rejectOrConfirm1 === 'Confirmed') // Filter forms with rejectOrConfirm equal to 'Confirmed'
+          .filter((form) => form.rejectOrConfirm1 === 'Confirmed')
           .map((form) => ({
             ...form,
             rejectOrConfirm1: '',
@@ -43,6 +38,34 @@ function FormD({ showNotification }) {
       })
       .catch((error) => {
         console.error('Error fetching form data:', error);
+      });
+  };
+
+  const fetchDriverData = (url) => {
+    axios
+      .get(url)
+      .then((response) => {
+        const driverData = response.data.data
+          .filter((driver) => driver.driveravailability) // Filter drivers with driveravailability true
+          .map((driver) => driver.drivername);
+        setDriversList(driverData);
+      })
+      .catch((error) => {
+        console.error('Error fetching driver data:', error);
+      });
+  };
+
+  const fetchVehicleData = (url) => {
+    axios
+      .get(url)
+      .then((response) => {
+        const vehicleData = response.data.data
+          .filter((vehicle) => vehicle.vehicleAvailability) // Filter vehicles with vehicleAvailability true
+          .map((vehicle) => vehicle.vehiclenumber);
+        setVehiclesList(vehicleData);
+      })
+      .catch((error) => {
+        console.error('Error fetching vehicle data:', error);
       });
   };
 
@@ -60,71 +83,63 @@ function FormD({ showNotification }) {
     setFormData(updatedFormData);
   };
 
-  const handleSaveClick = (index) => {
+  const handleSaveClick = async (index) => {
     const editedForm = formData[index];
 
-    // Check if the selected driver and vehicle are already completed
     if (editedForm.isCompleted) {
-      // You can show an error message or take appropriate action here
       return;
     }
 
-    // Check if the selected driver and vehicle are not selected in other forms
-    if (
-      driversInForms.has(driver) ||
-      vehiclesInForms.has(vehicle)
-    ) {
-      // You can show an error message or take appropriate action here
+    if (!driver || !vehicle) {
       return;
     }
 
     let updateUrl = '';
 
-    // Determine the update URL based on the selected form type
     if (selectedFormType === 'FOC') {
       updateUrl = 'http://localhost:3001/updateAssignData';
     } else if (selectedFormType === 'FBESS') {
       updateUrl = 'http://localhost:3001/updateAssignData1';
     } else if (selectedFormType === 'FOT') {
       updateUrl = 'http://localhost:3001/updateAssignData2';
-    }else if (selectedFormType === 'OTHER') {
-      updateUrl = 'http://localhost:3001/updateAssignData2';
+    } else if (selectedFormType === 'OTHER') {
+      updateUrl = 'http://localhost:3001/updateAssignData3';
     }
 
-
-    // Send the edited data to your API endpoint for saving
-    axios
-      .post(updateUrl, {
+    try {
+      const response = await axios.post(updateUrl, {
         id: editedForm._id,
         vehicle: vehicle,
         driver: driver,
-        status: 'completed', // Mark the form as completed
-      })
-      .then((response) => {
-        console.log('Form data updated in MongoDB:', response.data);
-        setNotifications([
-          ...notifications,
-          { message: 'Data Updated Successfully!', type: 'success' },
-        ]);
-
-        const updatedFormData = [...formData];
-        updatedFormData[index].isEditing = false;
-        updatedFormData[index].isCompleted = true; // Mark the form as completed
-        updatedFormData[index].driver = driver; // Update selectedDriver in the form data
-        updatedFormData[index].vehicle = vehicle; // Update selectedVehicle in the form data
-        setFormData(updatedFormData);
-
-        // Add the selected driver and vehicle to the set
-        driversInForms.add(driver);
-        vehiclesInForms.add(vehicle);
-      })
-      .catch((error) => {
-        console.error('Error updating form data in MongoDB:', error);
-        setNotifications([
-          ...notifications,
-          { message: 'Data Update Error!', type: 'error' },
-        ]);
+        status: 'completed',
       });
+
+      console.log('Form data updated in MongoDB:', response.data);
+
+      setNotifications([
+        ...notifications,
+        { message: 'Data Updated Successfully!', type: 'success' },
+      ]);
+
+      const updatedFormData = [...formData];
+      updatedFormData[index].isEditing = false;
+      updatedFormData[index].isCompleted = true;
+      updatedFormData[index].driver = driver;
+      updatedFormData[index].vehicle = vehicle;
+
+      setFormData(updatedFormData);
+
+      // Optionally, you can add the updated driver and vehicle to the respective lists
+      setDriversList([...driversList, driver]);
+      setVehiclesList([...vehiclesList, vehicle]);
+    } catch (error) {
+      console.error('Error updating form data in MongoDB:', error);
+
+      setNotifications([
+        ...notifications,
+        { message: 'Data Update Error!', type: 'error' },
+      ]);
+    }
   };
 
   const handleCancelEditClick = (index) => {
@@ -143,13 +158,12 @@ function FormD({ showNotification }) {
 
   const handleCompleteClick = (index) => {
     const updatedFormData = [...formData];
-    updatedFormData[index].driver = 'Complete'; // Change driver data to "Complete"
-    updatedFormData[index].vehicle = 'Complete'; // Change vehicle data to "Complete"
-    updatedFormData[index].isCompleted = true; // Mark the form as completed
+    updatedFormData[index].driver = 'Complete';
+    updatedFormData[index].vehicle = 'Complete';
+    updatedFormData[index].isCompleted = true;
 
     let updateUrl = '';
 
-    // Determine the update URL based on the selected form type
     if (selectedFormType === 'FOC') {
       updateUrl = 'http://localhost:3001/updateAssignData';
     } else if (selectedFormType === 'FBESS') {
@@ -160,13 +174,12 @@ function FormD({ showNotification }) {
       updateUrl = 'http://localhost:3001/updateAssignData3';
     }
 
-    // Send the updated data to the appropriate API endpoint for saving
     axios
       .post(updateUrl, {
         id: updatedFormData[index]._id,
         driver: 'Complete',
         vehicle: 'Complete',
-        status: 'completed', // Mark the form as completed
+        status: 'completed',
       })
       .then((response) => {
         console.log('Data updated and uploaded to MongoDB:', response.data);
@@ -214,7 +227,7 @@ function FormD({ showNotification }) {
         </button>
         <button className='btn3' onClick={() => {
           fetchFormData('http://localhost:3001/getAllForm3', '3');
-          setSelectedFormType('FOT');
+          setSelectedFormType('OTHER');
         }}>
           OTHER
         </button>
@@ -224,9 +237,9 @@ function FormD({ showNotification }) {
           <thead>
             <tr>
               <th>Applicant Name</th>
-              <th>Requerment</th>
+              <th>Requirement</th>
               <th>Date of Required</th>
-              <th>Total No Passangers</th>
+              <th>Total No Passengers</th>
               <th>Driver Name</th>
               <th>Vehicle</th>
               <th>Actions</th>
@@ -281,7 +294,7 @@ function FormD({ showNotification }) {
                   {form.isEditing ? (
                     <button onClick={() => handleSaveClick(index)}>Save</button>
                   ) : (
-                    <button onClick={() => handleEditClick(index)}>Edit</button>
+                    <button onClick={() => handleEditClick(index)}>Assign</button>
                   )}
                    {form.isEditing && (
                     <button onClick={() => handleCancelEditClick(index)}>Cancel</button>
@@ -289,7 +302,7 @@ function FormD({ showNotification }) {
                 </td>
                 <td>
                   {!form.isCompleted && (
-                    <button1 onClick={() => handleCompleteClick(index)}>Complete</button1>
+                    <button onClick={() => handleCompleteClick(index)}>Complete</button>
                   )}
                 </td>
               </tr>
