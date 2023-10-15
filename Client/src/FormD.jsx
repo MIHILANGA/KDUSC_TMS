@@ -182,13 +182,14 @@ function FormD({ showNotification }) {
           return (
             <div className={`record-box ${recordBoxClass}`} key={index}>
               <p className="applicant-name">Applicant Name: {form.applicantname}</p>
-              <p className="requested-date">Requested date: {form.dateofApply}</p>
+              <p className="requested-date">Requested date:{new Date(form.dateofApply).toISOString().split('T')[0]}
+</p>
                <br />
 
               {expandedRecordIndex === index && (
                 <div className="details">
                   <p className="expanded-detail"> <b>Vehicle Incharge : </b> {form.vehicleIncharge}</p>
-                  <p className="expanded-detail"><b>Date Required : </b> {form.dateofRequired}</p>
+                  <p className="expanded-detail"><b>Date Required : </b>{new Date(form.dateofRequired).toISOString().split('T')[0]}</p>
                   <p className="expanded-detail"><b>Time Required : </b>{form.timeofRequired}</p>
                   <p className="expanded-detail"><b>Nature of Duty : </b>{form.natureofDuty}</p>
                   <p className="expanded-detail"><b>Address : </b>{form.addresstoGo}</p><br />
@@ -197,7 +198,7 @@ function FormD({ showNotification }) {
                     <p className="expanded-detail"><b>Requirement : </b>{form.requirement}</p>
                     <p className="expanded-detail"><b>Time to be Spent : </b>{form.timetobeSpent}</p>
                     <p className="expanded-detail"><b>Distance : </b>{form.distance}</p>
-                    <p className="expanded-detail"><b>Date Arrival: </b>{form.dateofArrival}</p>
+                    <p className="expanded-detail"><b>Date Arrival: </b>{new Date(form.dateofArrival).toISOString().split('T')[0]}</p>
                     <p className="expanded-detail"><b>Time Arrival: </b>{form.timeofArrival}</p><br />
                   </div>
                   <div className="detail-row1">

@@ -24,7 +24,7 @@ function GoogleMapsLocation() {
     const initMap = () => {
       map = new window.google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.397, lng: 150.644 },
-        zoom: 6,
+        zoom: 15,
       });
       infoWindow = new window.google.maps.InfoWindow();
 
@@ -39,7 +39,7 @@ function GoogleMapsLocation() {
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
+            infoWindow.setContent('your Location');
             infoWindow.open(map);
             map.setCenter(pos);
           },
@@ -57,9 +57,12 @@ function GoogleMapsLocation() {
 
       // Example database references for multiple locations
       const locationRefs = [
+        ref(database, 'live_position0'),
         ref(database, 'live_position1'),
         ref(database, 'live_position2'),
         ref(database, 'live_position3'),
+        ref(database, 'live_position4'),
+        ref(database, 'live_position5'),
       ];
 
       // Use the 'onValue' listener for each location reference

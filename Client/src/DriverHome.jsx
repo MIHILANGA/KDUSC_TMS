@@ -11,11 +11,12 @@ function HomeA() {
       <div className="row">
         <div className="col-sm-12">
           <div className="nav-buttons">
-            <Link to="/Map1" className="reservationbtn">Bus</Link>
-            <Link to="/Map2" className="reservationbtn">Van</Link>
-            <Link to="/Map3" className="reservationbtn">MiniBus</Link>
-            <Link to="/Map0" className="reservationbtn">Tractor</Link>
-            <Link to="/" className="reservationbtn">Car</Link>
+            <Link to="/Map0" className="reservationbtn">Bus</Link>
+            <Link to="/Map1" className="reservationbtn">Van</Link>
+            <Link to="/Map2" className="reservationbtn">MiniBus</Link>
+            <Link to="/Map3" className="reservationbtn">Tractor</Link>
+            <Link to="/map4" className="reservationbtn">Car</Link>
+            <Link to="/map5" className="reservationbtn">Truck</Link>
           </div>
         </div>
       </div>

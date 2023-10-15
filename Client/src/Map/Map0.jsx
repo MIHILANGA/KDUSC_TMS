@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { getDatabase, ref, set } from 'firebase/database'; // Import Firebase database functions
-import { initializeApp } from 'firebase/app'; // Import Firebase app
+import { getDatabase, ref, set } from 'firebase/database';
+import { initializeApp } from 'firebase/app';
+import image from './bus.png';
 
-// Initialize Firebase with your configuration
 const firebaseConfig = {
+  // Your Firebase configuration here
   apiKey: "AIzaSyCxFh-6KQdS7XIjdXGwx8zBVCGfxEX1XpM",
   authDomain: "kdusc-tms.firebaseapp.com",
   projectId: "kdusc-tms",
@@ -26,24 +27,36 @@ function GoogleMapsLocation() {
       });
       infoWindow = new window.google.maps.InfoWindow();
 
-      // Try HTML5 geolocation.
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            const { latitude, longitude } = position.coords; // Extract latitude and longitude
+            const { latitude, longitude } = position.coords;
 
             const pos = {
               lat: latitude,
               lng: longitude,
             };
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
+            //infoWindow.setPosition(pos);
+            //infoWindow.setContent('GA-8069');
+            //infoWindow.open(map);
             map.setCenter(pos);
 
+            // Create a custom marker icon
+            const customMarkerIcon = {
+              url: image, // Replace with the actual path to your custom icon
+              scaledSize: new window.google.maps.Size(102, 102), // Adjust the size as needed
+            };
+
+            // Create a marker with the custom icon
+            const marker = new window.google.maps.Marker({
+              position: pos,
+              map: map,
+              icon: customMarkerIcon, // Use the custom icon
+            });
+
             // Store the live position data in Firebase Realtime Database
-            const database = getDatabase(app); // Pass the Firebase app instance
+            const database = getDatabase(app);
             const livePositionRef = ref(database, 'live_position0');
             set(livePositionRef, { latitude, longitude });
           },
@@ -52,7 +65,6 @@ function GoogleMapsLocation() {
           }
         );
       } else {
-        // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
       }
     };
@@ -67,19 +79,14 @@ function GoogleMapsLocation() {
       infoWindow.open(map);
     };
 
-    // Check if the Google Maps API script is already loaded
     if (!window.google) {
-      // If not, load it dynamically
       const script = document.createElement('script');
       script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA-TgmRlan5NTLnoNSOBie9j4XxXzHv200&callback=initMap';
       script.defer = true;
       script.async = true;
       document.head.appendChild(script);
-
-      // Define the initMap function as a global function
       window.initMap = initMap;
     } else {
-      // If the Google Maps API script is already loaded, directly call initMap
       initMap();
     }
   }, []);

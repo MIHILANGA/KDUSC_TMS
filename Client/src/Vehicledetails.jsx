@@ -97,7 +97,7 @@ function FormD({ showNotification }) {
                   <td>{form.vehicletype}</td>
                   <td>{form.vehiclemodel}</td>
                   <td>{form.vehicleowner}</td>
-                  <td>{form.registerdate}</td>
+                  <td>{new Date(form.registerdate).toISOString().split('T')[0]}</td>
                   <td>
                     {/* Use the Switch component here */}
                     <Switch

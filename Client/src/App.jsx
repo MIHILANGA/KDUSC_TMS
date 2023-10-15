@@ -27,10 +27,18 @@ import Vehicleedit from './Vehicleedit';
 import RectorHome from './RectorHome';
 import Locatin from './Locatin';
 import DriverHome from './DriverHome';
+import Map0 from './Map/Map0';
 import Map1 from './Map/Map1';
 import Map2 from './Map/Map2';
 import Map3 from './Map/Map3';
-import Map0 from './Map/Map0';
+import Map4 from './Map/Map4';
+import Map5 from './Map/Map5';
+import Mapview0 from './Map/mapview0';
+import Mapview1 from './Map/mapview1';
+import Mapview2 from './Map/mapview2';
+import Mapview3 from './Map/mapview3';
+import Mapview4 from './Map/mapview4';
+import Mapview5 from './Map/mapview5';
 import Maintains from './Maintains';
 
 
@@ -71,6 +79,15 @@ function App() {
         <Route path='/Map2' element={<Map2 />} ></Route>
         <Route path='/Map3' element={<Map3 />} ></Route>
         <Route path='/Map0' element={<Map0 />} ></Route>
+        <Route path='/Map4' element={<Map4 />} ></Route>
+        <Route path='/Map5' element={<Map5 />} ></Route>
+        
+        <Route path='/mapview0' element={<Mapview0 />} ></Route>
+        <Route path='/mapview1' element={<Mapview1 />} ></Route>
+        <Route path='/mapview2' element={<Mapview2 />} ></Route>
+        <Route path='/mapview3' element={<Mapview3 />} ></Route>
+        <Route path='/mapview4' element={<Mapview4 />} ></Route>
+        <Route path='/mapview5' element={<Mapview5 />} ></Route>
         <Route path='/Maintains' element={<Maintains />} ></Route>
         
       </Routes>

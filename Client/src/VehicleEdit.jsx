@@ -158,13 +158,15 @@ function FormD({ showNotification }) {
                 <td>
                   {editedIndex === index ? (
                     <input
-                      type="text"
+                      type="date"
                       value={form.registerdate}
                       onChange={(e) => handleCellChange(index, 'registerdate', e.target.value)}
                     />
                   ) : (
-                    <span>{form.registerdate}</span>
-                  )}
+                    <span onClick={() => handleCellClick(index, 'registerdate')}>
+                      {new Date(form.registerdate).toISOString().split('T')[0]}
+                    </span>
+                  )}
                 </td>
                 <td>
                   {editedIndex === index ? (
