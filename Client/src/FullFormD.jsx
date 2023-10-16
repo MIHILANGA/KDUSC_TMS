@@ -7,9 +7,9 @@ function FullFormFormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [expandedRecordIndex, setExpandedRecordIndex] = useState(null);
+  const [insuranceMessage, setInsuranceMessage] = useState('');
 
   useEffect(() => {
-    // Define the URLs for the GET requests
     const urls = [
       'http://localhost:3001/getAllForm',
       'http://localhost:3001/getAllForm1',
@@ -17,16 +17,11 @@ function FullFormFormD({ showNotification }) {
       'http://localhost:3001/getAllForm3',
     ];
 
-    // Use Promise.all to make parallel requests
     Promise.all(urls.map(url => axios.get(url)))
       .then(responses => {
-        // Process the responses here
         const combinedData = responses.map(response => response.data.data);
-
-        // Assuming you want to merge the data into a single array
         const mergedData = [].concat(...combinedData);
 
-        // Sort the data in ascending order based on the dateofApply field
         const sortedData = mergedData.sort((a, b) => {
           const dateA = new Date(a.dateofApply);
           const dateB = new Date(b.dateofApply);
@@ -36,7 +31,6 @@ function FullFormFormD({ showNotification }) {
 
         setFormData(sortedData);
 
-        // Further processing or notifications here
         const filteredData = sortedData.map(form => ({
           ...form,
           rejectOrConfirm: '',
@@ -47,28 +41,51 @@ function FullFormFormD({ showNotification }) {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, [showNotification]);
 
   useEffect(() => {
-    // Update notifications whenever formData changes
     const newForms = formData.filter(form => !form.rejectOrConfirm);
     if (newForms.length > 0) {
-      // Assuming you want to create notifications for new forms
       const newNotifications = newForms.map(form => ({
-        
-        type: 'info', // You can set the appropriate notification type
+        type: 'info',
+       
       }));
       setNotifications([...notifications, ...newNotifications]);
     }
   }, [formData, notifications]);
 
-  // Rest of your code (handleRejectConfirmChange, handleFormSubmit, handleConfirm, handleReject, toggleExpanded)
+  useEffect(() => {
+    axios.get('http://localhost:3001/getAllVehicle')
+      .then(response => {
+        const today = new Date();
+        const vehicleData = response.data.data;
+
+        const matchingVehicles = vehicleData.filter(vehicle => {
+          const insurancedate = new Date(vehicle.insurancedate);
+          const timeDifference = insurancedate.getTime() - today.getTime();
+          const daysDifference = timeDifference / (1000 * 3600 * 24);
+
+          if (daysDifference <= 5 && daysDifference >= 0) {
+            setInsuranceMessage('Insurance expired date coming soon for some vehicles.');
+          }
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching vehicle data:', error);
+      });
+  }, []);
 
   return (
     <div className="form-container2">
+      {/* Render Insurance Message */}
+      {insuranceMessage && (
+        <div className="record-box1 insurance-message">
+          <p className="insurance-message-text">{insuranceMessage}</p>
+        </div>
+      )}
+
       {/* Render each record in a separate box */}
       {formData.map((form, index) => {
-        // Skip records where rejectOrConfirm is present
         if (form.rejectOrConfirm) {
           return null;
         }
@@ -76,8 +93,10 @@ function FullFormFormD({ showNotification }) {
         return (
           <div className="record-box1" key={index}>
             <p className="applicant-name">Applicant Name: {form.applicantname}</p>
-            <p className="requested-date1">Requested date: {form.dateofApply}<p className="Name" >Pending</p></p>
-            <p className="description">Description: {form.requirement} </p>
+            <p className="requested-date1">
+              Requested date: {new Date(form.dateofApply).toLocaleDateString()} <p className="Name">Pending</p>
+            </p>
+            <p className="description">Description: {form.requirement}</p>
             {/* Add more data fields as needed */}
           </div>
         );

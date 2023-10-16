@@ -97,3 +97,16 @@
 .Name{
   text-align: right;
 }
+
+/* Add styles for the notification message */
+
+/* In your FullFormD.css file or a separate CSS file */
+.insurance-message {
+  background-color: #42b983; /* Green background color */
+  color: #fff; /* White text color */
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  /* Add any other styles you want to apply */
+}

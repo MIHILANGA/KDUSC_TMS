@@ -45,9 +45,7 @@ function FormD({ showNotification }) {
     axios
       .get(url)
       .then((response) => {
-        const driverData = response.data.data
-          .filter((driver) => driver.driveravailability) // Filter drivers with driveravailability true
-          .map((driver) => driver.drivername);
+        const driverData = response.data.data.map((driver) => driver.drivername);
         setDriversList(driverData);
       })
       .catch((error) => {
@@ -59,9 +57,7 @@ function FormD({ showNotification }) {
     axios
       .get(url)
       .then((response) => {
-        const vehicleData = response.data.data
-          .filter((vehicle) => vehicle.vehicleAvailability) // Filter vehicles with vehicleAvailability true
-          .map((vehicle) => vehicle.vehiclenumber);
+        const vehicleData = response.data.data.map((vehicle) => vehicle.vehiclenumber);
         setVehiclesList(vehicleData);
       })
       .catch((error) => {

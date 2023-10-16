@@ -11,7 +11,7 @@ function Home() {
   const [vehiclemodel, setvehiclemodel] = useState('');
   const [vehicleowner, setvehicleowner] = useState('');
   const [registerdate, setregisterdate] = useState('');
-  const [vehicleAvailability, setvehicleAvailability] = useState('')
+  const [insurancedate, setinsurancedate] = useState('')
   const navigate = useNavigate();
 
   // Function to reset form fields
@@ -21,7 +21,7 @@ function Home() {
     setvehiclemodel('');
     setvehicleowner('');
     setregisterdate('');
-    setvehicleAvailability('');
+    insurancedate('');
   };
 
   const handleSubmit = (e) => {
@@ -32,7 +32,7 @@ function Home() {
       vehiclemodel,
       vehicleowner,
       registerdate,
-      vehicleAvailability
+      insurancedate
     })
     .then(result => {
       console.log(result);
@@ -70,11 +70,10 @@ function Home() {
          <label htmlFor="dateofRequired"> Register date </label>
           <input type="date" placeholder="Enter Registerd" autoComplete="off" name="dateofRequired" className="input-box" value={registerdate} onChange={(e) => setregisterdate(e.target.value)} required />
          
-          <label htmlFor="dateofRequired">Availability</label>
-          <select name="dateofRequired" className="input-box" value={vehicleAvailability} onChange={(e) => setvehicleAvailability(e.target.value)} required>
-            <option value="available">Available</option>
-            <option value="nonavailable">Non-Available</option>
-          </select> 
+          <label htmlFor="dateofRequired"> Insuarance date </label>
+          <input type="date" placeholder="Enter Registerd" autoComplete="off" name="dateofRequired" className="input-box" value={insurancedate} onChange={(e) => setinsurancedate(e.target.value)} required />
+         
+           
         </div>
         <div className="row4">
         <button type="submit" className="Addbtn"> Add </button>

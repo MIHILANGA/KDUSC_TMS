@@ -104,7 +104,7 @@ function FormD({ showNotification }) {
               <th>Vehicle Model</th>
               <th>Vehicle Owner</th>
               <th>Register Date</th>
-              <th>Availability</th>
+              <th>Insuarance Date</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -169,18 +169,20 @@ function FormD({ showNotification }) {
                   )}
                 </td>
                 <td>
-                  {editedIndex === index ? (
-                    <select
-                      value={form.vehicleAvailability}
-                      onChange={(e) => handleCellChange(index, 'vehicleAvailability', e.target.value)}
-                    >
-                      <option value="Available">Available</option>
-                      <option value="Unavailable">Unavailable</option>
-                    </select>
-                  ) : (
-                    <span>{form.vehicleAvailability}</span>
-                  )}
-                </td>
+                    {editedIndex === index ? (
+                      <input
+                        type="date"
+                        value={form.insurancedate}
+                        onChange={(e) => handleCellChange(index, 'insurancedate', e.target.value)}
+                      />
+                    ) : (
+                      <span onClick={() => handleCellClick(index, 'insurancedate')}>
+                        {new Date(form.insurancedate).toLocaleDateString()}
+                      </span>
+                    )}
+                  </td>
+
+
                 <td>
                   {editedIndex === index ? (
                     <button className='savebtn' onClick={() => handleFormSubmit(index)}>Save</button>

@@ -175,3 +175,8 @@
   z-index: 999; /* Ensure the popup appears above other elements */
   display: none; /* Initially hide the popup */
 }
+
+.today-insurance-date {
+  color: red; /* Change the color to your desired color */
+  /* Add any other styling you want for today's date here */
+}

@@ -40,6 +40,8 @@ import Mapview3 from './Map/mapview3';
 import Mapview4 from './Map/mapview4';
 import Mapview5 from './Map/mapview5';
 import Maintains from './Maintains';
+import MaintainsAdd from './MaintainsAdd';
+import MaintainsEdit from './MaintainsEdit';
 
 
 function App() {
@@ -89,6 +91,8 @@ function App() {
         <Route path='/mapview4' element={<Mapview4 />} ></Route>
         <Route path='/mapview5' element={<Mapview5 />} ></Route>
         <Route path='/Maintains' element={<Maintains />} ></Route>
+        <Route path='/MaintananceAdd' element={<MaintainsAdd />} ></Route>
+        <Route path='/Maintananceedit' element={<MaintainsEdit />} ></Route>
         
       </Routes>
       

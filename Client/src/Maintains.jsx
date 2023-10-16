@@ -25,7 +25,7 @@ function FormD({ showNotification }) {
   useEffect(() => {
     // Fetch form data from the server
     axios
-      .get('http://localhost:3001/getAllVehicle')
+      .get('http://localhost:3001/getAllMaintain')
       .then((response) => {
         setFormData(response.data.data);
         // Filter and prepare the data for the notification
@@ -42,7 +42,7 @@ function FormD({ showNotification }) {
 
   // Function to fetch data from the database and populate the table
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:3001/getAllVehicle');
+    const response = await axios.get('http://localhost:3001/getAllMaintain');
     const data = response.data.data;
     setFormData(data);
   };
@@ -56,10 +56,8 @@ function FormD({ showNotification }) {
             <thead className='fixed-header'>
               <tr>
                 <th>Vehicle Number</th>
-               
-                <th>Vehicle Model</th>
                 <th>Maintanance Date</th>
-                <th>Parts</th>
+                <th>Description</th>
                 <th>Price</th>
               </tr>
             </thead>
@@ -68,10 +66,10 @@ function FormD({ showNotification }) {
                 <tr key={index}>
                   <td>{form.vehiclenumber}</td>
                
-                  <td>{}</td>
-                  <td>{}</td>
-                  <td>{}</td>
-                  <td>{}</td>
+                  <td>{form.maintainsDate}</td>
+                  <td>{form.price}</td>
+                  <td>{form.Description}</td>
+                
 
                 </tr>
               ))}
@@ -107,10 +105,10 @@ function FormD({ showNotification }) {
         {/* Show the popup form when the "Add" button is clicked */}
         <div>{currentDateTime.toLocaleString()}</div>
         
-        <button className='Addvehiclebtn' onClick={showPopup}>
+        <Link to='/MaintananceAdd' className='Editvehiclebtn'>
           Add
-        </button>
-        <Link to='/vehicleedit' className='Editvehiclebtn'>
+        </Link>
+        <Link to='/Maintananceedit' className='Editvehiclebtn'>
           Edit
         </Link>
         

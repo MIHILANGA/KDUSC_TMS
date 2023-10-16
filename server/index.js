@@ -10,6 +10,7 @@ const FormModel3 = require('./models/Form3');
 const LoginModel = require('./models/Logins');
 const VehicleModel = require('./models/Vehicle');
 const DriverModel = require('./models/Driver');
+const MaintainsModel = require('./models/Maintains');
 
 
 const app = express()
@@ -108,6 +109,12 @@ app.post('/DriverDetails', (req, res) => {
   .then(formd => res.json(formd))
   .catch(err => res.json(err))
 })
+
+app.post('/MaintainDetails', (req, res) => {
+  MaintainsModel.create(req.body)
+  .then(formd => res.json(formd))
+  .catch(err => res.json(err))
+})
 ////////////////////////////////////////////////
 
 
@@ -165,6 +172,16 @@ app.get("/getAllForm", async (req, res) => {
   app.get("/getAllDriver", async (req, res) => {
     try {
       const FormData = await DriverModel.find({});
+      res.send({ status: "ok", data: FormData });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ status: "error", message: "Internal server error" });
+    }
+  });
+
+  app.get("/getAllMaintain", async (req, res) => {
+    try {
+      const FormData = await MaintainsModel.find({});
       res.send({ status: "ok", data: FormData });
     } catch (error) {
       console.log(error);
@@ -243,6 +260,47 @@ app.post('/deleteDriverData', (req, res) => {
   const { id } = req.body;
 
   DriverModel.findOneAndDelete({ _id: id })
+    .then(deletedForm => {
+      if (deletedForm) {
+        res.json({ message: 'Form data deleted', deletedForm });
+      } else {
+        res.status(404).json({ message: 'Form not found' });
+      }
+    })
+    .catch(err => {
+      console.error('Error deleting form data:', err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+})
+
+// Update route
+app.post('/updateMaintain', (req, res) => {
+  const { id, updatedData } = req.body;
+  
+
+  MaintainsModel.findOneAndUpdate(
+    { _id: id }, // Match the document by ID
+    { $set: updatedData }, // Update all fields using updatedData
+    { new: true } // Return the updated document
+  )
+    .then(updatedForm => {
+      if (updatedForm) {
+        res.json(updatedForm);
+      } else {
+        res.status(404).json({ message: 'Form not found' });
+      }
+    })
+    .catch(err => {
+      console.error('Error updating form data:', err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
+
+
+app.post('/deleteMaintain', (req, res) => {
+  const { id } = req.body;
+
+  MaintainsModel.findOneAndDelete({ _id: id })
     .then(deletedForm => {
       if (deletedForm) {
         res.json({ message: 'Form data deleted', deletedForm });

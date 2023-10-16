@@ -9,7 +9,7 @@ function Home() {
   const [regnumber, setregnumber] = useState('');
   const [drivername, setdrivername] = useState('');
   const [Telephone, setTelephone] = useState('');
-  const [driveravailability, setdriveravailability] = useState('');
+ 
   const navigate = useNavigate();
 
   // Function to reset form fields
@@ -17,7 +17,7 @@ function Home() {
     setregnumber('');
     setdrivername('');
     setTelephone('');
-    setdriveravailability('');
+    
   };
 
   const handleSubmit = (e) => {
@@ -26,7 +26,7 @@ function Home() {
       regnumber,
       drivername,
       Telephone,
-      driveravailability
+      
     })
     .then(result => {
       console.log(result);
@@ -63,15 +63,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="col">
-          <label htmlFor="vehicleIncharge">Driver Availability</label>
-          <select name="driveravailability" className="input-box" onChange={(e) => setdriveravailability(e.target.value)} required value={driveravailability}>
-            <option value="">Select Availability</option>
-            <option value="Available">Available</option>
-            <option value="Unavailable">Unavailable</option>
-            {/* Add more options as needed */}
-          </select>
-        </div>        
+      
       <button type="submit" className="DAddbtn"> Add </button>
     </form>
   );
