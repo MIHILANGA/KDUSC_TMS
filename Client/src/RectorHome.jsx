@@ -144,7 +144,16 @@ function FormD({ showNotification }) {
       <img className="logo" alt="Kotelawala defence" src="kdu.png" />
       <h1 className='user1'>RECTOR</h1>
       <img src='profile-user.png' className='userimg'></img>
-      <button type="button" className="backbtn" onClick={() => window.location.href = '/Ahome'}>Back</button>
+      <button
+        type="button"
+        className="logoutbtn"
+        onClick={() => {
+          window.location.href = '/';
+          window.history.replaceState(null, null, '/');
+        }}
+      >
+        Logout
+      </button>
 
       <div className="buttons-container">
         <button className='btn1' onClick={() => fetchFormData('http://localhost:3001/getAllForm', '')}>
