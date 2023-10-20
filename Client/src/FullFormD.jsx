@@ -3,7 +3,7 @@ import axios from 'axios';
 import Notification from './Notification';
 import './CSS/FullFormD.css';
 
-function FullFormFormD({ showNotification }) {
+function FullFormFormD({ showNotification, onNewRequestsCountChange }) {
   const [formData, setFormData] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [expandedRecordIndex, setExpandedRecordIndex] = useState(null);
@@ -28,6 +28,10 @@ function FullFormFormD({ showNotification }) {
 
           return dateB - dateA;
         });
+        const newRequestsCount = sortedData.filter(form => !form.rejectOrConfirm).length;
+
+        // Update the new requests count in the parent component
+        onNewRequestsCountChange(newRequestsCount);
 
         setFormData(sortedData);
 

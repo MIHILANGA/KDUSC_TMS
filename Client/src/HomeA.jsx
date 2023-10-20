@@ -6,6 +6,7 @@ import FullFormFormD from './FullFormD';
 
 function HomeA() {
   const [notification, setNotification] = useState('');
+  const [newRequestsCount, setNewRequestsCount] = useState(0); // State for new requests from FullFormFormD
   const isAdmin = true; // Set this to true if the user is an admin, otherwise set it to false
 
   const showNotification = message => {
@@ -27,6 +28,20 @@ function HomeA() {
     };
   }, []);
 
+  useEffect(() => {
+    // Fetch the count of unconfirmed or unrejected requests from your backend API
+    fetchUnconfirmedCount();
+  }, []);
+
+  const fetchUnconfirmedCount = () => {
+    // Replace the URL with your actual API endpoint to fetch the unconfirmed count
+    // You should implement this endpoint in your backend
+    fetch('http://your-api-endpoint/unconfirmedCount')
+      .then((response) => response.json())
+      .then((data) => setUnconfirmedCount(data.count))
+      .catch((error) => console.error('Error fetching unconfirmed count:', error));
+  };
+
   return (
     <>
       <div className="header-rectangle" />
@@ -46,9 +61,10 @@ function HomeA() {
 
       {/* Navigation Links */}
       <div className="nav-buttons">
-        <Link to="/FormD" className="requestsbtn">
+      <Link to="/FormD" className="requestsbtn">
           Requests
-        </Link>
+          <span className="badge">{newRequestsCount}</span>
+        </Link>
         <Link to="/VehicleDetails" className="vehiclesbtn">
           Vehicles
         </Link>
@@ -66,7 +82,7 @@ function HomeA() {
       {isAdmin && (
         <div className="notification-panelA">
           <div>
-            <FullFormFormD onDataReady={showNotification} />
+          <FullFormFormD onDataReady={showNotification} onNewRequestsCountChange={setNewRequestsCount} />
           </div>
         </div>
       )}
