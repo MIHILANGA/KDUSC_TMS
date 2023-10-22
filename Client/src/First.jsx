@@ -16,7 +16,7 @@ function Login() {
 
     // Send the email and password to the server
     axios
-      .post(`http://localhost:3001/logins`, {
+      .post(`https://kdu-tms.onrender.com/logins`, {
         email,
         password,
       })
