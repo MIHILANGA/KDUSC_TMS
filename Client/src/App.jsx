@@ -1,7 +1,7 @@
 import React from 'react'; // Make sure you import React
 import Signup from './Signup';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './component/home';
+import Home from './components/home';
 import Home1 from './home1';
 import Home2 from './home2';
 import First from './First';
