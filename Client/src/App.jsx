@@ -44,7 +44,7 @@ import MaintainsAdd from './MaintainsAdd';
 import MaintainsEdit from './MaintainsEdit';
 
 
-function index() {
+function App() {
   return (
     
     
@@ -102,4 +102,4 @@ function index() {
   );
 }
 
-export default index;
+export default App;
