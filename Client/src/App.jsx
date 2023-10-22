@@ -2,8 +2,6 @@ import React from 'react'; // Make sure you import React
 import Signup from './Signup';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home1 from './home1';
-import Home2 from './home2';
 import First from './First';
 import HomeA from './HomeA';
 import FormD from './FormD';
@@ -53,8 +51,6 @@ function App() {
       <Route path="/" element={<First />} ></Route>
         <Route path="/register" element={<Signup />} ></Route>
 
-        <Route path="/home1" element={<Home1 />} ></Route>
-        <Route path="/home2" element={<Home2 />} ></Route>
         <Route path="/Ahome" element={<HomeA />} ></Route>
         <Route path="/FormD" element={<FormD />} ></Route>
         <Route path="/conformation" element={<Conformation />} ></Route>
