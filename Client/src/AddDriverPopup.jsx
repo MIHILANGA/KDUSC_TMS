@@ -22,7 +22,7 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/DriverDetails', {
+    axios.post('https://kdu-tms.onrender.com/DriverDetails', {
       regnumber,
       drivername,
       Telephone,

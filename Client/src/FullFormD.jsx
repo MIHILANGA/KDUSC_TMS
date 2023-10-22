@@ -59,7 +59,7 @@ function FullFormFormD({ showNotification, onNewRequestsCountChange }) {
   }, [formData, notifications]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getAllVehicle')
+    axios.get('https://kdu-tms.onrender.com/getAllVehicle')
       .then(response => {
         const today = new Date();
         const vehicleData = response.data.data;

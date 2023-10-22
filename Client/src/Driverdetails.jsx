@@ -13,7 +13,7 @@ function FormD({ showNotification }) {
   useEffect(() => {
     // Fetch form data from the server
     axios
-      .get('http://localhost:3001/getAllDriver')
+      .get('https://kdu-tms.onrender.com/getAllDriver')
       .then((response) => {
         setFormData(response.data.data);
         // Filter and prepare the data for the notification
@@ -30,7 +30,7 @@ function FormD({ showNotification }) {
 
   // Function to fetch data from the database and populate the table
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:3001/getAllDriver');
+    const response = await axios.get('https://kdu-tms.onrender.com/getAllDriver');
     const data = response.data.data;
     setFormData(data);
   };
@@ -50,7 +50,7 @@ function FormD({ showNotification }) {
 
     // Send a request to update the availability on the server
     axios
-      .post('http://localhost:3001/updateDriverDatas', dataToUpdate)
+      .post('https://kdu-tms.onrender.com/updateDriverDatas', dataToUpdate)
       .then((response) => {
         console.log('Driver availability updated:', response.data);
 

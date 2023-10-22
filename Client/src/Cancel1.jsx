@@ -11,7 +11,7 @@ function FormD({ showNotification }) {
 
   useEffect(() => {
     // Fetch form data from the server when the component mounts
-    axios.get('http://localhost:3001/getAllForm1')
+    axios.get('https://kdu-tms.onrender.com/getAllForm1')
       .then(response => {
         // Reverse the data array to display it in reverse order
         const reversedData = response.data.data.reverse();
@@ -47,7 +47,7 @@ function FormD({ showNotification }) {
     const updatedForm = formData[index];
 
     // Update the data in the MongoDB database
-    axios.post('http://localhost:3001/updateFormDatas1', {
+    axios.post('https://kdu-tms.onrender.com/updateFormDatas1', {
       id: updatedForm._id,
       updatedData: updatedForm,
     })
@@ -67,13 +67,13 @@ function FormD({ showNotification }) {
   // Handle delete
   const handleDelete = (id) => {
     // Delete data from the MongoDB database
-    axios.post('http://localhost:3001/deleteFormData1', {
+    axios.post('https://kdu-tms.onrender.com/deleteFormData1', {
       id: id,
     })
     .then(response => {
       console.log('Form data deleted from MongoDB:', response.data);
       // Refresh form data after deletion
-      axios.get('http://localhost:3001/getAllForm1')
+      axios.get('https://kdu-tms.onrender.com/getAllForm1')
         .then(response => {
           setFormData(response.data.data);
           alert('Request Form Cancel successfully!');

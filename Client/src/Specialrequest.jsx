@@ -60,7 +60,7 @@ const resetForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/home3', {
+    axios.post('https://kdu-tms.onrender.com/home3', {
       applicantname,
       
       vehicleIncharge,
