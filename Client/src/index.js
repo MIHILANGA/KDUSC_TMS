@@ -50,12 +50,11 @@ function index() {
     
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<First />} ></Route>
+        <Route path="/First" element={<First />} ></Route>
         <Route path="/register" element={<Signup />} ></Route>
         <Route path="/home" element={<Home />} ></Route>
         <Route path="/home1" element={<Home1 />} ></Route>
         <Route path="/home2" element={<Home2 />} ></Route>
-        <Route path="/First" element={<First />} ></Route>
         <Route path="/Ahome" element={<HomeA />} ></Route>
         <Route path="/FormD" element={<FormD />} ></Route>
         <Route path="/conformation" element={<Conformation />} ></Route>
