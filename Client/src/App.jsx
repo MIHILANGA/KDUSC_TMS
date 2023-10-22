@@ -1,7 +1,7 @@
 import React from 'react'; // Make sure you import React
 import Signup from './Signup';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './src/home';
+import Home from './home';
 import Home1 from './home1';
 import Home2 from './home2';
 import First from './First';
@@ -44,13 +44,13 @@ import MaintainsAdd from './MaintainsAdd';
 import MaintainsEdit from './MaintainsEdit';
 
 
-function index() {
+function App() {
   return (
     
     
     <BrowserRouter>
       <Routes>
-      <Route path="/First" element={<First />} ></Route>
+      <Route path="/" element={<First />} ></Route>
         <Route path="/register" element={<Signup />} ></Route>
         <Route path="/home" element={<Home />} ></Route>
         <Route path="/home1" element={<Home1 />} ></Route>
@@ -102,4 +102,4 @@ function index() {
   );
 }
 
-export default index;
+export default App;
