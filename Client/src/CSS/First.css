@@ -128,4 +128,52 @@
 
 }
 
+/*-------------css for small screen---------------*/
 
+@media only screen and (max-width: 768px){
+
+    .logo {     
+        padding: 100px;
+        margin-left: -120px;
+        margin-top: -70px;
+
+    }
+    .header-rectangle {           /*header rectangle*/
+        height: 100px;
+    }
+    .Midbg{
+        padding: 350px 180px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 50px;
+    }
+    .midtext div h2 {
+        font-size: 19px;
+        line-height: 25px;
+        font-weight: 300px;
+        margin-top: -685px;
+        margin-left: 30px;
+        position: relative; /* Add this line */
+        z-index: 1; /* Add this line */    } 
+    .midtext div p {
+        font-size: 15px;
+        line-height: 20px;
+        margin-bottom: 100px;
+        margin-top: 50px;
+        margin-left: 50px;
+        position: relative; /* Add this line */
+        z-index: 1; /* Add this line */
+    }
+    .loginarea form {
+        display: flex;
+        flex-direction: column; /* Stack input and button vertically */
+        align-items: center; /* Center items horizontally */
+        margin-top: -40px; /* Move the entire form up by 100px */
+        margin-left: 10px;
+    
+    }
+    .emailtextinput ,.passwordtextinput , .submitbtn {
+        
+        margin: 10px; /* Add some margin for spacing */
+        padding: 8px 60px; /* Adjust padding as needed */}
+}
