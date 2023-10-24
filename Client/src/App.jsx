@@ -42,6 +42,7 @@ import Mapview5 from './Map/mapview5';
 import Maintains from './Maintains';
 import MaintainsAdd from './MaintainsAdd';
 import MaintainsEdit from './MaintainsEdit';
+import Setting from './Setting';
 
 
 function App() {
@@ -93,6 +94,7 @@ function App() {
         <Route path='/Maintains' element={<Maintains />} ></Route>
         <Route path='/MaintananceAdd' element={<MaintainsAdd />} ></Route>
         <Route path='/Maintananceedit' element={<MaintainsEdit />} ></Route>
+        <Route path='/Setting' element={<Setting />} ></Route>
         
       </Routes>
       

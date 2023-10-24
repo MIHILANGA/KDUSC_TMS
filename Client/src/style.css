@@ -160,6 +160,7 @@
   margin-top: 31px;
   margin-right: -10px;    cursor: help;
 }
+
 .userimg{
   border-radius: 100px;
   border: none;
@@ -171,6 +172,7 @@
   z-index: 1;
 
 }
+
 .user1{
   font-size: small;
   position: fixed;
