@@ -17,6 +17,7 @@ const app = initializeApp(firebaseConfig);
 
 function GoogleMapsLocation() {
   let map, infoWindow;
+  let marker = null; // Single marker instance
 
   const [locations, setLocations] = useState([]); // State to hold location data
 
@@ -39,9 +40,35 @@ function GoogleMapsLocation() {
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('your Location');
+            infoWindow.setContent('Your Location');
             infoWindow.open(map);
             map.setCenter(pos);
+
+            // Create a marker for the user's location if it doesn't exist
+            if (!marker) {
+              marker = new window.google.maps.Marker({
+                position: pos,
+                map: map,
+                title: 'Live Location',
+              });
+            }
+
+            // Watch for location changes and update the marker
+            navigator.geolocation.watchPosition(
+              (newPosition) => {
+                const { latitude, longitude } = newPosition.coords;
+                const newPos = new window.google.maps.LatLng(latitude, longitude);
+
+                marker.setPosition(newPos);
+                map.panTo(newPos);
+
+                // Update the state if needed
+                setLocations((prevLocations) => [...prevLocations, newPos]);
+              },
+              (error) => {
+                handleLocationError(true, infoWindow, map.getCenter());
+              }
+            );
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -71,17 +98,14 @@ function GoogleMapsLocation() {
           const data = snapshot.val(); // Get the data from the snapshot
           if (data) {
             const { latitude, longitude } = data;
-            const location = new window.google.maps.LatLng(latitude, longitude);
+            const newPos = new window.google.maps.LatLng(latitude, longitude);
 
-            // Add a marker for the retrieved location on the map
-            new window.google.maps.Marker({
-              position: location,
-              map: map,
-              title: 'Live Location',
-            });
+            // Update the position of the existing marker
+            marker.setPosition(newPos);
+            map.panTo(newPos);
 
             // Update the locations state with the new data
-            setLocations((prevLocations) => [...prevLocations, location]);
+            setLocations((prevLocations) => [...prevLocations, newPos]);
           }
         });
       });

@@ -17,13 +17,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 function GoogleMapsLocation() {
-  let map, infoWindow;
+  let map, infoWindow, marker;
 
   useEffect(() => {
     const initMap = () => {
       map = new window.google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.397, lng: 150.644 },
-        zoom: 6,
+        zoom: 15,
       });
       infoWindow = new window.google.maps.InfoWindow();
 
@@ -37,28 +37,45 @@ function GoogleMapsLocation() {
               lng: longitude,
             };
 
-            //infoWindow.setPosition(pos);
-            //infoWindow.setContent('GA-8069');
-            //infoWindow.open(map);
             map.setCenter(pos);
 
-            // Create a custom marker icon
             const customMarkerIcon = {
-              url: image, // Replace with the actual path to your custom icon
-              scaledSize: new window.google.maps.Size(102, 102), // Adjust the size as needed
+              url: image,
+              scaledSize: new window.google.maps.Size(32, 32),
             };
 
-            // Create a marker with the custom icon
-            const marker = new window.google.maps.Marker({
+            marker = new window.google.maps.Marker({
               position: pos,
               map: map,
-              icon: customMarkerIcon, // Use the custom icon
+              icon: customMarkerIcon,
             });
 
-            // Store the live position data in Firebase Realtime Database
             const database = getDatabase(app);
-            const livePositionRef = ref(database, 'live_position3');
+            const livePositionRef = ref(database, 'live_position0');
+
+            // Initially, set the user's location in Firebase
             set(livePositionRef, { latitude, longitude });
+
+            // Start watching the user's location and updating Firebase as they move
+            navigator.geolocation.watchPosition(
+              (position) => {
+                const { latitude, longitude } = position.coords;
+
+                const newPos = {
+                  lat: latitude,
+                  lng: longitude,
+                };
+
+                map.setCenter(newPos);
+                marker.setPosition(newPos);
+
+                // Update the user's location in Firebase
+                set(livePositionRef, { latitude, longitude });
+              },
+              (error) => {
+                handleLocationError(true, infoWindow, map.getCenter());
+              }
+            );
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());

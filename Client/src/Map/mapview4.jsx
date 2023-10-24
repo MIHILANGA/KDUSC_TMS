@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
+import customMarkerIcon from './car.png'; // Import your custom marker icon image
 
 const firebaseConfig = {
   // Your Firebase configuration here
@@ -17,6 +18,7 @@ const app = initializeApp(firebaseConfig);
 
 function GoogleMapsLocation() {
   let map, infoWindow;
+  let marker = null; // Single marker instance
 
   const [locations, setLocations] = useState([]); // State to hold location data
 
@@ -39,9 +41,39 @@ function GoogleMapsLocation() {
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('your Location');
+            infoWindow.setContent('Your Location');
             infoWindow.open(map);
             map.setCenter(pos);
+
+            // Create a marker for the user's location if it doesn't exist
+            if (!marker) {
+              marker = new window.google.maps.Marker({
+                position: pos,
+                map: map,
+                title: 'Live Location',
+                icon: {
+                  url: customMarkerIcon, // Use the custom icon
+                  scaledSize: new window.google.maps.Size(50, 50), // Adjust the size as needed
+                },
+              });
+            }
+
+            // Watch for location changes and update the marker
+            navigator.geolocation.watchPosition(
+              (newPosition) => {
+                const { latitude, longitude } = newPosition.coords;
+                const newPos = new window.google.maps.LatLng(latitude, longitude);
+
+                marker.setPosition(newPos);
+                map.panTo(newPos);
+
+                // Update the state if needed
+                setLocations((prevLocations) => [...prevLocations, newPos]);
+              },
+              (error) => {
+                handleLocationError(true, infoWindow, map.getCenter());
+              }
+            );
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -57,8 +89,7 @@ function GoogleMapsLocation() {
 
       // Example database references for multiple locations
       const locationRefs = [
-       
-        ref(database, 'live_position4'),
+        ref(database, 'live_position0'),
       ];
 
       // Use the 'onValue' listener for each location reference
@@ -67,17 +98,14 @@ function GoogleMapsLocation() {
           const data = snapshot.val(); // Get the data from the snapshot
           if (data) {
             const { latitude, longitude } = data;
-            const location = new window.google.maps.LatLng(latitude, longitude);
+            const newPos = new window.google.maps.LatLng(latitude, longitude);
 
-            // Add a marker for the retrieved location on the map
-            new window.google.maps.Marker({
-              position: location,
-              map: map,
-              title: 'Live Location',
-            });
+            // Update the position of the existing marker
+            marker.setPosition(newPos);
+            map.panTo(newPos);
 
             // Update the locations state with the new data
-            setLocations((prevLocations) => [...prevLocations, location]);
+            setLocations((prevLocations) => [...prevLocations, newPos]);
           }
         });
       });
@@ -110,7 +138,7 @@ function GoogleMapsLocation() {
     }
   }, []); // Remove 'locations' from the dependency array
 
-  return <div id="map" style={{ width: '100%', height: '550px' }}></div>;
+  return <div id="map" style={{ width: '100vw', height: '100vh' }}></div>;
 }
 
 export default GoogleMapsLocation;
