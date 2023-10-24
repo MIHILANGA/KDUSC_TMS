@@ -51,7 +51,7 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post('http://localhost:3001/home2', {
+      .post('https://kdu-tms.onrender.com/home2', {
         applicantname,
         appiicantAppoinment,
         vehicleIncharge,

@@ -10,7 +10,7 @@ function FormD({ showNotification }) {
 
   useEffect(() => {
     // Fetch vehicle data from the server when the component mounts
-    axios.get('http://localhost:3001/getAllVehicle')
+    axios.get('https://kdu-tms.onrender.com/getAllVehicle')
       .then(response => {
         setFormData(response.data.data);
         setLoading(false); // Data has been loaded
@@ -44,7 +44,7 @@ function FormD({ showNotification }) {
     const updatedForm = formData[index];
 
     // Update the data in the MongoDB database
-    axios.post('http://localhost:3001/updateVehicleDatas', {
+    axios.post('https://kdu-tms.onrender.com/updateVehicleDatas', {
       id: updatedForm._id,
       updatedData: updatedForm,
     })
@@ -64,13 +64,13 @@ function FormD({ showNotification }) {
   // Handle delete
   const handleDelete = (id) => {
     // Delete data from the MongoDB database
-    axios.post('http://localhost:3001/deleteVehicleData', {
+    axios.post('https://kdu-tms.onrender.com/deleteVehicleData', {
       id: id,
     })
     .then(response => {
       console.log('Vehicle data deleted from MongoDB:', response.data);
       // Refresh vehicle data after deletion
-      axios.get('http://localhost:3001/getAllVehicle')
+      axios.get('https://kdu-tms.onrender.com/getAllVehicle')
         .then(response => {
           setFormData(response.data.data);
           alert('Data deleted successfully!');

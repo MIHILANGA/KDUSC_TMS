@@ -24,7 +24,7 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/MaintainDetails', {
+    axios.post('https://kdu-tms.onrender.com/MaintainDetails', {
       vehiclenumber,
       maintainsDate,
       price,

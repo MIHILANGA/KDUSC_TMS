@@ -21,7 +21,7 @@ function FormD({ showNotification }) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/getAllVehicle')
+      .get('https://kdu-tms.onrender.com/getAllVehicle')
       .then((response) => {
         setFormData(response.data.data);
         const filteredData = response.data.data.map((form) => ({
@@ -36,7 +36,7 @@ function FormD({ showNotification }) {
   }, [showNotification]);
 
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:3001/getAllVehicle');
+    const response = await axios.get('https://kdu-tms.onrender.com/getAllVehicle');
     const data = response.data.data;
     setFormData(data);
   };
@@ -51,7 +51,7 @@ function FormD({ showNotification }) {
     };
 
     axios
-      .post('http://localhost:3001/updateVehicleDatas', dataToUpdate)
+      .post('https://kdu-tms.onrender.com/updateVehicleDatas', dataToUpdate)
       .then((response) => {
         console.log('Vehicle availability updated:', response.data);
         setFormData(updatedFormData);

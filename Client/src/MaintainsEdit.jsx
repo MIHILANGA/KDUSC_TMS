@@ -10,7 +10,7 @@ function FormD({ showNotification }) {
 
   useEffect(() => {
     // Fetch driver data from the server when the component mounts
-    axios.get('http://localhost:3001/getAllMaintain')
+    axios.get('https://kdu-tms.onrender.com/getAllMaintain')
       .then(response => {
         setFormData(response.data.data);
         setLoading(false); // Data has been loaded
@@ -44,7 +44,7 @@ function FormD({ showNotification }) {
     const updatedForm = formData[index];
 
     // Update the data in the MongoDB database
-    axios.post('http://localhost:3001/updateMaintain', {
+    axios.post('https://kdu-tms.onrender.com/updateMaintain', {
       id: updatedForm._id,
       updatedData: updatedForm,
     })
@@ -62,13 +62,13 @@ function FormD({ showNotification }) {
   // Handle delete
   const handleDelete = (id) => {
     // Delete data from the MongoDB database
-    axios.post('http://localhost:3001/deleteMaintain', {
+    axios.post('https://kdu-tms.onrender.com/deleteMaintain', {
       id: id,
     })
     .then(response => {
       console.log('Driver data deleted from MongoDB:', response.data);
       // Refresh driver data after deletion
-      axios.get('http://localhost:3001/getAllMaintain')
+      axios.get('https://kdu-tms.onrender.com/getAllMaintain')
         .then(response => {
           setFormData(response.data.data);
           alert('Driver data deleted successfully!');

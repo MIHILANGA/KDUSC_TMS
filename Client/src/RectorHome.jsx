@@ -9,7 +9,7 @@ function FormD({ showNotification }) {
   const [expandedRecordIndex, setExpandedRecordIndex] = useState(null);
 
   useEffect(() => {
-    fetchFormData('http://localhost:3001/getAllForm', '');
+    fetchFormData('https://kdu-tms.onrender.com/getAllForm', '');
   }, []);
 
   const fetchFormData = (url, formType) => {
@@ -62,7 +62,7 @@ function FormD({ showNotification }) {
   };
 
   const handleConfirm = (index) => {
-    const updateEndpoint = `http://localhost:3001/updateRectorData${formData[index].formType}`;
+    const updateEndpoint = `https://kdu-tms.onrender.com/updateRectorData${formData[index].formType}`;
     const updatedFormData = [...formData];
     updatedFormData[index].rejectOrConfirm1 = 'Confirmed';
     updatedFormData[index].message = 'Request Confirmed';
@@ -71,7 +71,7 @@ function FormD({ showNotification }) {
   };
 
   const handleReject = (index) => {
-    const updateEndpoint = `http://localhost:3001/updateRectorData${formData[index].formType}`;
+    const updateEndpoint = `https://kdu-tms.onrender.com/updateRectorData${formData[index].formType}`;
     const updatedFormData = [...formData];
     updatedFormData[index].rejectOrConfirm1 = 'Rejected';
     updatedFormData[index].message = 'Request Rejected';
@@ -147,16 +147,16 @@ function FormD({ showNotification }) {
       <button type="button" className="backbtn" onClick={() => window.location.href = '/Ahome'}>Back</button>
 
       <div className="buttons-container">
-        <button className='btn1' onClick={() => fetchFormData('http://localhost:3001/getAllForm', '')}>
+        <button className='btn1' onClick={() => fetchFormData('https://kdu-tms.onrender.com/getAllForm', '')}>
           FOC
         </button>
-        <button className='btn2' onClick={() => fetchFormData('http://localhost:3001/getAllForm1', '1')}>
+        <button className='btn2' onClick={() => fetchFormData('https://kdu-tms.onrender.com/getAllForm1', '1')}>
           FBESS
         </button>
-        <button className='btn3' onClick={() => fetchFormData('http://localhost:3001/getAllForm2', '2')}>
+        <button className='btn3' onClick={() => fetchFormData('https://kdu-tms.onrender.com/getAllForm2', '2')}>
           FOT
         </button>
-        <button className='btn3' onClick={() => fetchFormData('http://localhost:3001/getAllForm3', '3')}>
+        <button className='btn3' onClick={() => fetchFormData('https://kdu-tms.onrender.com/getAllForm3', '3')}>
           OTHER
         </button>
       </div>

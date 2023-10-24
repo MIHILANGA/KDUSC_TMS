@@ -13,10 +13,10 @@ function FormD({ showNotification }) {
   const [vehiclesList, setVehiclesList] = useState([]);
 
   useEffect(() => {
-    fetchFormData('http://localhost:3001/getAllForm', '');
+    fetchFormData('https://kdu-tms.onrender.com/getAllForm', '');
     setSelectedFormType('FOC');
-    fetchDriverData('http://localhost:3001/getAllDriver');
-    fetchVehicleData('http://localhost:3001/getAllVehicle');
+    fetchDriverData('https://kdu-tms.onrender.com/getAllDriver');
+    fetchVehicleData('https://kdu-tms.onrender.com/getAllVehicle');
   }, []);
 
   const fetchFormData = (url, formType) => {
@@ -93,13 +93,13 @@ function FormD({ showNotification }) {
     let updateUrl = '';
 
     if (selectedFormType === 'FOC') {
-      updateUrl = 'http://localhost:3001/updateAssignData';
+      updateUrl = 'https://kdu-tms.onrender.com/updateAssignData';
     } else if (selectedFormType === 'FBESS') {
-      updateUrl = 'http://localhost:3001/updateAssignData1';
+      updateUrl = 'https://kdu-tms.onrender.com/updateAssignData1';
     } else if (selectedFormType === 'FOT') {
-      updateUrl = 'http://localhost:3001/updateAssignData2';
+      updateUrl = 'https://kdu-tms.onrender.com/updateAssignData2';
     } else if (selectedFormType === 'OTHER') {
-      updateUrl = 'http://localhost:3001/updateAssignData3';
+      updateUrl = 'https://kdu-tms.onrender.com/updateAssignData3';
     }
 
     try {
@@ -161,13 +161,13 @@ function FormD({ showNotification }) {
     let updateUrl = '';
 
     if (selectedFormType === 'FOC') {
-      updateUrl = 'http://localhost:3001/updateAssignData';
+      updateUrl = 'https://kdu-tms.onrender.com/updateAssignData';
     } else if (selectedFormType === 'FBESS') {
-      updateUrl = 'http://localhost:3001/updateAssignData1';
+      updateUrl = 'https://kdu-tms.onrender.com/updateAssignData1';
     } else if (selectedFormType === 'FOT') {
-      updateUrl = 'http://localhost:3001/updateAssignData2';
+      updateUrl = 'https://kdu-tms.onrender.com/updateAssignData2';
     } else if (selectedFormType === 'OTHER') {
-      updateUrl = 'http://localhost:3001/updateAssignData3';
+      updateUrl = 'https://kdu-tms.onrender.com/updateAssignData3';
     }
 
     axios
@@ -204,25 +204,25 @@ function FormD({ showNotification }) {
 
       <div className="buttons-container">
         <button className='btn1' onClick={() => {
-          fetchFormData('http://localhost:3001/getAllForm', '');
+          fetchFormData('https://kdu-tms.onrender.com/getAllForm', '');
           setSelectedFormType('FOC');
         }}>
           FOC
         </button>
         <button className='btn2' onClick={() => {
-          fetchFormData('http://localhost:3001/getAllForm1', '1');
+          fetchFormData('https://kdu-tms.onrender.com/getAllForm1', '1');
           setSelectedFormType('FBESS');
         }}>
           FBESS
         </button>
         <button className='btn3' onClick={() => {
-          fetchFormData('http://localhost:3001/getAllForm2', '2');
+          fetchFormData('https://kdu-tms.onrender.com/getAllForm2', '2');
           setSelectedFormType('FOT');
         }}>
           FOT
         </button>
         <button className='btn3' onClick={() => {
-          fetchFormData('http://localhost:3001/getAllForm3', '3');
+          fetchFormData('https://kdu-tms.onrender.com/getAllForm3', '3');
           setSelectedFormType('OTHER');
         }}>
           OTHER

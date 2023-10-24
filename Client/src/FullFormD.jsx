@@ -11,10 +11,10 @@ function FullFormFormD({ showNotification, onNewRequestsCountChange }) {
 
   useEffect(() => {
     const urls = [
-      'http://localhost:3001/getAllForm',
-      'http://localhost:3001/getAllForm1',
-      'http://localhost:3001/getAllForm2',
-      'http://localhost:3001/getAllForm3',
+      'https://kdu-tms.onrender.com/getAllForm',
+      'https://kdu-tms.onrender.com/getAllForm1',
+      'https://kdu-tms.onrender.com/getAllForm2',
+      'https://kdu-tms.onrender.com/getAllForm3',
     ];
 
     Promise.all(urls.map(url => axios.get(url)))
@@ -59,7 +59,7 @@ function FullFormFormD({ showNotification, onNewRequestsCountChange }) {
   }, [formData, notifications]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getAllVehicle')
+    axios.get('https://kdu-tms.onrender.com/getAllVehicle')
       .then(response => {
         const today = new Date();
         const vehicleData = response.data.data;

@@ -7,7 +7,7 @@ function FormD({ showNotification }) {
 
   useEffect(() => {
     // Fetch form data from the server
-    axios.get('http://localhost:3001/getAllForm1')
+    axios.get('https://kdu-tms.onrender.com/getAllForm1')
       .then(response => {
         // Reverse the data array to display in reverse order
         const reversedData = response.data.data.reverse();
@@ -35,7 +35,7 @@ function FormD({ showNotification }) {
     const { _id, rejectOrConfirm } = updatedFormData[index];
 
     // Update the data in the MongoDB database
-    axios.post('http://localhost:3001/updateFormData', {
+    axios.post('https://kdu-tms.onrender.com/updateFormData', {
       id: _id,
       rejectOrConfirm: rejectOrConfirm,
     })

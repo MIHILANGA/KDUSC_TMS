@@ -25,7 +25,7 @@ function FormD({ showNotification }) {
   useEffect(() => {
     // Fetch form data from the server
     axios
-      .get('http://localhost:3001/getAllMaintain')
+      .get('https://kdu-tms.onrender.com/getAllMaintain')
       .then((response) => {
         setFormData(response.data.data);
         // Filter and prepare the data for the notification
@@ -42,7 +42,7 @@ function FormD({ showNotification }) {
 
   // Function to fetch data from the database and populate the table
   const fetchData = async () => {
-    const response = await axios.get('http://localhost:3001/getAllMaintain');
+    const response = await axios.get('https://kdu-tms.onrender.com/getAllMaintain');
     const data = response.data.data;
     setFormData(data);
   };
