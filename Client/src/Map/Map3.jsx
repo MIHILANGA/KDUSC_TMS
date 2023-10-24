@@ -51,7 +51,7 @@ function GoogleMapsLocation() {
             });
 
             const database = getDatabase(app);
-            const livePositionRef = ref(database, 'live_position0');
+            const livePositionRef = ref(database, 'live_position3');
 
             // Initially, set the user's location in Firebase
             set(livePositionRef, { latitude, longitude });

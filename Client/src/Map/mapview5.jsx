@@ -89,7 +89,7 @@ function GoogleMapsLocation() {
 
       // Example database references for multiple locations
       const locationRefs = [
-        ref(database, 'live_position0'),
+        ref(database, 'live_position5'),
       ];
 
       // Use the 'onValue' listener for each location reference
