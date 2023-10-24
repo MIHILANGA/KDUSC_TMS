@@ -41,7 +41,7 @@ function GoogleMapsLocation() {
 
             const customMarkerIcon = {
               url: image,
-              scaledSize: new window.google.maps.Size(32, 32),
+              scaledSize: new window.google.maps.Size(28, 22),
             };
 
             marker = new window.google.maps.Marker({
