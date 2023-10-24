@@ -188,6 +188,16 @@ app.get("/getAllForm", async (req, res) => {
       res.status(500).json({ status: "error", message: "Internal server error" });
     }
   });
+
+  app.get("/getSetting", async (req, res) => {
+    try {
+      const FormData = await LoginModel.find({});
+      res.send({ status: "ok", data: FormData });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ status: "error", message: "Internal server error" });
+    }
+  });
 ////////////////////////////////////////////////
 
 
@@ -313,6 +323,28 @@ app.post('/deleteMaintain', (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     });
 })
+
+app.post('/updateSetting', (req, res) => {
+  const { id, updatedData } = req.body;
+  
+
+  LoginModel.findOneAndUpdate(
+    { _id: id }, // Match the document by ID
+    { $set: updatedData }, // Update all fields using updatedData
+    { new: true } // Return the updated document
+  )
+    .then(updatedForm => {
+      if (updatedForm) {
+        res.json(updatedForm);
+      } else {
+        res.status(404).json({ message: 'Form not found' });
+      }
+    })
+    .catch(err => {
+      console.error('Error updating form data:', err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
 ///////////////////////////////////////////////
 
   app.post('/updateFormData', (req, res) => {

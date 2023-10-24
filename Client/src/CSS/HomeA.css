@@ -141,3 +141,28 @@ p {               /*------------space between details of tile------------*/
 h2{
   font-weight: 600;
 }
+
+
+.settingbtn {
+  background: #d65656; /* Button background color */
+  color: #000000; /* Text color */
+  border: none;
+  padding: 10px 30px; /* Adjust padding as needed */
+  font-size: 16px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  position: fixed;
+  top: 35px; /* Adjust the top position as needed */
+  right: 260px; /* Adjust the right position as needed */
+  z-index: 1;
+}
+
+
+.settingbtn:hover {
+  background: #FF8811; /* Button background color on hover */
+  color: #fff; /* Text color on hover */
+}
+h2{
+  font-weight: 600;
+}
