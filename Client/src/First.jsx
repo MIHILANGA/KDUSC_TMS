@@ -17,7 +17,7 @@ function Login() {
 
     // Send the email and password to the server
     axios
-      .post(`http://localhost:3001/logins`, {
+      .post(`https://kdu-tms.onrender.com/logins`, {
         email,
         password,
       })
@@ -53,7 +53,7 @@ function Login() {
   const sendEmail = async () => {
     try {
       // Fetch data from the endpoint
-      const response = await axios.get('http://localhost:3001/getSetting');
+      const response = await axios.get('https://kdu-tms.onrender.com/getSetting');
       const vehicleData = response.data;
 
       // Use the emailjs library to send the email
