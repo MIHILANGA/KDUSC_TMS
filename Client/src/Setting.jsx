@@ -110,6 +110,17 @@ function FormD({ showNotification }) {
                   {editedIndex === index ? (
                     <input
                       type="text"
+                      value={form._id}
+                      onChange={(e) => handleCellChange(index, '_id', e.target.value)} />
+                  ) : (
+                    <span onClick={() => handleCellClick(index)}>{form._id}</span>
+                  )}
+                </td>
+
+                <td>
+                  {editedIndex === index ? (
+                    <input
+                      type="text"
                       value={form.name}
                       onChange={(e) => handleCellChange(index, 'name', e.target.value)} />
                   ) : (
@@ -137,17 +148,7 @@ function FormD({ showNotification }) {
                     <span onClick={() => handleCellClick(index)}>{form.password}</span>
                   )}
                 </td>
-                <td>
-                  {editedIndex === index ? (
-                    <input
-                      type="text"
-                      value={form.Description}
-                      onChange={(e) => handleCellChange(index, 'Description', e.target.value)} />
-                  ) : (
-                    <span onClick={() => handleCellClick(index)}>{form.Description}</span>
-                  )}
-                </td>
-
+                
 
 
                   <td>
@@ -156,7 +157,7 @@ function FormD({ showNotification }) {
                   ) : (
                     <>
                       <button className='savebtn' onClick={() => handleCellClick(index)}>Edit</button>
-                      <button className='deletebtn' onClick={() => handleDelete(form._id)}>Delete</button>
+                      
                     </>
                   )}
                 </td>

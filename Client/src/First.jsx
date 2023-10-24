@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import emailjs from 'emailjs-com';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -49,6 +50,30 @@ function Login() {
         setError('An error occurred while logging in. Please try again later.');
       });
   };
+  const sendEmail = async () => {
+    try {
+      // Fetch data from the endpoint
+      const response = await axios.get('https://kdu-tms.onrender.com/getSetting');
+      const vehicleData = response.data;
+
+      // Use the emailjs library to send the email
+      emailjs.send('0767147170', 'template_o9udh2a', {
+        to_email: 'www.miyurumanusha@gmail.com',
+        subject: 'Forgot Password',
+        message: `This is your password reset link. Vehicle Data: ${JSON.stringify(vehicleData)}`,
+      }, 'yyBO_CCobC1_99wji')
+        .then((response) => {
+          console.log('Email sent successfully', response);
+          alert('Email sent successfully');
+        })
+        .catch((error) => {
+          console.error('Email could not be sent', error);
+        });
+    } catch (error) {
+      console.error('Failed to fetch data from the endpoint', error);
+    }
+  };
+
   return (
       <div className="mainlogin-frame" style={{ backgroundImage: `url('kdu-entrance 1.png')`}}id="bg-image" >
         <div>
@@ -83,10 +108,13 @@ function Login() {
             <input type="email" placeholder="Enter your email" autoComplete="off" name="email" className="emailtextinput" onChange={(e) => setEmail(e.target.value)}required/>
           
             <input type="password" placeholder="Enter your password" name="password" className="passwordtextinput" onChange={(e) => setPassword(e.target.value)}required/>
-
+           
             <button type="submit" className="submitbtn"> Login </button>
+            <p ><Link className="foget" onClick={sendEmail}>Forgot admin password</Link></p>
+            
           
           </form>
+          
           </div>
         </div>
       </div>
