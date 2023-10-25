@@ -17,9 +17,7 @@ const app = initializeApp(firebaseConfig);
 
 function GoogleMapsLocation() {
   let map, infoWindow;
-  let marker = null; // Single marker instance
-
-  const [locations, setLocations] = useState([]); // State to hold location data
+  const markers = new Map(); // Maintain a mapping between Firebase references and markers
 
   useEffect(() => {
     const initMap = () => {
@@ -43,32 +41,6 @@ function GoogleMapsLocation() {
             infoWindow.setContent('Your Location');
             infoWindow.open(map);
             map.setCenter(pos);
-
-            // Create a marker for the user's location if it doesn't exist
-            if (!marker) {
-              marker = new window.google.maps.Marker({
-                position: pos,
-                map: map,
-                title: 'Live Location',
-              });
-            }
-
-            // Watch for location changes and update the marker
-            navigator.geolocation.watchPosition(
-              (newPosition) => {
-                const { latitude, longitude } = newPosition.coords;
-                const newPos = new window.google.maps.LatLng(latitude, longitude);
-
-                marker.setPosition(newPos);
-                map.panTo(newPos);
-
-                // Update the state if needed
-                setLocations((prevLocations) => [...prevLocations, newPos]);
-              },
-              (error) => {
-                handleLocationError(true, infoWindow, map.getCenter());
-              }
-            );
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -79,10 +51,8 @@ function GoogleMapsLocation() {
         handleLocationError(false, infoWindow, map.getCenter());
       }
 
-      // Retrieve location data from Firebase Realtime Database for multiple locations
-      const database = getDatabase(app); // Pass the Firebase app instance
+      const database = getDatabase(app);
 
-      // Example database references for multiple locations
       const locationRefs = [
         ref(database, 'live_position0'),
         ref(database, 'live_position1'),
@@ -92,20 +62,25 @@ function GoogleMapsLocation() {
         ref(database, 'live_position5'),
       ];
 
-      // Use the 'onValue' listener for each location reference
-      locationRefs.forEach((locationRef) => {
+      locationRefs.forEach((locationRef, index) => {
         onValue(locationRef, (snapshot) => {
-          const data = snapshot.val(); // Get the data from the snapshot
+          const data = snapshot.val();
           if (data) {
             const { latitude, longitude } = data;
-            const newPos = new window.google.maps.LatLng(latitude, longitude);
+            const location = new window.google.maps.LatLng(latitude, longitude);
 
-            // Update the position of the existing marker
-            marker.setPosition(newPos);
-            map.panTo(newPos);
-
-            // Update the locations state with the new data
-            setLocations((prevLocations) => [...prevLocations, newPos]);
+            if (markers.has(locationRef)) {
+              // Update the existing marker position
+              markers.get(locationRef).setPosition(location);
+            } else {
+              // Create a new marker if it doesn't exist
+              const marker = new window.google.maps.Marker({
+                position: location,
+                map: map,
+                title: 'Live Location',
+              });
+              markers.set(locationRef, marker);
+            }
           }
         });
       });
@@ -121,19 +96,14 @@ function GoogleMapsLocation() {
       infoWindow.open(map);
     };
 
-    // Check if the Google Maps API script is already loaded
     if (!window.google) {
-      // If not, load it dynamically
       const script = document.createElement('script');
       script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyA-TgmRlan5NTLnoNSOBie9j4XxXzHv200&callback=initMap';
       script.defer = true;
       script.async = true;
       document.head.appendChild(script);
-
-      // Define the initMap function as a global function
       window.initMap = initMap;
     } else {
-      // If the Google Maps API script is already loaded, directly call initMap
       initMap();
     }
   }, []); // Remove 'locations' from the dependency array
