@@ -73,7 +73,7 @@ function FormD({ showNotification }) {
                 <th>Register Number</th>
                 <th>Driver Name</th>
                 <th>Telephone Number</th>
-                <th>Driver Availability</th>
+                <th>Daily Availability</th>
               </tr>
             </thead>
             <tbody>

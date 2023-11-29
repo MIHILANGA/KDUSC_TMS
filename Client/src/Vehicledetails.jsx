@@ -133,12 +133,12 @@ function FormD({ showNotification }) {
       <thead className='fixed-header'>
         <tr>
           <th>Vehicle Number</th>
-          <th>Vehicle type</th>
+          <th>Vehicle Type</th>
           <th>Vehicle Model</th>
           <th>Vehicle A.P</th>
           <th>Register Date</th>
           <th>Insurance Date</th>
-          <th>Availability</th>
+          <th>Daily Availability</th>
         </tr>
       </thead>
       <tbody>{renderTableRows()}</tbody>

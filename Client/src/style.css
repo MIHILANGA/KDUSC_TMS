@@ -8,6 +8,7 @@
   .Stable {
     border-collapse: collapse;
     width: 100%; /* Make the table take up 100% of its container's width */
+    
   }
   
   .Stable th,
@@ -25,25 +26,42 @@
 /* Change the width and center text in the first column */
 .Stable th:nth-child(1),
 .Stable td:nth-child(1) {
-    width: 300px; /* Adjust the width as needed */
+    width: 180px; /* Adjust the width as needed */
     text-align: center; /* Center text horizontally */
 }
-
+.Stable th:nth-child(2),
+.Stable td:nth-child(2) {
+    width: 280px; /* Adjust the width as needed */
+    text-align: center; /* Center text horizontally */
+}
+.Stable th:nth-child(3),
+.Stable td:nth-child(3) {
+  text-align: center; /* Center text horizontally */
+    width: 210px; /* Adjust the width as needed */
+    text-align: center; /* Center text horizontally */
+}
 /* Change the width of the "Actions" column (fourth column) */
 .Stable th:nth-child(4),
 .Stable td:nth-child(4) {
-  width: 250px; /* Adjust the width as needed */
+  text-align: center; /* Center text horizontally */
+  width: 160px; /* Adjust the width as needed */
   height: 60px;
 
 }
-/* Change the width of the column (fifth column) */
-.Stable th:nth-child(5){
+.Stable th:nth-child(5),
+.Stable td:nth-child(5) {
+  width: 150px; /* Adjust the width as needed */
+  text-align: center; /* Center text horizontally */
+
+}
+.Stable th:nth-child(6){
   text-align: center; /* Center text horizontally */
 }
-.Stable td:nth-child(5) {
-  width: 250px; /* Adjust the width as needed */
+.Stable td:nth-child(6) {
   text-align: center; /* Center text horizontally */
+  width: 150px; /* Adjust the width as needed */
   background-color:beige;
+
 }
 /*-------------------------------------------------------------------------------------*/
 /*---------------------------Cancel js file css styles-----------------------------*/

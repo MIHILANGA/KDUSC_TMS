@@ -141,7 +141,7 @@ function Home() {
               >
                 <option value="">Select Nature of Duty</option>
                 <option value="Official ">Official</option>
-                <option value="Privet">Privet</option>
+                <option value="Privet">Private</option>
               </select>
             </div>
 

@@ -99,7 +99,6 @@ function FormD({ showNotification }) {
               <th>Register Number</th>
               <th>Driver Name</th>
               <th>Telephone Number</th>
-              <th>Availability</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -137,19 +136,7 @@ function FormD({ showNotification }) {
                     <span onClick={() => handleCellClick(index)}>{form.Telephone}</span>
                   )}
                 </td>
-                <td>
-                    {editedIndex === index ? (
-                      <select
-                        value={form.driveravailability}
-                        onChange={(e) => handleCellChange(index, 'driveravailability', e.target.value)}
-                      >
-                        <option value="Available">Available</option>
-                        <option value="Unavailable">Unavailable</option>
-                      </select>
-                    ) : (
-                      <span onClick={() => handleCellClick(index)}>{form.driveravailability}</span>
-                    )}
-                  </td>
+              
 
 
 

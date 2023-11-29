@@ -29,7 +29,7 @@
   .Vehicledata-table {
     border-collapse: collapse;
     width: 100%;
-    margin-left: 1px;
+    margin-left: 10px;
     margin-top: -300px;
   }
   
@@ -53,6 +53,22 @@
     background-color: #fff; /* Add a background color for the header */
     z-index: 1; /* Ensure the header appears above the table content */
   }
+  /* Change the width and center text in the 4th column */
+.Vehicledata-table th:nth-child(4),
+.Vehicledata-table td:nth-child(4) {
+    width: 390px; /* Adjust the width as needed */
+    text-align: center; /* Center text horizontally */
+}
+.Vehicledata-table th:nth-child(1),
+.Vehicledata-table td:nth-child(1) {
+    width: 300px; /* Adjust the width as needed */
+    text-align: center; /* Center text horizontally */
+}
+.Vehicledata-table th:nth-child(7),
+.Vehicledata-table td:nth-child(7) {
+    text-align: center; /* Center text horizontally */
+}
+  
   
   /*--------------------------------------------------------*/
 

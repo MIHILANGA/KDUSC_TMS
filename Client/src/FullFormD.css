@@ -180,3 +180,6 @@
 .input[type="text"]:hover {
     border-color: #ff7505; /* Change border color on hover */
   }
+  .insurance-message-text {
+    border-radius: 50px;
+  }

@@ -69,14 +69,21 @@
   }
   .driver-data-table th:nth-child(3),
   .driver-data-table td:nth-child(3) {
-        width: 300px; /* Adjust the width as needed */
+        width: 250px; /* Adjust the width as needed */
+        text-align: center; /* Center text horizontally */
+
   } 
   .driver-data-table th:nth-child(2),
   .driver-data-table td:nth-child(2) {
-      width: 500px; /* Adjust the width as needed */
+      width: 450px; /* Adjust the width as needed */
   }
   .driver-data-table th:nth-child(1),
   .driver-data-table td:nth-child(1) {
+      width: 360px; /* Adjust the width as needed */
+      text-align: center; /* Center text horizontally */
+  }
+  .driver-data-table th:nth-child(4),
+  .driver-data-table td:nth-child(4) {
       width: 360px; /* Adjust the width as needed */
       text-align: center; /* Center text horizontally */
   }

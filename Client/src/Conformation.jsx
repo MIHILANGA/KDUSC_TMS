@@ -57,20 +57,25 @@ function FormD({ showNotification }) {
         <table className="Stable">
           <thead className='fixed-headerD'>
             <tr>
-              <th>Applicant ID</th>
+             
               <th>Applicant Name</th>
               <th>Requirement</th>
               <th>Date Apply</th>
+              <th>Driver Name</th>
+              <th>Vehicle</th>
               <th>Request Status</th>
+              
             </tr>
           </thead>
           <tbody>
             {formData.map((form, index) => (
               <tr key={index}>
-                <td>{form._id}</td>
+                
                 <td>{form.applicantname}</td>
                 <td>{form.requirement}</td>
                 <td>{form.dateofApply}</td>
+                <td>{form.driver}</td>
+                <td>{form.vehicle}</td>
                 <td>{form.rejectOrConfirm1}</td>
               </tr>
             ))}
