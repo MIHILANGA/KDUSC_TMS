@@ -14,25 +14,35 @@
 }
 
 .button-panel button {
-  background-color: #FF8811;
-  color: #fff;
+
   text-decoration: none;
-  padding: 10px 20px;
-  margin: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
   text-align: center;
-  width: 100%; /* Occupy full width of the button panel */
-}
+  background: #FF8811; /* Button background color */
+  color: #000000; /* Text color */
+  border: none;
+  width: 200px; /* Fixed width for all buttons */
+  height: 75px; /* Fixed height for all buttons */
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  margin: 8px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  /* Center text vertically */
+  align-items: center;
+  justify-content: center;
+  font-weight: 550;
+  font-size: 16px;}
 
 .button-panel button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-}
+  background: #FF8811; /* Button background color on hover */
+  color: #fff; /* Text color on hover */
+  transform: translateY(-5px);}
 
 /* Map panel */
 .map-panel {
   width: 80%; /* Adjust the width of the map panel as needed */
+  overflow: auto;
 }
 
 /*-----------notification background-----------*/

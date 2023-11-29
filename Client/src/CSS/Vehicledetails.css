@@ -115,8 +115,7 @@
     transform: translateY(-5px);
   
   }
-  /*-----------notification background-----------*/
-.notification-panelV {
+  .notification-panelV {
     text-align: left;
     font-family: Arial, sans-serif;
     border-radius: 15px;
@@ -126,13 +125,40 @@
     margin-top: -550px;
     margin-left: 270px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    
+    overflow: auto;
   }
-  .notification-panelV:hover{
-    transition: transform 0.2s ease; /* Add a separate transition for transform */
-    transform: scale(1.01); /* Add a scaling effect on hover */
+  
+  .notification-panelV:hover {
+    transition: transform 0.2s ease;
+    transform: scale(1.01);
     background-color: #ffffff;
-  } 
+  }
+  .Vehicledata-table {
+    width: 1160px;
+    height: 900px; /* Adjust the height as needed */
+  }
+  
+  .fixed-header th {
+    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .Vehicledata-table th,
+  .Vehicledata-table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd; /* Add a border for better visibility */
+  }
+  
+  
+  
+
+
+
+
+ 
     /*-----------notification background of vehicle details-----------*/
 .notification-panelVD {
   text-align: left;
@@ -152,10 +178,17 @@
   background-color: #ffffff;
 } 
 .table-container {
-  max-height: 550px; /* Set a maximum height for the table container */
+  max-height: 1550px; /* Set a maximum height for the table container */
   max-width: 1180;
   overflow-y: auto; /* Enable vertical scrolling when content overflows */
 }
+.Vehicledata-table th,
+.Vehicledata-table td {
+    width: 300px; /* Adjust the width as needed */
+    text-align: left; /* Optional: Adjust text alignment */
+    padding: 8px; /* Optional: Adjust padding for better spacing */
+}
+
 /* Add styles for the blur effect */
 .blur-background {
   filter: blur(5px); /* Adjust the blur intensity as needed */

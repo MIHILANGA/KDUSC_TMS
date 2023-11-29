@@ -99,6 +99,8 @@ function Login() {
         <br />
         field of defence, in both residential and non-residential settings in the campus.
       </p>
+
+
             </div>
           {/*<Link to="/" className="backbtn"> Back </Link>*/}
 
@@ -110,11 +112,11 @@ function Login() {
             <input type="password" placeholder="Enter your password" name="password" className="passwordtextinput" onChange={(e) => setPassword(e.target.value)}required/>
            
             <button type="submit" className="submitbtn"> Login </button>
-            <p ><Link className="foget" onClick={sendEmail}>Forgot admin password</Link></p>
-            
+
+            <Link className="forgotpsw" onClick={sendEmail}>Forgot Password ?</Link>
           
           </form>
-          
+
           </div>
         </div>
       </div>

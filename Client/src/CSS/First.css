@@ -70,7 +70,7 @@
 }
 
 .midtext div h2 {
-    font-size: 50px;
+    font-size: 47px;
     line-height: 60px;
     font-weight: 300px;
     margin-top: -480px;
@@ -120,11 +120,19 @@
     margin-top: 20px; /* Add margin-top for spacing between input and button */
     cursor: pointer;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    z-index: 1; /* Add this line */
+    z-index: 1; 
 }
 .submitbtn:hover{
     background: #ffaa00;
     transform:translatey(-2px);
+
+}
+.forgotpsw{
+    font-size: 10px;
+    font-weight: normal;
+    color: #000000;
+    margin-top: 15px;
+    z-index: 1; 
 
 }
 
@@ -134,8 +142,8 @@
 
     .logo {     
         padding: 100px;
-        margin-left: -120px;
-        margin-top: -70px;
+        margin-left: 100px;
+        margin-top: 70px;
 
     }
     .header-rectangle {           /*header rectangle*/

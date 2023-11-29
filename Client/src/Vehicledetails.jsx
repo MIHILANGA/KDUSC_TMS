@@ -128,23 +128,24 @@ function FormD({ showNotification }) {
       </div>
 
       <div className='notification-panelV'>
-        <table className='Vehicledata-table'>
-          <div className='table-container'>
-            <thead className='fixed-header'>
-              <tr>
-                <th>Vehicle Number</th>
-                <th>Vehicle type</th>
-                <th>Vehicle Model</th>
-                <th>Vehicle A.P</th>
-                <th>Register Date</th>
-                <th>Insurance Date</th>
-                <th>Availability</th>
-              </tr>
-            </thead>
-            <tbody>{renderTableRows()}</tbody>
-          </div>
-        </table>
-      </div>
+  <div className='table-container'>
+    <table className='Vehicledata-table'>
+      <thead className='fixed-header'>
+        <tr>
+          <th>Vehicle Number</th>
+          <th>Vehicle type</th>
+          <th>Vehicle Model</th>
+          <th>Vehicle A.P</th>
+          <th>Register Date</th>
+          <th>Insurance Date</th>
+          <th>Availability</th>
+        </tr>
+      </thead>
+      <tbody>{renderTableRows()}</tbody>
+    </table>
+  </div>
+</div>
+
 
       {isPopupVisible && <AddVehiclePopup onClose={hidePopup} onAdd={fetchData} />}
     </>
