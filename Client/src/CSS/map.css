@@ -1,0 +1,18 @@
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+
+    .header-rectangle{
+      height: 80px;
+    }
+    .logo{
+      margin-top: -70px;
+      margin-left: -120px;
+    }
+    .logoutbtn{
+      padding: 8px 15px;
+      font-size: 10px;
+      text-align: center;
+      margin-right: -25px;
+      margin-top: -10px;
+    }
+}

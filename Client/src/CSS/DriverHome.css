@@ -3,29 +3,46 @@
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
+
+.header-rectangle{
+  height: 80px;
+}
+.logo{
+  margin-top: -70px;
+  margin-left: -120px;
+}
+.logoutbtn{
+  padding: 8px 15px;
+  font-size: 10px;
+  text-align: center;
+  margin-right: -25px;
+  margin-top: -10px;
+}
     .nav-buttons {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-top: 20px; /* Add spacing at the top */
+      
     }
   
     .reservationbtn {
-      background-color: #007BFF;
-      color: #fff;
+      background: #FF8811; /* Button background color */
+      color: #000000; /* Text color */
       text-decoration: none;
-      padding: 10px 20px;
+      padding: 10px 30px; /* Adjust padding as needed */
       margin: 10px;
-      border-radius: 5px;
+      margin-left: -25px;
+      border-radius: 15px;
       font-size: 16px;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s, color 0.3s;
+      cursor: pointer;
       text-align: center;
-      width: 80%;
       max-width: 200px; /* Limit button width */
     }
-  
+
     .reservationbtn:hover {
-      background-color: #0056b3; /* Darker shade on hover */
-    }
+      background: #FF8811; /* Button background color on hover */
+      color: #fff; /* Text color on hover */    }
   }
   

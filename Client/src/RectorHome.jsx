@@ -142,7 +142,7 @@ function FormD({ showNotification }) {
     <>
       <div className="header-rectangle" />
       <img className="logo" alt="Kotelawala defence" src="kdu.png" />
-      <h1 className='user1'>RECTOR</h1>
+      <h1 className='user1'>Adjutant</h1>
       <img src='profile-user.png' className='userimg'></img>
       <button type="button" className="backbtn" onClick={() => window.location.href = '/'}>Logout</button>
 

@@ -3,6 +3,7 @@ import { getDatabase, ref, set } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
 import image from './bus.png';
 
+
 const firebaseConfig = {
   // Your Firebase configuration here
   apiKey: "AIzaSyCxFh-6KQdS7XIjdXGwx8zBVCGfxEX1XpM",

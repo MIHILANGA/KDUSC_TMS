@@ -109,6 +109,7 @@ function GoogleMapsLocation() {
   }, []); // Remove 'locations' from the dependency array
 
   return <div id="map" style={{ width: '100%', height: '550px' }}></div>;
+
 }
 
 export default GoogleMapsLocation;

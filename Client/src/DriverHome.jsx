@@ -7,20 +7,26 @@ import Map1 from './Map/Map1';
 
 function HomeA() {
   return (
+
+    <>
+    <div className="header-rectangle" />
+    <img className="logo" alt="Kotelawala defence" src="kdu.png" />
+    <button type="button" className="logoutbtn" onClick={() => { window.location.href = '/'; } }> Logout</button>
+
     <div className="container">
-      <div className="row">
-        <div className="col-sm-12">
-          <div className="nav-buttons">
-            <Link to="/Map0" className="reservationbtn">Bus</Link>
-            <Link to="/Map1" className="reservationbtn">Van</Link>
-            <Link to="/Map2" className="reservationbtn">MiniBus</Link>
-            <Link to="/Map3" className="reservationbtn">Tractor</Link>
-            <Link to="/map4" className="reservationbtn">Car</Link>
-            <Link to="/map5" className="reservationbtn">Truck</Link>
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="nav-buttons">
+              <Link to="/Map0" className="reservationbtn">Bus</Link>
+              <Link to="/Map1" className="reservationbtn">Van</Link>
+              <Link to="/Map2" className="reservationbtn">MiniBus</Link>
+              <Link to="/Map3" className="reservationbtn">Tractor</Link>
+              <Link to="/map4" className="reservationbtn">Car</Link>
+              <Link to="/map5" className="reservationbtn">Truck</Link>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div></>
   );
 }
 

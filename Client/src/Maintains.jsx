@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CSS/Vehicledetails.css';
-import AddVehiclePopup from './AddVehiclePopup'; // Import the AddVehiclePopup component
+import MaintainsAdd from './MaintainsAdd';
 
 function FormD({ showNotification }) {
   const [formData, setFormData] = useState([]);
@@ -105,9 +105,9 @@ function FormD({ showNotification }) {
         {/* Show the popup form when the "Add" button is clicked */}
         <div>{currentDateTime.toLocaleString()}</div>
         
-        <Link to='/MaintananceAdd' className='Editvehiclebtn'>
-          Add
-        </Link>
+        <button className='Addvehiclebtn' onClick={showPopup}>
+            Add
+          </button>
         <Link to='/Maintananceedit' className='Editvehiclebtn'>
           Edit
         </Link>
@@ -121,7 +121,7 @@ function FormD({ showNotification }) {
       {renderTable()}
 
       {/* Render the popup form if isPopupVisible is true */}
-      {isPopupVisible && <AddVehiclePopup onClose={hidePopup} onAdd={fetchData} />}
+      {isPopupVisible && <MaintainsAdd onClose={hidePopup} onAdd={fetchData} />}
       
     </>
   );
