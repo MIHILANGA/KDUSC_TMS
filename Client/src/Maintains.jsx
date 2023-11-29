@@ -57,8 +57,8 @@ function FormD({ showNotification }) {
               <tr>
                 <th>Vehicle Number</th>
                 <th>Maintanance Date</th>
-                <th>Description</th>
                 <th>Price</th>
+                <th>Description</th>
               </tr>
             </thead>
             <tbody>

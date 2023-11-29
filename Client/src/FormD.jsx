@@ -135,15 +135,16 @@ function FormD({ showNotification }) {
   `;
 
 
-    printWindow.document.open();
-    printWindow.document.write(printContent);
-    printWindow.document.close();
+  printWindow.document.open();
+  printWindow.document.write(printContent);
+  printWindow.document.close();
 
-
+  // Add a delay before printing
+  setTimeout(() => {
     printWindow.print();
     printWindow.close();
-  };
-
+  }, 1000); // Adjust the delay as needed
+};
 
   return (
     <>
